@@ -22,6 +22,7 @@ import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
 
+import static nk.divineartifacts.client.handler.ClientForgeHandler.toggleShield;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;
 import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
 
@@ -29,6 +30,7 @@ import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
 public class DivinePotionRemover {
 	@SubscribeEvent
 	public static void onPotionAttack( MobEffectEvent.Added event ) {
+		if (!toggleShield) return;
 		if ( event.getEntity() instanceof Player player ) {
 			if ( player.isCreative() || player.isSpectator() ) return;
 			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player );

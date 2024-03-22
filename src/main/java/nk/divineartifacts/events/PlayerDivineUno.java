@@ -15,6 +15,8 @@ import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
 
+import static nk.divineartifacts.client.handler.ClientForgeHandler.toggleMagnet;
+import static nk.divineartifacts.client.handler.ClientForgeHandler.toggleShield;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;
 import static nk.divineartifacts.events.DivineHelper.*;
 
@@ -23,6 +25,7 @@ public class PlayerDivineUno {
 	@SubscribeEvent( priority = EventPriority.HIGH )
 	public void onLivingAttack(LivingAttackEvent event) {
 		if ( ! configDivineArtifacts.get() ) return;
+		if (!toggleShield) return;
 		if ( event.getEntity() instanceof Player player ) {
 			if ( player.isCreative() || player.isSpectator() ) return;
 			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);

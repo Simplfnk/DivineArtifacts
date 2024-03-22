@@ -72,7 +72,6 @@ public class ClientForgeHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
 		if ( ring != null && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null ) {
-			// TODO: Send a packet to the server.
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
