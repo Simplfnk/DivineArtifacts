@@ -1,0 +1,15 @@
+{
+  "itemGroup.divineartifacts": "Divine Artifacts",
+  "item.divineartifacts.ring_divine": "Ring of Divinity",
+  "item.divineartifacts.orb_divine": "Ring of Divine Magic",
+  "item.divineartifacts.div_crystal":"Crystallised Divine Essence",
+  "item.divineartifacts.div_gold_ring":"Angelic Gold ring",
+  "tooltip.divineorb.orb": "Grants You Magical Power",
+  "tooltip.divineartifacts.slot": "Slot: ",
+  "tooltip.divineartifacts.ring": "Ring",
+  "tooltip.divineartifacts.charm": "Body",
+  "advancements.divineartifacts.descr": "Divine Artifacts",
+  "advancements.divineartifacts.title": "Finally!!",
+  "magnet.divineartifacts.toggle.key": "Toggle Magnet",
+  "explode.divineartifacts.toggle.key": "Toggle Chain Attack"
+}

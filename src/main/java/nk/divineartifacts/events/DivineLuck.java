@@ -1,0 +1,259 @@
+package nk.divineartifacts.events;
+
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.*;
+import net.minecraft.world.item.enchantment.Enchantments;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.Tags;
+import net.minecraftforge.event.entity.living.LivingDropsEvent;
+import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
+import net.minecraftforge.event.level.BlockEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.network.PacketDistributor;
+import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.network.PacketHandler;
+import nk.divineartifacts.network.S2CPacketData;
+import nk.divineartifacts.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static nk.divineartifacts.config.Config.configDivineArtifacts;
+import static nk.divineartifacts.events.DivineHelper.*;
+
+@Mod.EventBusSubscriber( bus = Mod.EventBusSubscriber.Bus.FORGE )
+public class DivineLuck {
+	public static void register() {
+		MinecraftForge.EVENT_BUS.addListener(DivineLuck::handleBreakSpeed);
+		MinecraftForge.EVENT_BUS.addListener(DivineLuck::onDiggingClawsHarvestCheck);
+	}
+
+	@SubscribeEvent( priority = EventPriority.LOW )
+	public static void handleExp(LivingExperienceDropEvent event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		if ( event.getAttackingPlayer() instanceof ServerPlayer player ) {
+			if ( ! player.level().isClientSide ) {
+				ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+				if ( ring != null ) {
+					int x = event.getDroppedExperience();
+					event.setDroppedExperience(x * 20);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent( priority = EventPriority.LOW )
+	public static void onLivingDrop(LivingDropsEvent event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! ( event.getSource().getEntity() instanceof ServerPlayer player ) || player.level().isClientSide() )
+			return;
+		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		if ( ring != null ) {
+			LivingEntity target = event.getEntity();
+			List< ItemEntity > drops = new ArrayList<>(event.getDrops());
+			for ( ItemEntity item : drops ) {
+				assert item.getItem().getTag() != null;
+				boolean isGem = matchedItemId(item.getItem() , "apotheosis:gem");
+				boolean isSpawnEgg = item.getItem().getItem() instanceof SpawnEggItem;
+				boolean isToolOrArmor = item.getItem().is(Tags.Items.TOOLS) || item.getItem().is(Tags.Items.ARMORS);
+				if ( ! ( IsCurioItem(item.getItem()) || banItems(item.getItem()) || isToolOrArmor || isGem || isSpawnEgg || isArtifacts(item.getItem()) ) ) {
+					for ( int i = 0; i < 9; i++ ) {
+						event.getDrops().add(new ItemEntity(player.level() , item.getX() , item.getY() , item.getZ() , item.getItem().copy()));
+					}
+				}
+				if ( isGem ) {
+					upGradeGem(item.getItem());
+				}
+				if ( item.getItem().getDamageValue() > 0 ) {
+					item.getItem().setDamageValue(0); // Repair items outside the condition to avoid redundancy.
+				}
+			}
+			for ( ItemEntity item : event.getDrops() ) {
+				if ( ! item.getItem().getItem().canBeDepleted() ) {
+					item.setPos(target.getX() , target.getY() , target.getZ());
+					item.setDeltaMovement(- 0.3 + target.level().random.nextDouble() * 0.6 , 0.3 + target.level().random.nextDouble() * 0.3 , - 0.3 + target.level().random.nextDouble() * 0.6);
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onBlockBreakS(BlockEvent.BreakEvent event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! event.getLevel().isClientSide() ) {
+			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
+			if ( player.isCreative() || player.isSpectator() ) return;
+			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			boolean handEmpty = player.getMainHandItem().isEmpty();
+			boolean container = event.getLevel().getBlockState(event.getPos()) instanceof Container;
+			BlockPos pos = event.getPos();
+			ServerLevel serverLevel = ( ServerLevel ) event.getLevel();
+			BlockState state = event.getState();
+			int fortuneLvl = player.getMainHandItem().getEnchantmentLevel(Enchantments.BLOCK_FORTUNE);
+			int exp = event.getExpToDrop();
+			ItemStack handItem = player.getMainHandItem();
+			if ( ring != null && ! handEmpty ) {
+				if ( ! container && ! isHandEmptyOrNotTool(handItem) ) {
+					List< ItemStack > drops = Block.getDrops(state , serverLevel , pos , null , player , handItem);
+					drops.removeIf(drop -> drop.getItem() instanceof BlockItem && ! ( drop.getItem() == Items.REDSTONE || drop.getItem() == Items.STRING || drop.is(Tags.Items.CROPS) ));
+					for ( ItemStack drop : drops ) {
+						ItemStack stack = drop.copy();
+						if ( ! ( stack.getItem() instanceof BookItem ) ) {
+							stack.setCount(drop.getCount() + fortuneLvl);
+							ItemStack stack2 = stack.copy();
+							stack2.setCount(stack.getCount() * 5);
+							Block.popResource(player.level() , event.getPos() , stack2);
+						}
+						if ( exp > 0 ) {
+							event.setExpToDrop(exp * 20);
+						}
+					}
+				}
+				else {
+					if ( exp > 0 ) {
+						event.setExpToDrop(exp * 20);
+					}
+				}
+			}
+		}
+	}
+
+	@SubscribeEvent
+	public static void onLeftClickBlocks(BlockEvent.BreakEvent event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! ( event.getLevel().isClientSide() ) ) {
+			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
+			if ( player.isCreative() || player.isSpectator() ) return;
+			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack handItem = player.getMainHandItem();
+			boolean container = event.getLevel().getBlockState(event.getPos()) instanceof Container;
+			boolean blockEntity = event.getLevel().getBlockState(event.getPos()).hasBlockEntity();
+			BlockPos pos = event.getPos();
+			ServerLevel serverLevel = ( ServerLevel ) event.getLevel();
+			BlockState state = event.getState();
+			Block block = state.getBlock();
+			int exp = block.getExpDrop(state , serverLevel , serverLevel.random , pos , 10 , 0);
+			if ( ring != null && isHandEmptyOrNotTool(handItem) ) {
+				player.level().addDestroyBlockEffect(pos , state);
+				if ( ! container && ! blockEntity ) {
+					List< ItemStack > drops = Block.getDrops(state , serverLevel , pos , null);
+					drops.removeIf(drop -> drop.getItem() instanceof BlockItem && ! ( drop.getItem() == Items.REDSTONE || drop.getItem() == Items.STRING || drop.is(Tags.Items.CROPS) ));
+					for ( ItemStack drop : drops ) {
+						ItemStack stack = drop.copy();
+						if ( ! ( stack.getItem() instanceof BookItem ) ) {
+							stack.setCount(drop.getCount() * 9);
+							Block.popResource(player.level() , event.getPos() , stack);
+						}
+						if ( exp > 0 ) {
+							block.popExperience(serverLevel , pos , exp * 10);
+						}
+					}
+				}
+				else {
+					if ( exp > 0 ) {
+						block.popExperience(serverLevel , pos , exp * 10);
+					}
+				}
+			}
+		}
+	}
+
+	private static float breakSpeed;
+
+	@SubscribeEvent( priority = EventPriority.HIGHEST )
+	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! ( event.getLevel().isClientSide ) ) {
+			if ( ! ( event.getEntity() instanceof ServerPlayer player ) ) return;
+			if ( player.isCreative() || player.isSpectator() ) return;
+			long currentTime = System.currentTimeMillis();
+			long lastActionTime = lastActionTimes.getOrDefault(player.getUUID() , 0L);
+			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack handItem = player.getMainHandItem();
+			BlockPos pos = event.getPos();
+			ServerLevel serverLevel = ( ServerLevel ) event.getLevel();
+			BlockState state = serverLevel.getBlockState(pos);
+			SoundEvent sound = state.getSoundType().getBreakSound();
+			SoundEvent sound2 = state.getSoundType().getHitSound();
+			S2CPacketData packet = new S2CPacketData(pos , state);
+			if ( ring != null && isHandEmptyOrNotTool(handItem) ) {
+				if ( ! state.isAir() && ! state.isAir() && state.getDestroySpeed(serverLevel , pos) >= 0 ) {
+					if ( currentTime - lastActionTime >= 100 ) {
+						PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player) , packet);
+						serverLevel.playSound(null , pos , sound , SoundSource.BLOCKS);
+						breakSpeed = Float.MAX_VALUE;
+						lastActionTimes.put(player.getUUID() , currentTime);
+					}
+					else {
+						event.setCanceled(true);
+					}
+				}
+				else {
+					event.setCanceled(true);
+					if ( currentTime - lastActionTime >= 100 ) {
+						serverLevel.playSound(null , pos , sound2 , SoundSource.BLOCKS);
+						lastActionTimes.put(player.getUUID() , currentTime);
+					}
+				}
+			}
+		}
+		if ( event.getLevel().isClientSide ) {
+			if ( ! ( event.getEntity() instanceof Player ) ) return;
+			Player player = event.getEntity();
+			if ( player.isCreative() || player.isSpectator() ) return;
+			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack handItem = player.getMainHandItem();
+			if ( ring != null && isHandEmptyOrNotTool(handItem) ) {
+				event.setCanceled(true);
+			}
+		}
+	}
+
+	private static void onDiggingClawsHarvestCheck(PlayerEvent.HarvestCheck event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! event.getEntity().level().isClientSide ) {
+			Player player = event.getEntity();
+			if ( player.isCreative() || player.isSpectator() ) return;
+			ItemStack handItem = player.getMainHandItem();
+			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			if ( ring != null && isHandEmptyOrNotTool(handItem) ) {
+				event.setCanHarvest(true);
+			}
+		}
+	}
+
+	private static void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
+		if ( ! configDivineArtifacts.get() ) return;
+		Player player = event.getEntity();
+		if ( player.isCreative() || player.isSpectator() ) return;
+		ItemStack handItem = player.getMainHandItem();
+		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		if ( ring != null && isHandEmptyOrNotTool(handItem) ) {
+			event.setNewSpeed(breakSpeed);
+		}
+	}
+
+	@SubscribeEvent
+	public static void commonSetup(FMLCommonSetupEvent event) {
+		PacketHandler.register();
+	}
+}
+
+
+
+

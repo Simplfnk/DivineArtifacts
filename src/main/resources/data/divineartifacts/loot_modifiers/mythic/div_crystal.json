@@ -1,0 +1,13 @@
+{
+  "type": "divineartifacts:add_item",
+  "conditions": [
+    {
+      "condition": "random_chance",
+      "chance": 0.02
+    }
+  ],
+  "loot_tables": [
+    "minecraft:chests/end_city_treasure"
+  ],
+  "ring": "divineartifacts:div_crystal"
+}

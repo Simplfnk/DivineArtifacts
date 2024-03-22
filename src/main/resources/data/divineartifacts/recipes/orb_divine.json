@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "A",
+    "D"
+
+  ],
+  "key": {
+    "A": {"item": "divineartifacts:div_crystal"},
+    "D": {"item": "divineartifacts:div_gold_ring"}
+  },
+  "result": {
+    "item": "divineartifacts:orb_divine",
+    "count": 1
+  }
+}
