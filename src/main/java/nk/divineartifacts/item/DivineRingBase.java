@@ -196,10 +196,11 @@ public class DivineRingBase extends Item implements ICurioItem {
 		tooltip.add(Component.literal(Component.translatable(this.tooltip).getString()).withStyle(s -> s.withColor(color)));
 		MutableComponent magnet = Component.literal(ChatFormatting.BOLD + "Magnet:").withStyle(s -> s.withColor(magnetColor));
 		MutableComponent Explode = Component.literal(ChatFormatting.BOLD + "Chain Attack:").withStyle(s -> s.withColor(magnetColor));
+		MutableComponent Shield = Component.literal(ChatFormatting.BOLD + "Shield: ").withStyle(s -> s.withColor(magnetColor));
 		MutableComponent on = Component.literal(ChatFormatting.BOLD + " On").withStyle(s -> s.withColor(clOn));
 		MutableComponent off = Component.literal(ChatFormatting.BOLD + " Off").withStyle(s -> s.withColor(clOff));
-		//=================================================================
 		// toggle tooltips;
+		//================================================================= Magnet
 		if ( toggleMagnet ) {
 			tooltip.add(magnet.append(on));
 		}
@@ -208,6 +209,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 		}
 		if(isShiftPressed){tooltip.add(Component.literal("Press " + "\u00A7e" + Keybindings.INSTANCE.magnetKey.getKey().getDisplayName().getString() + "\u00A7f to toggle on/off."));}
 		tooltip.add(Component.literal(""));
+		//================================================================ Chain Attack
 		if ( toggleExplode ) {
 			tooltip.add(Explode.append(on));
 		}
@@ -216,6 +218,16 @@ public class DivineRingBase extends Item implements ICurioItem {
 		}
 		if (isShiftPressed){tooltip.add(Component.literal("Press " + "\u00A7e" + Keybindings.INSTANCE.explodedKey.getKey().getDisplayName().getString() + "\u00A7f to toggle on/off."));}
 		tooltip.add(Component.literal(""));
+		//================================================================ Shield
+		if ( toggleShield ) {
+			tooltip.add(Shield.append(on));
+		}
+		if ( ! toggleShield ) {
+			tooltip.add(Shield.append(off));
+		}
+		if (isShiftPressed){tooltip.add(Component.literal("Press " + "\u00A7e" + Keybindings.INSTANCE.shieldKey.getKey().getDisplayName().getString() + "\u00A7f to toggle on/off."));}
+		tooltip.add(Component.literal(""));
+		//================================================================
 		if (!isShiftPressed) {
 			tooltip.add(Component.literal("\u00A77"+"Press"+ "\u00A76" +" Shift"+ "\u00A77" +" for more information"));
 			tooltip.add(Component.literal(""));

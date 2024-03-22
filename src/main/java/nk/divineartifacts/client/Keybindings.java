@@ -13,13 +13,19 @@ public final class Keybindings {
     public  final KeyMapping magnetKey = new KeyMapping(
             "magnet." + DivineArtifacts.MODID + ".toggle.key",
             KeyConflictContext.UNIVERSAL,
-            InputConstants.getKey(InputConstants.KEY_H,-1),
+            InputConstants.getKey(InputConstants.KEY_NUMPAD1,-1),
             CATEGORY
     );
     public  final KeyMapping explodedKey = new KeyMapping(
             "explode" + DivineArtifacts.MODID + ".toggle.key",
             KeyConflictContext.UNIVERSAL,
-            InputConstants.getKey(InputConstants.KEY_T,-1),
+            InputConstants.getKey(InputConstants.KEY_NUMPAD2,-1),
+            CATEGORY
+    );
+    public  final KeyMapping shieldKey = new KeyMapping(
+            "explode" + DivineArtifacts.MODID + ".toggle.key",
+            KeyConflictContext.UNIVERSAL,
+            InputConstants.getKey(InputConstants.KEY_NUMPAD3,-1),
             CATEGORY
     );
 }

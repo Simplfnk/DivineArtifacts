@@ -20,6 +20,7 @@ import nk.divineartifacts.utils.Utils;
 public class ClientForgeHandler {
 	public static boolean toggleMagnet;
 	public static boolean toggleExplode;
+	public static boolean toggleShield;
 
 	@SubscribeEvent
 	public static void setToggleMagnet(TickEvent.ClientTickEvent event) {
@@ -62,6 +63,28 @@ public class ClientForgeHandler {
 			}
 			else {
 				toggleExplode = true;
+				minecraft.player.displayClientMessage(magnet.append(on) , true);
+			}
+		}
+	}
+	@SubscribeEvent
+	public static void setToggleShieldKey(TickEvent.ClientTickEvent event) {
+		Minecraft minecraft = Minecraft.getInstance();
+		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
+		if ( ring != null && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null ) {
+			// TODO: Send a packet to the server.
+			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
+			TextColor clOn = TextColor.fromRgb(0x2EC910);
+			TextColor clOff = TextColor.fromRgb(0xD21B1B);
+			MutableComponent magnet = Component.literal(ChatFormatting.BOLD + "Shield:").withStyle(s -> s.withColor(magnetColor));
+			MutableComponent on = Component.literal(ChatFormatting.BOLD + " On").withStyle(s -> s.withColor(clOn));
+			MutableComponent off = Component.literal(ChatFormatting.BOLD + " Off").withStyle(s -> s.withColor(clOff));
+			if ( toggleShield ) {
+				toggleShield = false;
+				minecraft.player.displayClientMessage(magnet.append(off) , true);
+			}
+			else {
+				toggleShield = true;
 				minecraft.player.displayClientMessage(magnet.append(on) , true);
 			}
 		}
