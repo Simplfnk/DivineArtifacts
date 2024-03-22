@@ -11,5 +11,6 @@
   "advancements.divineartifacts.descr": "Divine Artifacts",
   "advancements.divineartifacts.title": "Finally!!",
   "magnet.divineartifacts.toggle.key": "Toggle Magnet",
-  "explode.divineartifacts.toggle.key": "Toggle Chain Attack"
+  "explode.divineartifacts.toggle.key": "Toggle Chain Attack",
+  "shield.divineartifacts.toggle.key": "Toggle Shield"
 }
