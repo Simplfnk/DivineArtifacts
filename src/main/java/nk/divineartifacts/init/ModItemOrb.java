@@ -17,9 +17,9 @@ public class ModItemOrb {
     public static List<DivineOrbBase> GodOrb = new ArrayList<>();
 
     private static final DeferredRegister<Item> register = DeferredRegister.create(ForgeRegistries.ITEMS, DivineArtifacts.MODID);
-    public static RegistryObject<DivineOrbBase> divineorb = register("orb_divine",() -> new ItemDivineOrb(
+    public static RegistryObject<DivineOrbBase> divineOrb = register("orb_divine",() -> new ItemDivineOrb(
             new Item.Properties(),
-            "tooltip.divineorb.orb",
+            "",
             Config.configDivineArtifacts.get(),
             GlintRenderTypes.PURPLE));
 

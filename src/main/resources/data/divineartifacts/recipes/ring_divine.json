@@ -1,20 +1,13 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "ABC",
-    "DEF",
-    "GHI"
+    " D ",
+    "DAD",
+    " D "
   ],
   "key": {
-    "A": {"item": ""},
-    "B": {"item": "divineartifacts:div_crystal"},
-    "C": {"item": ""},
-    "D": {"item": "divineartifacts:div_crystal"},
-    "E": {"item": "divineartifacts:div_gold_ring"},
-    "F": {"item": "divineartifacts:div_crystal"},
-    "G": {"item": ""},
-    "H": {"item": "divineartifacts:div_crystal"},
-    "I": {"item": ""}
+    "A": {"item": "divineartifacts:div_gold_ring"},
+    "D": {"item": "divineartifacts:div_crystal"}
   },
   "result": {
     "item": "divineartifacts:ring_divine",
