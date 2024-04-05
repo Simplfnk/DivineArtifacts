@@ -8,10 +8,10 @@ import nk.divineartifacts.DivineArtifacts;
 public class PacketHandler {
 	private static final String PROTOCOL_VERSION = "1";
 	public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-			new ResourceLocation(DivineArtifacts.MODID , "main" ) ,
+			new ResourceLocation(DivineArtifacts.MODID , "main") ,
 			() -> PROTOCOL_VERSION ,
 			PROTOCOL_VERSION::equals ,
-			PROTOCOL_VERSION::equals );
+			PROTOCOL_VERSION::equals);
 
 	public static void register() {
 		int id = 0;

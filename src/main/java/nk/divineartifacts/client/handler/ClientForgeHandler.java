@@ -20,8 +20,7 @@ import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
-
-@Mod.EventBusSubscriber( modid = DivineArtifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT )
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 
 public class ClientForgeHandler {
 
@@ -29,7 +28,7 @@ public class ClientForgeHandler {
 	public static void setToggleMagnet(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
-		if (ring != null && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null ) {
+		if (ring != null && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
@@ -57,7 +56,7 @@ public class ClientForgeHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
-		if (ring != null &&  Keybindings.INSTANCE.explodedKey.consumeClick() && player != null ) {
+		if (ring != null && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
@@ -84,7 +83,7 @@ public class ClientForgeHandler {
 	public static void setToggleShieldKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
-		if (ModItemGod.ringDivine.get().isEnabled && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null ) {
+		if (ring != null && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
