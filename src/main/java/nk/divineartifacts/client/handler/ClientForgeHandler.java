@@ -7,7 +7,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -27,8 +26,9 @@ public class ClientForgeHandler {
 	@SubscribeEvent
 	public static void setToggleMagnet(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
-		if (ring != null && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
+		Player player = minecraft.player;
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
@@ -55,8 +55,8 @@ public class ClientForgeHandler {
 	public static void setToggleExplodeKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
-		if (ring != null && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
@@ -82,8 +82,9 @@ public class ClientForgeHandler {
 	@SubscribeEvent
 	public static void setToggleShieldKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , minecraft.player);
-		if (ring != null && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null) {
+		Player player = minecraft.player;
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		if (ring && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);

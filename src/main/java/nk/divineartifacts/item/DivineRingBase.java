@@ -251,9 +251,8 @@ public class DivineRingBase extends Item implements ICurioItem {
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
 		MutableComponent pressExp = Component.translatable("pressexp." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
-		MutableComponent pressShi = Component.translatable("pressshi" + DivineArtifacts.MODID + ".tooltip")
+		MutableComponent pressShi = Component.translatable("pressshi." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
-
 
 		MutableComponent info = Component.translatable("info." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
