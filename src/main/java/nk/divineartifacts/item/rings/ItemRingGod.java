@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import static nk.divineartifacts.client.handler.ClientForgeHandler.toggleMagnet;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;
 
 public class ItemRingGod extends DivineRingBase {
@@ -151,7 +151,7 @@ public class ItemRingGod extends DivineRingBase {
 		// Now, remove the identified harmful effects from the livingEntity
 		effectsToRemove.forEach(livingEntity::removeEffect);
 
-		if ( livingEntity instanceof Player&& configDivineArtifacts.get() && ! livingEntity.level().isClientSide && ! livingEntity.isCrouching() && toggleMagnet ) {
+		if ( livingEntity instanceof Player&& configDivineArtifacts.get() && ! livingEntity.level().isClientSide && ! livingEntity.isCrouching() && toggleMagnet() ) {
 			BlockPos pos = new BlockPos(livingEntity.getBlockX() , livingEntity.getBlockY() , livingEntity.getBlockZ());
 			List< ItemEntity > entities = livingEntity.level().getEntitiesOfClass(ItemEntity.class , new AABB(pos.getX() + RANGE , pos.getY() + RANGE , pos.getZ() + RANGE , pos.getX() - RANGE , pos.getY() - RANGE , pos.getZ() - RANGE));
 			for ( ItemEntity item : entities ) {

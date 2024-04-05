@@ -37,8 +37,9 @@ public class ModItemGod {
                     1,
                     1,
                     10,
+                    GlintRenderTypes.ORANGE
 
-                    GlintRenderTypes.ORANGE));
+    ));
 
     public static void init(IEventBus bus) {
         register.register(bus);

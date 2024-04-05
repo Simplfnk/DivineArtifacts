@@ -15,6 +15,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
+import nk.divineartifacts.client.handler.ClientForgeHandler;
 import nk.divineartifacts.config.Config;
 import nk.divineartifacts.events.*;
 import nk.divineartifacts.init.ItemInit;
@@ -59,13 +60,16 @@ public class DivineArtifacts {
 		ItemInit.init( FMLJavaModLoadingContext.get().getModEventBus() );
 		ArtifactsLootModifiers.REGISTER.register(FMLJavaModLoadingContext.get().getModEventBus());
 		CREATIVE_MODE_TAB_REGISTRY.register( FMLJavaModLoadingContext.get().getModEventBus() );
-
+		boolean toggleMagnet = Config.toggleMagnet.get();
+		boolean toggleExplode = Config.toggleExplode.get();
+		boolean toggleShield = Config.toggleShield.get();
 		MinecraftForge.EVENT_BUS.register( new PlayerDivineDeath() );
 		MinecraftForge.EVENT_BUS.register( new PlayerDivineHealth() );
 		MinecraftForge.EVENT_BUS.register( new PlayerDivineUno() );
 		MinecraftForge.EVENT_BUS.register( new DivinePotionRemover() );
 		MinecraftForge.EVENT_BUS.register( new DivineLuck() );
 		MinecraftForge.EVENT_BUS.register( new DivinationAttack() );
+		MinecraftForge.EVENT_BUS.register( new ClientForgeHandler());
 		MinecraftForge.EVENT_BUS.register( this );
 
 	}

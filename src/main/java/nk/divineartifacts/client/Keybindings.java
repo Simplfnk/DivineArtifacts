@@ -18,13 +18,13 @@ public final class Keybindings {
     );
     public  final KeyMapping explodedKey = new KeyMapping(
             "explode." + DivineArtifacts.MODID + ".toggle.key",
-            KeyConflictContext.UNIVERSAL,
+            KeyConflictContext.IN_GAME,
             InputConstants.getKey(InputConstants.KEY_NUMPAD2,-1),
             CATEGORY
     );
     public  final KeyMapping shieldKey = new KeyMapping(
             "shield." + DivineArtifacts.MODID + ".toggle.key",
-            KeyConflictContext.UNIVERSAL,
+            KeyConflictContext.IN_GAME,
             InputConstants.getKey(InputConstants.KEY_NUMPAD3,-1),
             CATEGORY
     );

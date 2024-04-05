@@ -6,18 +6,17 @@ import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 
 
 public class Config {
-
-    private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
+    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
     private static final General GENERAL = new General(BUILDER);
     public static final ForgeConfigSpec spec = BUILDER.build();
-
-    //Config Values
-
-
-
+    public static BooleanValue toggleMagnet;
+    public static BooleanValue toggleExplode;
+    public static BooleanValue toggleShield;
+    private static final boolean magState = Config.toggleMagnet.get() != null;
+    private static final boolean expState = Config.toggleExplode.get() != null;
+    private static final boolean shiState = Config.toggleShield.get() != null;
 
     public static BooleanValue configDivineArtifacts;
-
 
 
     public static class General {
@@ -25,6 +24,12 @@ public class Config {
             builder.push("Divine Artifacts");
             builder.push("Enable/Disable Artifacts");
             configDivineArtifacts = builder.define("itemGroup.divineartifacts", true);
+            toggleMagnet = BUILDER.comment("On/Off Magnet state")
+                    .define("MagnetState", magState);
+            toggleExplode = BUILDER.comment("On/Off Explode state")
+                    .define("ExplodeState", expState);
+            toggleShield = BUILDER.comment("On/Off Shield state")
+                    .define("ShieldState", shiState);
             builder.pop();
 
         }
