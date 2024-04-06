@@ -33,6 +33,7 @@ import nk.divineartifacts.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;
 import static nk.divineartifacts.events.DivineHelper.*;
 
@@ -40,7 +41,7 @@ import static nk.divineartifacts.events.DivineHelper.*;
 public class DivineLuck {
 	public static void register() {
 		MinecraftForge.EVENT_BUS.addListener(DivineLuck::handleBreakSpeed);
-		MinecraftForge.EVENT_BUS.addListener(DivineLuck::onDiggingClawsHarvestCheck);
+		MinecraftForge.EVENT_BUS.addListener(DivineLuck::breakTire);
 	}
 
 	@SubscribeEvent( priority = EventPriority.LOW )
@@ -94,6 +95,7 @@ public class DivineLuck {
 
 	@SubscribeEvent
 	public static void onBlockBreakS(BlockEvent.BreakEvent event) {
+		if (!toggleBlockBreak()) return;
 		if ( ! configDivineArtifacts.get() ) return;
 		if ( ! event.getLevel().isClientSide() ) {
 			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
@@ -135,6 +137,7 @@ public class DivineLuck {
 
 	@SubscribeEvent
 	public static void onLeftClickBlocks(BlockEvent.BreakEvent event) {
+		if (!toggleBlockBreak()) return;
 		if ( ! configDivineArtifacts.get() ) return;
 		if ( ! ( event.getLevel().isClientSide() ) ) {
 			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
@@ -177,6 +180,7 @@ public class DivineLuck {
 
 	@SubscribeEvent( priority = EventPriority.HIGHEST )
 	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+		if (!toggleBlockBreak()) return;
 		if ( ! configDivineArtifacts.get() ) return;
 		if ( ! ( event.getLevel().isClientSide ) ) {
 			if ( ! ( event.getEntity() instanceof ServerPlayer player ) ) return;
@@ -224,8 +228,9 @@ public class DivineLuck {
 		}
 	}
 
-	private static void onDiggingClawsHarvestCheck(PlayerEvent.HarvestCheck event) {
+	private static void breakTire(PlayerEvent.HarvestCheck event) {
 		if ( ! configDivineArtifacts.get() ) return;
+		if (!toggleBlockBreak()) return;
 		if ( ! event.getEntity().level().isClientSide ) {
 			Player player = event.getEntity();
 			if ( player.isCreative() || player.isSpectator() ) return;
@@ -239,6 +244,7 @@ public class DivineLuck {
 
 	private static void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
 		if ( ! configDivineArtifacts.get() ) return;
+		if (!toggleBlockBreak()) return;
 		Player player = event.getEntity();
 		if ( player.isCreative() || player.isSpectator() ) return;
 		ItemStack handItem = player.getMainHandItem();

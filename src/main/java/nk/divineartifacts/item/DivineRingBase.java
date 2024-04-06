@@ -237,6 +237,10 @@ public class DivineRingBase extends Item implements ICurioItem {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
 
+		MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".blockbreak")
+				.withStyle(ChatFormatting.BOLD)
+				.withStyle(s -> s.withColor(magnetColor));
+
 		MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOn));
@@ -253,6 +257,8 @@ public class DivineRingBase extends Item implements ICurioItem {
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
 		MutableComponent pressShi = Component.translatable("pressshi." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
+		MutableComponent pressBlock = Component.translatable("pressblock." + DivineArtifacts.MODID + ".tooltip")
+				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
 
 		MutableComponent info = Component.translatable("info." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
@@ -267,6 +273,8 @@ public class DivineRingBase extends Item implements ICurioItem {
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xFFE458)));
 
 		MutableComponent expKey = Keybindings.INSTANCE.explodedKey.getKey().getDisplayName().plainCopy()
+				.withStyle(s -> s.withColor(TextColor.fromRgb(0xFFE458)));
+		MutableComponent breKey = Keybindings.INSTANCE.blockBreakKey.getKey().getDisplayName().plainCopy()
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xFFE458)));
 
 		MutableComponent shieldKey = Keybindings.INSTANCE.shieldKey.getKey().getDisplayName().plainCopy().withStyle(
@@ -348,6 +356,21 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		if (isShiftPressed) {
 			tooltip.add(pressShi.append(shieldKey.append(toToggle)));
+		}
+
+		tooltip.add(Component.literal(""));
+
+		//================================================================ blockBreaking
+		if (toggleBlockBreak()) {
+			tooltip.add(blockBreak.append(on));
+		}
+
+		if (!toggleBlockBreak()) {
+			tooltip.add(blockBreak.append(off));
+		}
+
+		if (isShiftPressed) {
+			tooltip.add(pressBlock.append(breKey.append(toToggle)));
 		}
 
 		tooltip.add(Component.literal(""));

@@ -32,9 +32,15 @@ public class ClientForgeHandler {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
-			MutableComponent magnet = Component.literal(ChatFormatting.BOLD + "Magnet:").withStyle(s -> s.withColor(magnetColor));
-			MutableComponent on = Component.literal(ChatFormatting.BOLD + " On").withStyle(s -> s.withColor(clOn));
-			MutableComponent off = Component.literal(ChatFormatting.BOLD + " Off").withStyle(s -> s.withColor(clOff));
+			MutableComponent magnet = Component.translatable("tooltip." + DivineArtifacts.MODID + ".magnet")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(magnetColor));
+			MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOn));
+			MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOff));
 			if (toggleMagnet()) {
 				Config.toggleMagnet.set(false);
 				Config.toggleMagnet.save();
@@ -60,9 +66,15 @@ public class ClientForgeHandler {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
-			MutableComponent explode = Component.literal(ChatFormatting.BOLD + "Chain Attack:").withStyle(s -> s.withColor(magnetColor));
-			MutableComponent on = Component.literal(ChatFormatting.BOLD + " On").withStyle(s -> s.withColor(clOn));
-			MutableComponent off = Component.literal(ChatFormatting.BOLD + " Off").withStyle(s -> s.withColor(clOff));
+			MutableComponent explode = Component.translatable("tooltip." + DivineArtifacts.MODID + ".explode")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(magnetColor));
+			MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOn));
+			MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOff));
 			if (toggleExplode()) {
 				Config.toggleExplode.set(false);
 				Config.toggleExplode.save();
@@ -88,9 +100,15 @@ public class ClientForgeHandler {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
 			TextColor clOff = TextColor.fromRgb(0xD21B1B);
-			MutableComponent shield = Component.literal(ChatFormatting.BOLD + "Shield:").withStyle(s -> s.withColor(magnetColor));
-			MutableComponent on = Component.literal(ChatFormatting.BOLD + " On").withStyle(s -> s.withColor(clOn));
-			MutableComponent off = Component.literal(ChatFormatting.BOLD + " Off").withStyle(s -> s.withColor(clOff));
+			MutableComponent shield = Component.translatable("tooltip." + DivineArtifacts.MODID + ".shield")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(magnetColor));
+			MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOn));
+			MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOff));
 			if (toggleShield()) {
 				minecraft.player.displayClientMessage(shield.append(off) , true);
 				Config.toggleShield.set(false);
@@ -102,6 +120,38 @@ public class ClientForgeHandler {
 				Config.toggleShield.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(shield.append(on) , true);
+			}
+		}
+	}
+	@SubscribeEvent
+	public static void setToggleBlockBreakKey(TickEvent.ClientTickEvent event) {
+		Minecraft minecraft = Minecraft.getInstance();
+		Player player = minecraft.player;
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		if (ring && Keybindings.INSTANCE.blockBreakKey.consumeClick() && minecraft.player != null) {
+			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
+			TextColor clOn = TextColor.fromRgb(0x2EC910);
+			TextColor clOff = TextColor.fromRgb(0xD21B1B);
+			MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".blockbreak")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(magnetColor));
+			MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOn));
+			MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOff));
+			if (toggleBlockBreak()) {
+				minecraft.player.displayClientMessage(blockBreak.append(off) , true);
+				Config.toggleBlockBreak.set(false);
+				Config.toggleBlockBreak.save();
+				Config.spec.save();
+			}
+			else {
+				Config.toggleBlockBreak.set(true);
+				Config.toggleBlockBreak.save();
+				Config.spec.save();
+				minecraft.player.displayClientMessage(blockBreak.append(on) , true);
 			}
 		}
 	}

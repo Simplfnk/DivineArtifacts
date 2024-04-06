@@ -28,4 +28,10 @@ public final class Keybindings {
             InputConstants.getKey(InputConstants.KEY_NUMPAD3,-1),
             CATEGORY
     );
+    public  final KeyMapping blockBreakKey = new KeyMapping(
+            "block.break." + DivineArtifacts.MODID + ".toggle.key",
+            KeyConflictContext.IN_GAME,
+            InputConstants.getKey(InputConstants.KEY_NUMPAD4,-1),
+            CATEGORY
+    );
 }

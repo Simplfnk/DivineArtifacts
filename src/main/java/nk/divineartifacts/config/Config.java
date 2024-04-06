@@ -12,9 +12,11 @@ public class Config {
     public static BooleanValue toggleMagnet;
     public static BooleanValue toggleExplode;
     public static BooleanValue toggleShield;
+    public static BooleanValue toggleBlockBreak;
     private static final boolean magState = Config.toggleMagnet.get() != null;
     private static final boolean expState = Config.toggleExplode.get() != null;
     private static final boolean shiState = Config.toggleShield.get() != null;
+    private static final boolean breakState = Config.toggleBlockBreak.get() != null;
 
     public static BooleanValue configDivineArtifacts;
 
@@ -30,6 +32,8 @@ public class Config {
                     .define("ExplodeState", expState);
             toggleShield = BUILDER.comment("On/Off Shield state")
                     .define("ShieldState", shiState);
+            toggleBlockBreak = BUILDER.comment("On/Off Block Break state")
+                    .define("BlockBreakState", breakState);
             builder.pop();
 
         }

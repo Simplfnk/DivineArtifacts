@@ -14,5 +14,6 @@ public class ClientModHandler {
 		event.register(Keybindings.INSTANCE.magnetKey);
 		event.register(Keybindings.INSTANCE.explodedKey);
 		event.register(Keybindings.INSTANCE.shieldKey);
+		event.register(Keybindings.INSTANCE.blockBreakKey);
 	}
 }

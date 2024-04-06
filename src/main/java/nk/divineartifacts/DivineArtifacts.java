@@ -60,9 +60,6 @@ public class DivineArtifacts {
 		ItemInit.init( FMLJavaModLoadingContext.get().getModEventBus() );
 		ArtifactsLootModifiers.REGISTER.register(FMLJavaModLoadingContext.get().getModEventBus());
 		CREATIVE_MODE_TAB_REGISTRY.register( FMLJavaModLoadingContext.get().getModEventBus() );
-		boolean toggleMagnet = Config.toggleMagnet.get();
-		boolean toggleExplode = Config.toggleExplode.get();
-		boolean toggleShield = Config.toggleShield.get();
 		MinecraftForge.EVENT_BUS.register( new PlayerDivineDeath() );
 		MinecraftForge.EVENT_BUS.register( new PlayerDivineHealth() );
 		MinecraftForge.EVENT_BUS.register( new PlayerDivineUno() );

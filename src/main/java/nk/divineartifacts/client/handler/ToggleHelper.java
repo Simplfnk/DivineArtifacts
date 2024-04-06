@@ -12,4 +12,7 @@ public class ToggleHelper {
 	public static boolean toggleShield() {
 		return Config.toggleShield.get();
 	}
+	public static boolean toggleBlockBreak() {
+		return Config.toggleBlockBreak.get();
+	}
 }
