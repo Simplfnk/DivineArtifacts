@@ -27,7 +27,7 @@ public class ClientForgeHandler {
 	public static void setToggleMagnet(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
@@ -61,7 +61,7 @@ public class ClientForgeHandler {
 	public static void setToggleExplodeKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
@@ -95,7 +95,7 @@ public class ClientForgeHandler {
 	public static void setToggleShieldKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
@@ -127,7 +127,7 @@ public class ClientForgeHandler {
 	public static void setToggleBlockBreakKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get(),player);
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.blockBreakKey.consumeClick() && minecraft.player != null) {
 			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
 			TextColor clOn = TextColor.fromRgb(0x2EC910);
@@ -150,6 +150,38 @@ public class ClientForgeHandler {
 			else {
 				Config.toggleBlockBreak.set(true);
 				Config.toggleBlockBreak.save();
+				Config.spec.save();
+				minecraft.player.displayClientMessage(blockBreak.append(on) , true);
+			}
+		}
+	}
+	@SubscribeEvent
+	public static void setToggleExtraLootKey(TickEvent.ClientTickEvent event) {
+		Minecraft minecraft = Minecraft.getInstance();
+		Player player = minecraft.player;
+		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
+		if (ring && Keybindings.INSTANCE.extraDropsKey.consumeClick() && minecraft.player != null) {
+			TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
+			TextColor clOn = TextColor.fromRgb(0x2EC910);
+			TextColor clOff = TextColor.fromRgb(0xD21B1B);
+			MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".drops")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(magnetColor));
+			MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOn));
+			MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
+					.withStyle(ChatFormatting.BOLD)
+					.withStyle(s -> s.withColor(clOff));
+			if (toggleExtraDrops()) {
+				minecraft.player.displayClientMessage(blockBreak.append(off) , true);
+				Config.toggleExtraDrops.set(false);
+				Config.toggleExtraDrops.save();
+				Config.spec.save();
+			}
+			else {
+				Config.toggleExtraDrops.set(true);
+				Config.toggleExtraDrops.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(blockBreak.append(on) , true);
 			}

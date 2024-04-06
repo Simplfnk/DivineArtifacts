@@ -15,4 +15,7 @@ public class ToggleHelper {
 	public static boolean toggleBlockBreak() {
 		return Config.toggleBlockBreak.get();
 	}
+	public static boolean toggleExtraDrops() {
+		return Config.toggleExtraDrops.get();
+	}
 }

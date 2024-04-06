@@ -13,10 +13,12 @@ public class Config {
     public static BooleanValue toggleExplode;
     public static BooleanValue toggleShield;
     public static BooleanValue toggleBlockBreak;
+    public static BooleanValue toggleExtraDrops;
     private static final boolean magState = Config.toggleMagnet.get() != null;
     private static final boolean expState = Config.toggleExplode.get() != null;
     private static final boolean shiState = Config.toggleShield.get() != null;
     private static final boolean breakState = Config.toggleBlockBreak.get() != null;
+    private static final boolean extraLoot = Config.toggleExtraDrops.get() != null;
 
     public static BooleanValue configDivineArtifacts;
 
@@ -25,7 +27,7 @@ public class Config {
         public General(final ForgeConfigSpec.Builder builder) {
             builder.push("Divine Artifacts");
             builder.push("Enable/Disable Artifacts");
-            configDivineArtifacts = builder.define("itemGroup.divineartifacts", true);
+            configDivineArtifacts = builder.define("Ring", true);
             toggleMagnet = BUILDER.comment("On/Off Magnet state")
                     .define("MagnetState", magState);
             toggleExplode = BUILDER.comment("On/Off Explode state")
@@ -34,6 +36,8 @@ public class Config {
                     .define("ShieldState", shiState);
             toggleBlockBreak = BUILDER.comment("On/Off Block Break state")
                     .define("BlockBreakState", breakState);
+            toggleExtraDrops = BUILDER.comment("On/Off Extra Loot state")
+                    .define("BlockBreakState", extraLoot);
             builder.pop();
 
         }

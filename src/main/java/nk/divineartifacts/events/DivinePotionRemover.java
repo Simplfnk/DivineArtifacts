@@ -21,6 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
+import org.joml.Math;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;

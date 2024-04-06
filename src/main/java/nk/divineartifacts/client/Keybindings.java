@@ -34,4 +34,10 @@ public final class Keybindings {
             InputConstants.getKey(InputConstants.KEY_NUMPAD4,-1),
             CATEGORY
     );
+    public  final KeyMapping extraDropsKey = new KeyMapping(
+            "drops." + DivineArtifacts.MODID + ".toggle.key",
+            KeyConflictContext.IN_GAME,
+            InputConstants.getKey(InputConstants.KEY_NUMPAD5,-1),
+            CATEGORY
+    );
 }

@@ -1,6 +1,7 @@
 package nk.divineartifacts.events;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
@@ -34,6 +35,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;
 import static nk.divineartifacts.events.DivineHelper.*;
 
@@ -47,6 +49,7 @@ public class DivineLuck {
 	@SubscribeEvent( priority = EventPriority.LOW )
 	public static void handleExp(LivingExperienceDropEvent event) {
 		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! toggleExtraDrops() ) return;
 		if ( event.getAttackingPlayer() instanceof ServerPlayer player ) {
 			if ( ! player.level().isClientSide ) {
 				ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
@@ -60,12 +63,16 @@ public class DivineLuck {
 
 	@SubscribeEvent( priority = EventPriority.LOW )
 	public static void onLivingDrop(LivingDropsEvent event) {
+		if ( ! toggleExtraDrops() ) return;
 		if ( ! configDivineArtifacts.get() ) return;
 		if ( ! ( event.getSource().getEntity() instanceof ServerPlayer player ) || player.level().isClientSide() )
 			return;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+
 		if ( ring != null ) {
 			LivingEntity target = event.getEntity();
+			double bBox = target.getBoundingBox().getYsize();
+			double bBoxCenter = bBox / 2;
 			List< ItemEntity > drops = new ArrayList<>(event.getDrops());
 			for ( ItemEntity item : drops ) {
 				assert item.getItem().getTag() != null;
@@ -90,12 +97,13 @@ public class DivineLuck {
 					item.setDeltaMovement(- 0.3 + target.level().random.nextDouble() * 0.6 , 0.3 + target.level().random.nextDouble() * 0.3 , - 0.3 + target.level().random.nextDouble() * 0.6);
 				}
 			}
+			player.serverLevel().sendParticles(player , ParticleTypes.HAPPY_VILLAGER , true , target.getX() , target.getY() + bBoxCenter , target.getZ() , 10 , 1D , 1D , 1 , (0.8D + (player.level().random.nextFloat() - player.level().random.nextFloat()) * 0.1F) * 0.2F);
 		}
 	}
 
 	@SubscribeEvent
 	public static void onBlockBreakS(BlockEvent.BreakEvent event) {
-		if (!toggleBlockBreak()) return;
+		if ( ! toggleExtraDrops() ) return;
 		if ( ! configDivineArtifacts.get() ) return;
 		if ( ! event.getLevel().isClientSide() ) {
 			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
@@ -137,7 +145,7 @@ public class DivineLuck {
 
 	@SubscribeEvent
 	public static void onLeftClickBlocks(BlockEvent.BreakEvent event) {
-		if (!toggleBlockBreak()) return;
+		if ( ! toggleExtraDrops() ) return;
 		if ( ! configDivineArtifacts.get() ) return;
 		if ( ! ( event.getLevel().isClientSide() ) ) {
 			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
