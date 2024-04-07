@@ -6,8 +6,8 @@ public class ToggleHelper {
 	public static boolean toggleMagnet() {
 		return Config.toggleMagnet.get();
 	}
-	public static boolean toggleExplode() {
-		return Config.toggleExplode.get();
+	public static boolean toggleAioDamage() {
+		return Config.toggleAioDamage.get();
 	}
 	public static boolean toggleShield() {
 		return Config.toggleShield.get();

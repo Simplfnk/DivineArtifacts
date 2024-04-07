@@ -63,7 +63,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		TextColor color = TextColor.fromRgb(0xE98A1D); //
 
-		return super.getName(stack).copy().withStyle(ChatFormatting.BOLD , ChatFormatting.UNDERLINE).withStyle(
+		return super.getName(stack).copy().withStyle(ChatFormatting.BOLD).withStyle(
 				s -> s.withColor(color));
 	}
 
@@ -244,7 +244,6 @@ public class DivineRingBase extends Item implements ICurioItem {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
 
-
 		MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOn));
@@ -282,6 +281,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xFFE458)));
 		MutableComponent breKey = Keybindings.INSTANCE.blockBreakKey.getKey().getDisplayName().plainCopy()
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xFFE458)));
+
 		MutableComponent dropsKey = Keybindings.INSTANCE.extraDropsKey.getKey().getDisplayName().plainCopy()
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xFFE458)));
 
@@ -302,6 +302,8 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		Component lore2 = Component.translatable("lore2.div." + DivineArtifacts.MODID + ".tooltip").withStyle(
 				s -> s.withColor(color2));
+		Component lore3 = Component.translatable("lore3.div." + DivineArtifacts.MODID + ".tooltip").withStyle(
+				s -> s.withColor(color2));
 
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD).withStyle(s -> s.withColor(attributes));
@@ -317,8 +319,14 @@ public class DivineRingBase extends Item implements ICurioItem {
 		tooltip.add(Component.literal(""));
 		tooltip.add(lore);
 		tooltip.add(lore2);
+		tooltip.add(lore3);
 		tooltip.add(Component.literal(""));
-		tooltip.add(Component.literal(""));
+		//================================================================ advanced tooltips = Shift press tooltips
+
+		if (!isShiftPressed) {
+			tooltip.add(press.append(shift.append(info)));
+			tooltip.add(Component.literal(""));
+		}
 
 		// toggle tooltips;
 		//================================================================= magnet
@@ -337,13 +345,13 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		tooltip.add(Component.literal(""));
 
-		//================================================================ Chain Attack
+		//================================================================ AIO Damage
 
-		if (toggleExplode()) {
+		if (toggleAioDamage()) {
 			tooltip.add(explode.append(on));
 		}
 
-		if (!toggleExplode()) {
+		if (!toggleAioDamage()) {
 			tooltip.add(explode.append(off));
 		}
 
@@ -391,46 +399,66 @@ public class DivineRingBase extends Item implements ICurioItem {
 		if (!toggleExtraDrops()) {
 			tooltip.add(Drops.append(off));
 		}
-
 		if (isShiftPressed) {
 			tooltip.add(pressDrops.append(dropsKey.append(toToggle)));
 		}
 
 		tooltip.add(Component.literal(""));
 
-		//================================================================ advanced tooltips = Shift press tooltips
-
-		if (!isShiftPressed) {
-			tooltip.add(press.append(shift.append(info)));
-			tooltip.add(Component.literal(""));
-		}
-
 		//=================================================================
 		// Attributes tooltips;
 		if (isShiftPressed) {
 			tooltip.add(atr);
-			tooltip.add(Component.literal("--------------").withStyle(
+			tooltip.add(Component.literal("---------").withStyle(ChatFormatting.BOLD).withStyle(
 					s -> s.withColor(color2)));
 			String Green = "\u00A7a";
-			String Gold = "\u00A7e";
-			tooltip.add(Component.literal(Gold + "Attack Damage  " + Green + "+100"));
-			tooltip.add(Component.literal(Gold + "Armor  " + Green + "+100"));
-			tooltip.add(Component.literal(Gold + "Armor Toughness  " + Green + "+10"));
-			tooltip.add(Component.literal(Gold + "Max Health  " + Green + "+500%"));
-			tooltip.add(Component.literal(Gold + "Knock Resist  " + Green + "+10"));
-			tooltip.add(Component.literal(Gold + "Step Height  " + Green + "+1"));
-			tooltip.add(Component.literal(Gold + "Block Reach  " + Green + "+10"));
-			tooltip.add(Component.literal(Gold + "Entity Reach  " + Green + "+10"));
-			tooltip.add(Component.literal(Gold + "Movement Speed  " + Green + "+200%"));
-			tooltip.add(Component.literal(Gold + "Swim Speed  " + Green + "+400%"));
-			tooltip.add(Component.literal(Gold + "Flying Speed  " + Green + "+100%"));
-			tooltip.add(Component.literal(Gold + "Luck  " + Green + "+10"));
-			tooltip.add(Component.literal(Gold + "Crit Chance  " + Green + "+100%"));
-			tooltip.add(Component.literal(Gold + "Armor Piercing  " + Green + "+100%"));
-			tooltip.add(Component.literal(Gold + "Armor Shredding  " + Green + "+100%"));
-			tooltip.add(Component.literal(Gold + "Arrow Velocity  " + Green + "+100%"));
-			tooltip.add(Component.literal(Gold + "Arrow Damage  " + Green + "+200%"));
-			tooltip.add(Component.literal(Gold + "Draw Speed  " + Green + "+200%"));
+			TextColor Gold = TextColor.fromRgb(0xFFFF55);
+			MutableComponent attack = Component.translatable("tooltip." + DivineArtifacts.MODID + ".attack").withStyle(s -> s.withColor(Gold));
+			MutableComponent armor = Component.translatable("tooltip." + DivineArtifacts.MODID + ".armor").withStyle(s -> s.withColor(Gold));
+			MutableComponent toughness = Component.translatable("tooltip." + DivineArtifacts.MODID + ".toughness").withStyle(s -> s.withColor(Gold));
+			MutableComponent health = Component.translatable("tooltip." + DivineArtifacts.MODID + ".health").withStyle(s -> s.withColor(Gold));
+			MutableComponent knockResist = Component.translatable("tooltip." + DivineArtifacts.MODID + ".knock.resist").withStyle(s -> s.withColor(Gold));
+			MutableComponent step = Component.translatable("tooltip." + DivineArtifacts.MODID + ".step").withStyle(s -> s.withColor(Gold));
+			MutableComponent blockReach = Component.translatable("tooltip." + DivineArtifacts.MODID + ".block.reach").withStyle(s -> s.withColor(Gold));
+			MutableComponent entityReach = Component.translatable("tooltip." + DivineArtifacts.MODID + ".entity.reach").withStyle(s -> s.withColor(Gold));
+			MutableComponent movementSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".movement.speed").withStyle(s -> s.withColor(Gold));
+			MutableComponent swimSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".swim.speed").withStyle(s -> s.withColor(Gold));
+			MutableComponent flyingSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".flying.speed" ).withStyle(s -> s.withColor(Gold));
+			MutableComponent luck = Component.translatable("tooltip." + DivineArtifacts.MODID + ".luck").withStyle(s -> s.withColor(Gold));
+			MutableComponent critChance = Component.translatable("tooltip." + DivineArtifacts.MODID + ".crit.chance").withStyle(s -> s.withColor(Gold));
+			MutableComponent armorPiercing = Component.translatable("tooltip." + DivineArtifacts.MODID + ".armor.piercing").withStyle(s -> s.withColor(Gold));
+			MutableComponent armorShredding = Component.translatable("tooltip." + DivineArtifacts.MODID + ".armor.shredding").withStyle(s -> s.withColor(Gold));
+			MutableComponent arrowVelocity = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.velocity").withStyle(s -> s.withColor(Gold));
+			MutableComponent arrowDamage = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.damage").withStyle(s -> s.withColor(Gold));
+			MutableComponent drawSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".draw.speed").withStyle(s -> s.withColor(Gold));
+			MutableComponent int100 = Component.literal(Green + "+100");
+			MutableComponent int10 = Component.literal(Green + "+10");
+			MutableComponent int100p = Component.literal(Green + "+100%");
+			MutableComponent int200p = Component.literal(Green + "+200%");
+			MutableComponent int400p = Component.literal(Green + "+400%");
+			MutableComponent int500p = Component.literal(Green + "+500%");
+			MutableComponent int1 = Component.literal(Green + "+1");
+
+
+			tooltip.add(attack.append(int100));
+			tooltip.add(armor.append(int100));
+			tooltip.add(toughness.append(int10));
+			tooltip.add(health.append(int500p));
+			tooltip.add(knockResist.append(int10));
+			tooltip.add(step.append(int1));
+			tooltip.add(blockReach.append(int10));
+			tooltip.add(entityReach.append(int10));
+			tooltip.add(flyingSpeed.append(int100p));
+			tooltip.add(movementSpeed.append(int200p));
+			tooltip.add(swimSpeed.append(int400p));
+			tooltip.add(luck.append(int10));
+			tooltip.add(critChance.append(int100p));
+			tooltip.add(armorPiercing.append(int100p));
+			tooltip.add(armorShredding.append(int100p));
+			tooltip.add(arrowVelocity.append(int100p));
+			tooltip.add(arrowDamage.append(int200p));
+			tooltip.add(drawSpeed.append(int200p));
+
 			tooltip.add(Component.literal(""));
 		}
 		//================================================================

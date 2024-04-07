@@ -150,7 +150,7 @@ public class DivineHelper {
 	}
 
 	public static void hitNearbyEntities(Player player , Entity target , float damage) {
-		if (!toggleExplode()) return;
+		if (!toggleAioDamage()) return;
 		if (!(target instanceof LivingEntity LEntity)) return;
 		if (player.level().isClientSide || LEntity.level().isClientSide) return;
 		List<Entity> nearbyEntities = LEntity.level().getEntities(LEntity , new AABB(LEntity.blockPosition()).inflate(6) , entityCleverPredicate(player , LEntity));
@@ -186,7 +186,7 @@ public class DivineHelper {
 	}
 
 	public static void damageEntityNearArrow(Entity player , Projectile arrow , int damage) {
-		if (!toggleExplode()) return;
+		if (!toggleAioDamage()) return;
 		List<Entity> nearbyEntities = player.level().getEntities((Entity) null , arrow.getBoundingBox().inflate(6D) , entityPredicate(player , arrow));
 		for (Entity entity : nearbyEntities) {
 			if (entity instanceof LivingEntity mobs && mobs.isAlive()) {
@@ -234,7 +234,7 @@ public class DivineHelper {
 	}
 
 	public static void addExplosionEffect(Entity player , Entity target) {
-		if (!toggleExplode()) return;
+		if (!toggleAioDamage()) return;
 		if (player instanceof ServerPlayer serverPlayer) {
 			double bBox = target.getBoundingBox().getYsize();
 			double bBoxCenter = bBox / 2;
@@ -262,7 +262,7 @@ public class DivineHelper {
 	}
 
 	public static void addSmallExplosionEffect(Entity player , Entity target) {
-		if (!toggleExplode()) return;
+		if (!toggleAioDamage()) return;
 		if (player instanceof ServerPlayer serverPlayer) {
 			double bBox = target.getBoundingBox().getYsize();
 			double bBoxCenter = bBox / 2;

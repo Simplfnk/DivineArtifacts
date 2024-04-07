@@ -59,7 +59,7 @@ public class DivineOrbBase extends Item implements ICurioItem {
 	public @NotNull Component getName(@NotNull ItemStack stack) {
 		TextColor color = TextColor.fromRgb(0xCC1AD8); //
 
-		return super.getName(stack).copy().withStyle(ChatFormatting.BOLD , ChatFormatting.UNDERLINE).withStyle(s -> s.withColor(color));
+		return super.getName(stack).copy().withStyle(ChatFormatting.BOLD ).withStyle(s -> s.withColor(color));
 	}
 
 
@@ -195,6 +195,7 @@ public class DivineOrbBase extends Item implements ICurioItem {
 		tooltip.add(Component.translatable("desc.magic." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(style -> style.withColor(color)));
+		tooltip.add(Component.literal(""));
 
 		tooltip.add(Component.translatable("lore.magic." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2)));
 		tooltip.add(Component.translatable("lore2.magic." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2)));
@@ -209,14 +210,27 @@ public class DivineOrbBase extends Item implements ICurioItem {
 			TextColor attributes = TextColor.fromRgb(0xD535D5);
 			MutableComponent atr = Component.literal(ChatFormatting.BOLD + "Attributes:").withStyle(s -> s.withColor(attributes));
 			tooltip.add(atr);
+			tooltip.add(Component.literal("---------").withStyle(ChatFormatting.BOLD ).withStyle(s -> s.withColor(color2)));
 			String Green = "\u00A7a";
-			String Purple = "\u00A7d";
-			tooltip.add(Component.literal(Purple + "Spell Resist  " + Green + "+100%"));
-			tooltip.add(Component.literal(Purple + "Spell Power  " + Green + "+100%"));
-			tooltip.add(Component.literal(Purple + "Mana Regen  " + Green + "+200%"));
-			tooltip.add(Component.literal(Purple + "Max Mana  " + Green + "+200%"));
-			tooltip.add(Component.literal(Purple + "Cooldown Reduction  " + Green + "+200%"));
-			tooltip.add(Component.literal(Purple + "Cast Time Reduction  " + Green + "+200%"));
+
+			TextColor Purple = TextColor.fromLegacyFormat(ChatFormatting.LIGHT_PURPLE);
+			MutableComponent spellResist = Component.translatable("tooltip." + DivineArtifacts.MODID + ".spell.resist").withStyle(s -> s.withColor(Purple));
+			MutableComponent spellPower = Component.translatable("tooltip." + DivineArtifacts.MODID + ".spell.power").withStyle(s -> s.withColor(Purple));
+			MutableComponent manaRegen = Component.translatable("tooltip." + DivineArtifacts.MODID + ".mana.regen").withStyle(s -> s.withColor(Purple));
+			MutableComponent maxMana = Component.translatable("tooltip." + DivineArtifacts.MODID + ".max.mana").withStyle(s -> s.withColor(Purple));
+			MutableComponent cooldownReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cooldown.reduction").withStyle(s -> s.withColor(Purple));
+			MutableComponent castTimeReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cast.reduction").withStyle(s -> s.withColor(Purple));
+
+			MutableComponent int100p = Component.literal(Green + "+100%");
+			MutableComponent int200p = Component.literal(Green + "+200%");
+
+			tooltip.add(spellResist.append(int100p));
+			tooltip.add(spellPower.append(int100p));
+			tooltip.add(manaRegen.append(int200p));
+			tooltip.add(maxMana.append(int200p));
+			tooltip.add(cooldownReduction.append(int200p));
+			tooltip.add(castTimeReduction.append(int200p));
+
 			tooltip.add(Component.literal(""));
 		}
 

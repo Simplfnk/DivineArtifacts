@@ -75,15 +75,15 @@ public class ClientForgeHandler {
 			MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
 					.withStyle(ChatFormatting.BOLD)
 					.withStyle(s -> s.withColor(clOff));
-			if (toggleExplode()) {
-				Config.toggleExplode.set(false);
-				Config.toggleExplode.save();
+			if (toggleAioDamage()) {
+				Config.toggleAioDamage.set(false);
+				Config.toggleAioDamage.save();
 				Config.spec.save();
 				player.displayClientMessage(explode.append(off) , true);
 			}
 			else {
-				Config.toggleExplode.set(true);
-				Config.toggleExplode.save();
+				Config.toggleAioDamage.set(true);
+				Config.toggleAioDamage.save();
 				Config.spec.save();
 				player.displayClientMessage(explode.append(on) , true);
 			}

@@ -10,12 +10,12 @@ public class Config {
     private static final General GENERAL = new General(BUILDER);
     public static final ForgeConfigSpec spec = BUILDER.build();
     public static BooleanValue toggleMagnet;
-    public static BooleanValue toggleExplode;
+    public static BooleanValue toggleAioDamage;
     public static BooleanValue toggleShield;
     public static BooleanValue toggleBlockBreak;
     public static BooleanValue toggleExtraDrops;
     private static final boolean magState = Config.toggleMagnet.get() != null;
-    private static final boolean expState = Config.toggleExplode.get() != null;
+    private static final boolean expState = Config.toggleAioDamage.get() != null;
     private static final boolean shiState = Config.toggleShield.get() != null;
     private static final boolean breakState = Config.toggleBlockBreak.get() != null;
     private static final boolean extraLoot = Config.toggleExtraDrops.get() != null;
@@ -27,17 +27,17 @@ public class Config {
         public General(final ForgeConfigSpec.Builder builder) {
             builder.push("Divine Artifacts");
             builder.push("Enable/Disable Artifacts");
-            configDivineArtifacts = builder.define("Ring", true);
+            configDivineArtifacts = builder.define("Items.Rings", true);
             toggleMagnet = BUILDER.comment("On/Off Magnet state")
-                    .define("MagnetState", magState);
-            toggleExplode = BUILDER.comment("On/Off Explode state")
-                    .define("ExplodeState", expState);
+                    .define("State.MagnetState", magState);
+            toggleAioDamage = BUILDER.comment("On/Off AIO Damage state")
+                    .define("State.AIO State", expState);
             toggleShield = BUILDER.comment("On/Off Shield state")
-                    .define("ShieldState", shiState);
+                    .define("State. Shield State", shiState);
             toggleBlockBreak = BUILDER.comment("On/Off Block Break state")
-                    .define("BlockBreakState", breakState);
-            toggleExtraDrops = BUILDER.comment("On/Off Extra Loot state")
-                    .define("BlockBreakState", extraLoot);
+                    .define("State.Block Break State", breakState);
+            toggleExtraDrops = BUILDER.comment("On/Off Extra Drops state")
+                    .define("State.Extra Drops", extraLoot);
             builder.pop();
 
         }
