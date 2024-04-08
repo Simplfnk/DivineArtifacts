@@ -40,4 +40,22 @@ public final class Keybindings {
             InputConstants.getKey(InputConstants.KEY_NUMPAD5,-1),
             CATEGORY
     );
+    public  final KeyMapping showRingState = new KeyMapping(
+            "show.state." + DivineArtifacts.MODID + ".toggle.key",
+            KeyConflictContext.IN_GAME,
+            InputConstants.getKey(InputConstants.KEY_NUMPAD6,-1),
+            CATEGORY
+    );
+    public  final KeyMapping ToggleAllOn = new KeyMapping(
+            "toggle.on." + DivineArtifacts.MODID + ".toggle.key",
+            KeyConflictContext.IN_GAME,
+            InputConstants.getKey(InputConstants.KEY_NUMPAD7,-1),
+            CATEGORY
+    );
+    public  final KeyMapping ToggleAllOff = new KeyMapping(
+            "toggle.off." + DivineArtifacts.MODID + ".toggle.key",
+            KeyConflictContext.IN_GAME,
+            InputConstants.getKey(InputConstants.KEY_NUMPAD8,-1),
+            CATEGORY
+    );
 }

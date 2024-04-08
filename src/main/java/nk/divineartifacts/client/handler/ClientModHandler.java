@@ -16,5 +16,8 @@ public class ClientModHandler {
 		event.register(Keybindings.INSTANCE.shieldKey);
 		event.register(Keybindings.INSTANCE.blockBreakKey);
 		event.register(Keybindings.INSTANCE.extraDropsKey);
+		event.register(Keybindings.INSTANCE.showRingState);
+		event.register(Keybindings.INSTANCE.ToggleAllOn);
+		event.register(Keybindings.INSTANCE.ToggleAllOff);
 	}
 }
