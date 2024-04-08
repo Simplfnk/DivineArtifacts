@@ -304,6 +304,8 @@ public class DivineRingBase extends Item implements ICurioItem {
 				s -> s.withColor(color2));
 		Component lore3 = Component.translatable("lore3.div." + DivineArtifacts.MODID + ".tooltip").withStyle(
 				s -> s.withColor(color2));
+		Component lore4 = Component.translatable("lore4.div." + DivineArtifacts.MODID + ".tooltip").withStyle(
+				s -> s.withColor(color2));
 
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD).withStyle(s -> s.withColor(attributes));
@@ -320,6 +322,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 		tooltip.add(lore);
 		tooltip.add(lore2);
 		tooltip.add(lore3);
+		tooltip.add(lore4);
 		tooltip.add(Component.literal(""));
 		//================================================================ advanced tooltips = Shift press tooltips
 
