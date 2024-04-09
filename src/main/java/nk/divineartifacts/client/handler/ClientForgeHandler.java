@@ -199,16 +199,20 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.ToggleAllOn.consumeClick() && player != null) {
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(magnet.append(on));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(aio.append(on));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(shield.append(on));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(blockBreak.append(on));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(extraDrops.append(on));
-			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			Config.toggleMagnet.set(true);
 			Config.toggleAioDamage.set(true);
@@ -248,16 +252,20 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(magnet.append(off));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(aio.append(off));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(shield.append(off));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(blockBreak.append(off));
-			player.sendSystemMessage(Component.literal(""));
+
 			player.sendSystemMessage(extraDrops.append(off));
-			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			Config.toggleMagnet.set(false);
 			Config.toggleAioDamage.set(false);
@@ -301,47 +309,42 @@ public class ClientForgeHandler {
 				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.showRingState.consumeClick() && player != null) {
 			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			if (toggleMagnet()){
 				player.sendSystemMessage(magnet.append(on));
-				player.sendSystemMessage(Component.literal(""));
 			}
 			else {
                 player.sendSystemMessage(magnet.append(off));
-				player.sendSystemMessage(Component.literal(""));
             }
 			if (toggleAioDamage()){
                 player.sendSystemMessage(aio.append(on));
-				player.sendSystemMessage(Component.literal(""));
             }
 			else {
                 player.sendSystemMessage(aio.append(off));
-				player.sendSystemMessage(Component.literal(""));
             }
 			if (toggleShield()){
                 player.sendSystemMessage(shield.append(on));
-				player.sendSystemMessage(Component.literal(""));
             }
 			else {
                 player.sendSystemMessage(shield.append(off));
-				player.sendSystemMessage(Component.literal(""));
             }
 			if (toggleBlockBreak()){
                 player.sendSystemMessage(blockBreak.append(on));
-				player.sendSystemMessage(Component.literal(""));
             }
 			else {
                 player.sendSystemMessage(blockBreak.append(off));
-				player.sendSystemMessage(Component.literal(""));
             }
 			if (toggleExtraDrops()){
                 player.sendSystemMessage(extraDrops.append(on));
-				player.sendSystemMessage(Component.literal(""));
             }
 			else {
                 player.sendSystemMessage(extraDrops.append(off));
-				player.sendSystemMessage(Component.literal(""));
             }
 			player.sendSystemMessage(Component.literal(""));
+
 		}
 	}
 	public static boolean isShiftPressed;
