@@ -217,6 +217,8 @@ public class ClientForgeHandler {
 
 			player.sendSystemMessage(extraDrops.append(on));
 			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			Config.toggleMagnet.set(true);
 			Config.toggleAioDamage.set(true);
 			Config.toggleShield.set(true);
@@ -272,6 +274,8 @@ public class ClientForgeHandler {
 			player.sendSystemMessage(blockBreak.append(off));
 
 			player.sendSystemMessage(extraDrops.append(off));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			Config.toggleMagnet.set(false);
 			Config.toggleAioDamage.set(false);
@@ -352,6 +356,8 @@ public class ClientForgeHandler {
 			else {
                 player.sendSystemMessage(extraDrops.append(off));
             }
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 
 		}
