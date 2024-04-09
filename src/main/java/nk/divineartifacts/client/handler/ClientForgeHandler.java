@@ -204,6 +204,9 @@ public class ClientForgeHandler {
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(magnet.append(on));
 
 			player.sendSystemMessage(aio.append(on));
@@ -252,6 +255,9 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
@@ -308,6 +314,9 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.showRingState.consumeClick() && player != null) {
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
+			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
