@@ -51,15 +51,15 @@ public class RingAbilitiesHud {
 		RenderSystem.setShaderTexture(0 , dropOff);
 		Player player = Minecraft.getInstance().player;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
-		int xCord = 4;
-		int yCord = height / 2;
 		int size = 16;
+		int xCord = 4;
+		int yCord = height / 2 - size * 4;
 		int spacing = 4 + size;
 
-		int yCord1 = yCord - spacing;
-		int yCord2 = yCord1 - spacing;
-		int yCord3 = yCord2 - spacing;
-		int yCord4 = yCord3 - spacing;
+		int yCord1 = yCord + spacing;
+		int yCord2 = yCord1 + spacing;
+		int yCord3 = yCord2 + spacing;
+		int yCord4 = yCord3 + spacing;
 		if (ring != null && toggleHudElements()) {
 
 			if (toggleMagnet()) {
