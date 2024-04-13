@@ -52,39 +52,46 @@ public class RingAbilitiesHud {
 		RenderSystem.setShaderTexture(0 , dropOff);
 		Player player = Minecraft.getInstance().player;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
-		int offset = 475;
-		int size = 20;
+		int xCord = 475;
+		int yCord = 300;
+		int size = 16;
+		int spacing = 10;
+
+		int yCord1 = yCord - spacing;
+		int yCord2 = yCord1 - spacing;
+		int yCord3 = yCord2 - spacing;
+		int yCord4 = yCord3 - spacing;
 		if (ring != null && toggleHudElements()) {
  
 			if (toggleMagnet()) {
-				poseStack.blit(magOn , x - offset , y - 300 , 0 , 0 , size , size , size , size);
+				poseStack.blit(magOn , x - xCord , y - yCord , 0 , 0 , size , size , size , size);
 			}
 			else {
-				poseStack.blit(magOff , x - offset , y - 300 , 0 , 0 , size , size , size , size);
+				poseStack.blit(magOff , x - xCord , y - yCord , 0 , 0 , size , size , size , size);
 			}
 			if (toggleAioDamage()) {
-				poseStack.blit(aioOn , x - offset , y - 270 , 0 , 0 , size , size , size , size);
+				poseStack.blit(aioOn , x - xCord , y - yCord1 , 0 , 0 , size , size , size , size);
 			}
 			else {
-				poseStack.blit(aioOff , x - offset , y - 270 , 0 , 0 , size , size , size , size);
+				poseStack.blit(aioOff , x - xCord , y - yCord1 , 0 , 0 , size , size , size , size);
 			}
 			if (toggleShield()) {
-                poseStack.blit(shieldOn , x - offset , y - 240 , 0 , 0 , size , size , size , size);
+                poseStack.blit(shieldOn , x - xCord , y - yCord2 , 0 , 0 , size , size , size , size);
             }
 			else {
-                poseStack.blit(shieldOff , x - offset , y - 240 , 0 , 0 , size , size , size , size);
+                poseStack.blit(shieldOff , x - xCord , y - yCord2 , 0 , 0 , size , size , size , size);
             }
 			if (toggleBlockBreak()) {
-                poseStack.blit(breakOn , x - offset , y - 210 , 0 , 0 , size , size , size , size);
+                poseStack.blit(breakOn , x - xCord , y - yCord3 , 0 , 0 , size , size , size , size);
             }
 			else {
-                poseStack.blit(breakOff , x - offset , y - 210 , 0 , 0 , size , size , size , size);
+                poseStack.blit(breakOff , x - xCord , y - yCord3 , 0 , 0 , size , size , size , size);
             }
 			if (toggleExtraDrops()) {
-                poseStack.blit(dropOn , x - offset , y - 180 , 0 , 0 , size , size , size , size);
+                poseStack.blit(dropOn , x - xCord , y - yCord4 , 0 , 0 , size , size , size , size);
             }
 			else {
-                poseStack.blit(dropOff , x - offset , y - 180 , 0 , 0 , size , size , size , size);
+                poseStack.blit(dropOff , x - xCord , y - yCord4 , 0 , 0 , size , size , size , size);
             }
 		}
 
