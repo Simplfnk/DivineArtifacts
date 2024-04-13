@@ -216,6 +216,7 @@ public class ClientForgeHandler {
 			player.sendSystemMessage(blockBreak.append(on));
 
 			player.sendSystemMessage(extraDrops.append(on));
+
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
 			player.sendSystemMessage(Component.literal(""));
@@ -288,6 +289,7 @@ public class ClientForgeHandler {
 			Config.toggleShield.save();
 			Config.toggleBlockBreak.save();
 			Config.toggleExtraDrops.save();
+
 			Config.spec.save();
 		}
 	}
@@ -368,4 +370,5 @@ public class ClientForgeHandler {
 	public static void isShiftKeyPressed(TickEvent.ClientTickEvent event) {
 		isShiftPressed = Screen.hasShiftDown();
 	}
+
 }
