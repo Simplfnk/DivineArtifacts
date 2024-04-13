@@ -53,37 +53,38 @@ public class RingAbilitiesHud {
 		Player player = Minecraft.getInstance().player;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
 		int offset = 475;
+		int size = 20;
 		if (ring != null && toggleHudElements()) {
-
+ 
 			if (toggleMagnet()) {
-				poseStack.blit(magOn , x - offset , y - 300 , 0 , 0 , 16 , 16 , 16 , 16);
+				poseStack.blit(magOn , x - offset , y - 300 , 0 , 0 , size , size , size , size);
 			}
 			else {
-				poseStack.blit(magOff , x - offset , y - 300 , 0 , 0 , 16 , 16 , 16 , 16);
+				poseStack.blit(magOff , x - offset , y - 300 , 0 , 0 , size , size , size , size);
 			}
 			if (toggleAioDamage()) {
-				poseStack.blit(aioOn , x - offset , y - 280 , 0 , 0 , 16 , 16 , 16 , 16);
+				poseStack.blit(aioOn , x - offset , y - 270 , 0 , 0 , size , size , size , size);
 			}
 			else {
-				poseStack.blit(aioOff , x - offset , y - 280 , 0 , 0 , 16 , 16 , 16 , 16);
+				poseStack.blit(aioOff , x - offset , y - 270 , 0 , 0 , size , size , size , size);
 			}
 			if (toggleShield()) {
-                poseStack.blit(shieldOn , x - offset , y - 260 , 0 , 0 , 16 , 16 , 16 , 16);
+                poseStack.blit(shieldOn , x - offset , y - 240 , 0 , 0 , size , size , size , size);
             }
 			else {
-                poseStack.blit(shieldOff , x - offset , y - 260 , 0 , 0 , 16 , 16 , 16 , 16);
+                poseStack.blit(shieldOff , x - offset , y - 240 , 0 , 0 , size , size , size , size);
             }
 			if (toggleBlockBreak()) {
-                poseStack.blit(breakOn , x - offset , y - 240 , 0 , 0 , 16 , 16 , 16 , 16);
+                poseStack.blit(breakOn , x - offset , y - 210 , 0 , 0 , size , size , size , size);
             }
 			else {
-                poseStack.blit(breakOff , x - offset , y - 240 , 0 , 0 , 16 , 16 , 16 , 16);
+                poseStack.blit(breakOff , x - offset , y - 210 , 0 , 0 , size , size , size , size);
             }
 			if (toggleExtraDrops()) {
-                poseStack.blit(dropOn , x - offset , y - 220 , 0 , 0 , 16 , 16 , 16 , 16);
+                poseStack.blit(dropOn , x - offset , y - 180 , 0 , 0 , size , size , size , size);
             }
 			else {
-                poseStack.blit(dropOff , x - offset , y - 220 , 0 , 0 , 16 , 16 , 16 , 16);
+                poseStack.blit(dropOff , x - offset , y - 180 , 0 , 0 , size , size , size , size);
             }
 		}
 
