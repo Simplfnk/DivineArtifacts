@@ -12,6 +12,7 @@ import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
+
 public class RingAbilitiesHud {
 	private static final ResourceLocation magOn = new ResourceLocation(DivineArtifacts.MODID ,
 			"textures/gui/mag_on.png");
@@ -55,14 +56,14 @@ public class RingAbilitiesHud {
 		int xCord = 475;
 		int yCord = 300;
 		int size = 16;
-		int spacing = 10;
+		int spacing = 4 + size;
 
 		int yCord1 = yCord - spacing;
 		int yCord2 = yCord1 - spacing;
 		int yCord3 = yCord2 - spacing;
 		int yCord4 = yCord3 - spacing;
 		if (ring != null && toggleHudElements()) {
- 
+
 			if (toggleMagnet()) {
 				poseStack.blit(magOn , x - xCord , y - yCord , 0 , 0 , size , size , size , size);
 			}
@@ -76,23 +77,23 @@ public class RingAbilitiesHud {
 				poseStack.blit(aioOff , x - xCord , y - yCord1 , 0 , 0 , size , size , size , size);
 			}
 			if (toggleShield()) {
-                poseStack.blit(shieldOn , x - xCord , y - yCord2 , 0 , 0 , size , size , size , size);
-            }
+				poseStack.blit(shieldOn , x - xCord , y - yCord2 , 0 , 0 , size , size , size , size);
+			}
 			else {
-                poseStack.blit(shieldOff , x - xCord , y - yCord2 , 0 , 0 , size , size , size , size);
-            }
+				poseStack.blit(shieldOff , x - xCord , y - yCord2 , 0 , 0 , size , size , size , size);
+			}
 			if (toggleBlockBreak()) {
-                poseStack.blit(breakOn , x - xCord , y - yCord3 , 0 , 0 , size , size , size , size);
-            }
+				poseStack.blit(breakOn , x - xCord , y - yCord3 , 0 , 0 , size , size , size , size);
+			}
 			else {
-                poseStack.blit(breakOff , x - xCord , y - yCord3 , 0 , 0 , size , size , size , size);
-            }
+				poseStack.blit(breakOff , x - xCord , y - yCord3 , 0 , 0 , size , size , size , size);
+			}
 			if (toggleExtraDrops()) {
-                poseStack.blit(dropOn , x - xCord , y - yCord4 , 0 , 0 , size , size , size , size);
-            }
+				poseStack.blit(dropOn , x - xCord , y - yCord4 , 0 , 0 , size , size , size , size);
+			}
 			else {
-                poseStack.blit(dropOff , x - xCord , y - yCord4 , 0 , 0 , size , size , size , size);
-            }
+				poseStack.blit(dropOff , x - xCord , y - yCord4 , 0 , 0 , size , size , size , size);
+			}
 		}
 
 	});
