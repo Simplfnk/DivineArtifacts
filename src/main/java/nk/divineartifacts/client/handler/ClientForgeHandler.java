@@ -180,57 +180,13 @@ public class ClientForgeHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
-		MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(clOn));
-		MutableComponent magnet = Component.translatable("tooltip." + DivineArtifacts.MODID + ".magnet")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent aio = Component.translatable("tooltip." + DivineArtifacts.MODID + ".explode")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent shield = Component.translatable("tooltip." + DivineArtifacts.MODID + ".shield")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".blockbreak")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent extraDrops = Component.translatable("tooltip." + DivineArtifacts.MODID + ".drops")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.ToggleAllOn.consumeClick() && player != null) {
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(magnet.append(on));
-
-			player.sendSystemMessage(aio.append(on));
-
-			player.sendSystemMessage(shield.append(on));
-
-			player.sendSystemMessage(blockBreak.append(on));
-
-			player.sendSystemMessage(extraDrops.append(on));
-
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
 			Config.toggleMagnet.set(true);
 			Config.toggleAioDamage.set(true);
 			Config.toggleShield.set(true);
 			Config.toggleBlockBreak.set(true);
 			Config.toggleExtraDrops.set(true);
 
-			Config.toggleMagnet.save();
-			Config.toggleAioDamage.save();
-			Config.toggleShield.save();
-			Config.toggleBlockBreak.save();
-			Config.toggleExtraDrops.save();
 			Config.spec.save();
 		}
 	}
@@ -239,56 +195,13 @@ public class ClientForgeHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
-		MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(clOff));
-		MutableComponent magnet = Component.translatable("tooltip." + DivineArtifacts.MODID + ".magnet")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent aio = Component.translatable("tooltip." + DivineArtifacts.MODID + ".explode")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent shield = Component.translatable("tooltip." + DivineArtifacts.MODID + ".shield")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".blockbreak")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent extraDrops = Component.translatable("tooltip." + DivineArtifacts.MODID + ".drops")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(magnet.append(off));
 
-			player.sendSystemMessage(aio.append(off));
-
-			player.sendSystemMessage(shield.append(off));
-
-			player.sendSystemMessage(blockBreak.append(off));
-
-			player.sendSystemMessage(extraDrops.append(off));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
 			Config.toggleMagnet.set(false);
 			Config.toggleAioDamage.set(false);
 			Config.toggleShield.set(false);
 			Config.toggleBlockBreak.set(false);
 			Config.toggleExtraDrops.set(false);
-
-			Config.toggleMagnet.save();
-			Config.toggleAioDamage.save();
-			Config.toggleShield.save();
-			Config.toggleBlockBreak.save();
-			Config.toggleExtraDrops.save();
 
 			Config.spec.save();
 		}
@@ -298,69 +211,15 @@ public class ClientForgeHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
-		MutableComponent on = Component.translatable("on." + DivineArtifacts.MODID + ".tooltip")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(clOn));
-		MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(clOff));
-		MutableComponent magnet = Component.translatable("tooltip." + DivineArtifacts.MODID + ".magnet")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent aio = Component.translatable("tooltip." + DivineArtifacts.MODID + ".explode")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent shield = Component.translatable("tooltip." + DivineArtifacts.MODID + ".shield")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".blockbreak")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
-		MutableComponent extraDrops = Component.translatable("tooltip." + DivineArtifacts.MODID + ".drops")
-				.withStyle(ChatFormatting.BOLD)
-				.withStyle(s -> s.withColor(magnetColor));
 		if (ring && Keybindings.INSTANCE.showRingState.consumeClick() && player != null) {
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			if (toggleMagnet()){
-				player.sendSystemMessage(magnet.append(on));
+			if (toggleHudElements()){
+				Config.toggleHudElements.set(false);
+                Config.spec.save();
 			}
 			else {
-                player.sendSystemMessage(magnet.append(off));
+                Config.toggleHudElements.set(true);
+                Config.spec.save();
             }
-			if (toggleAioDamage()){
-                player.sendSystemMessage(aio.append(on));
-            }
-			else {
-                player.sendSystemMessage(aio.append(off));
-            }
-			if (toggleShield()){
-                player.sendSystemMessage(shield.append(on));
-            }
-			else {
-                player.sendSystemMessage(shield.append(off));
-            }
-			if (toggleBlockBreak()){
-                player.sendSystemMessage(blockBreak.append(on));
-            }
-			else {
-                player.sendSystemMessage(blockBreak.append(off));
-            }
-			if (toggleExtraDrops()){
-                player.sendSystemMessage(extraDrops.append(on));
-            }
-			else {
-                player.sendSystemMessage(extraDrops.append(off));
-            }
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
-			player.sendSystemMessage(Component.literal(""));
 
 		}
 	}

@@ -18,4 +18,7 @@ public class ToggleHelper {
 	public static boolean toggleExtraDrops() {
 		return Config.toggleExtraDrops.get();
 	}
+	public static boolean toggleHudElements() {
+		return Config.toggleHudElements.get();
+	}
 }

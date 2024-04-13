@@ -14,11 +14,13 @@ public class Config {
     public static BooleanValue toggleShield;
     public static BooleanValue toggleBlockBreak;
     public static BooleanValue toggleExtraDrops;
+    public static BooleanValue toggleHudElements;
     private static final boolean magState = Config.toggleMagnet.get() != null;
     private static final boolean expState = Config.toggleAioDamage.get() != null;
     private static final boolean shiState = Config.toggleShield.get() != null;
     private static final boolean breakState = Config.toggleBlockBreak.get() != null;
     private static final boolean extraLoot = Config.toggleExtraDrops.get() != null;
+    private static final boolean hudState = Config.toggleHudElements.get() != null;
 
     public static BooleanValue configDivineArtifacts;
 
@@ -38,6 +40,8 @@ public class Config {
                     .define("State.Block Break State", breakState);
             toggleExtraDrops = BUILDER.comment("On/Off Extra Drops state")
                     .define("State.Extra Drops", extraLoot);
+            toggleHudElements = BUILDER.comment("On/Off Toggle Hud elements state")
+                    .define("State.Hud Elements", hudState);
             builder.pop();
 
         }

@@ -52,8 +52,8 @@ public class RingAbilitiesHud {
 		RenderSystem.setShaderTexture(0 , dropOff);
 		Player player = Minecraft.getInstance().player;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
-		int offset = 471;
-		if (ring != null) {
+		int offset = 475;
+		if (ring != null && toggleHudElements()) {
 
 			if (toggleMagnet()) {
 				poseStack.blit(magOn , x - offset , y - 300 , 0 , 0 , 16 , 16 , 16 , 16);
@@ -86,8 +86,6 @@ public class RingAbilitiesHud {
                 poseStack.blit(dropOff , x - offset , y - 220 , 0 , 0 , 16 , 16 , 16 , 16);
             }
 		}
-
-		//poseStack.blit(magOn , x - 480, y - 300, 0, 0, 16, 16, 16, 16);
 
 	});
 }
