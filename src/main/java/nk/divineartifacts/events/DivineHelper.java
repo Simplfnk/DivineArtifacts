@@ -129,7 +129,7 @@ public class DivineHelper {
 
 	public static void applyKnockBack(Entity player , Entity target) {
 		if (target instanceof LivingEntity entity) {
-			int power = 3;
+			int power = 2;
 			float distToPlayer = entity.distanceTo(player);
 			Vec3 vec = new Vec3(entity.getX() - player.getX() , entity.getY() - player.getY() , entity.getZ() - player.getZ());
 			if (!(entity instanceof EnderDragon || entity instanceof WitherBoss)) {

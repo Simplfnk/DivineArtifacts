@@ -42,13 +42,11 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
 			if (toggleMagnet()) {
 				Config.toggleMagnet.set(false);
-				Config.toggleMagnet.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(magnet.append(off) , true);
 			}
 			else {
 				Config.toggleMagnet.set(true);
-				Config.toggleMagnet.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(magnet.append(on) , true);
 			}
@@ -73,13 +71,11 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			if (toggleAioDamage()) {
 				Config.toggleAioDamage.set(false);
-				Config.toggleAioDamage.save();
 				Config.spec.save();
 				player.displayClientMessage(aio.append(off) , true);
 			}
 			else {
 				Config.toggleAioDamage.set(true);
-				Config.toggleAioDamage.save();
 				Config.spec.save();
 				player.displayClientMessage(aio.append(on) , true);
 			}
@@ -105,12 +101,10 @@ public class ClientForgeHandler {
 			if (toggleShield()) {
 				minecraft.player.displayClientMessage(shield.append(off) , true);
 				Config.toggleShield.set(false);
-				Config.toggleShield.save();
 				Config.spec.save();
 			}
 			else {
 				Config.toggleShield.set(true);
-				Config.toggleShield.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(shield.append(on) , true);
 			}
@@ -134,12 +128,10 @@ public class ClientForgeHandler {
 			if (toggleBlockBreak()) {
 				minecraft.player.displayClientMessage(blockBreak.append(off) , true);
 				Config.toggleBlockBreak.set(false);
-				Config.toggleBlockBreak.save();
 				Config.spec.save();
 			}
 			else {
 				Config.toggleBlockBreak.set(true);
-				Config.toggleBlockBreak.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(blockBreak.append(on) , true);
 			}
@@ -163,12 +155,10 @@ public class ClientForgeHandler {
 			if (toggleExtraDrops()) {
 				minecraft.player.displayClientMessage(extraDrops.append(off) , true);
 				Config.toggleExtraDrops.set(false);
-				Config.toggleExtraDrops.save();
 				Config.spec.save();
 			}
 			else {
 				Config.toggleExtraDrops.set(true);
-				Config.toggleExtraDrops.save();
 				Config.spec.save();
 				minecraft.player.displayClientMessage(extraDrops.append(on) , true);
 			}

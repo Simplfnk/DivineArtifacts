@@ -54,7 +54,7 @@ public class RingAbilitiesHud {
 		int size = 16;
 		int xCord = 4;
 		int yCord = height / 2 - size * 4;
-		int spacing = 4 + size;
+		int spacing = 2 + size;
 
 		int yCord1 = yCord + spacing;
 		int yCord2 = yCord1 + spacing;
