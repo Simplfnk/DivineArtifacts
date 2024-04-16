@@ -39,6 +39,7 @@ import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
+import static nk.divineartifacts.config.Config.*;
 
 public class DivineRingBase extends Item implements ICurioItem {
 
@@ -216,7 +217,6 @@ public class DivineRingBase extends Item implements ICurioItem {
 		super.appendHoverText(stack , worldIn , tooltip , flagIn);
 		if (this.tooltip == null) return;
 		//================================================================ Colors
-		TextColor color = TextColor.fromRgb(0xE9971D);
 		TextColor magnetColor = TextColor.fromRgb(0xFFE03F);
 		TextColor attributes = TextColor.fromLegacyFormat(ChatFormatting.GOLD);
 		TextColor color2 = TextColor.fromRgb(0xF9D511);
@@ -426,7 +426,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 			MutableComponent entityReach = Component.translatable("tooltip." + DivineArtifacts.MODID + ".entity.reach").withStyle(s -> s.withColor(Gold));
 			MutableComponent movementSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".movement.speed").withStyle(s -> s.withColor(Gold));
 			MutableComponent swimSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".swim.speed").withStyle(s -> s.withColor(Gold));
-			MutableComponent flyingSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".flying.speed" ).withStyle(s -> s.withColor(Gold));
+			MutableComponent flyingSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".flying.speed").withStyle(s -> s.withColor(Gold));
 			MutableComponent luck = Component.translatable("tooltip." + DivineArtifacts.MODID + ".luck").withStyle(s -> s.withColor(Gold));
 			MutableComponent critChance = Component.translatable("tooltip." + DivineArtifacts.MODID + ".crit.chance").withStyle(s -> s.withColor(Gold));
 			MutableComponent armorPiercing = Component.translatable("tooltip." + DivineArtifacts.MODID + ".armor.piercing").withStyle(s -> s.withColor(Gold));
@@ -434,33 +434,81 @@ public class DivineRingBase extends Item implements ICurioItem {
 			MutableComponent arrowVelocity = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.velocity").withStyle(s -> s.withColor(Gold));
 			MutableComponent arrowDamage = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.damage").withStyle(s -> s.withColor(Gold));
 			MutableComponent drawSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".draw.speed").withStyle(s -> s.withColor(Gold));
-			MutableComponent int100 = Component.literal(Green + "+100");
-			MutableComponent int10 = Component.literal(Green + "+10");
-			MutableComponent int100p = Component.literal(Green + "+100%");
-			MutableComponent int200p = Component.literal(Green + "+200%");
-			MutableComponent int400p = Component.literal(Green + "+400%");
-			MutableComponent int500p = Component.literal(Green + "+500%");
-			MutableComponent int1 = Component.literal(Green + "+1");
 
 
-			tooltip.add(attack.append(int100));
-			tooltip.add(armor.append(int100));
-			tooltip.add(toughness.append(int10));
-			tooltip.add(health.append(int500p));
-			tooltip.add(knockResist.append(int10));
-			tooltip.add(step.append(int1));
-			tooltip.add(blockReach.append(int10));
-			tooltip.add(entityReach.append(int10));
-			tooltip.add(flyingSpeed.append(int100p));
-			tooltip.add(movementSpeed.append(int200p));
-			tooltip.add(swimSpeed.append(int400p));
-			tooltip.add(luck.append(int10));
-			tooltip.add(critChance.append(int100p));
-			tooltip.add(armorPiercing.append(int100p));
-			tooltip.add(armorShredding.append(int100p));
-			tooltip.add(arrowVelocity.append(int100p));
-			tooltip.add(arrowDamage.append(int200p));
-			tooltip.add(drawSpeed.append(int200p));
+			MutableComponent attackDamageValue = Component.literal(Green +"+" + ATTACK_DAMAGE.get());
+			MutableComponent armorValue = Component.literal(Green + "+" + ARMOR.get());
+			MutableComponent armorToughValue = Component.literal(Green + "+" + ARMOR_TOUGHNESS.get());
+			MutableComponent maxHeartValue = Component.literal(Green + "+" + MaxHeart.get() + "%");
+			MutableComponent knockValue = Component.literal(Green + "+" + KNOCKBACK_RESISTANCE.get());
+			MutableComponent stepHeightValue = Component.literal(Green + "+" + STEP_HEIGHT.get());
+			MutableComponent blockReachValue = Component.literal(Green + "+" + BLOCK_REACH.get());
+			MutableComponent entityReachValue = Component.literal(Green + "+" + ENTITY_REACH.get());
+			MutableComponent moveSpeedValue = Component.literal(Green + "+" + MOVEMENT_SPEED.get() + "%");
+			MutableComponent swimSpeedValue = Component.literal(Green + "+" + SWIM_SPEED.get()+ "%");
+			MutableComponent flaySpeedValue = Component.literal(Green + "+" + FLYING_SPEED.get() + "%");
+			MutableComponent luckValue = Component.literal(Green +"+" + LUCK.get());
+			MutableComponent critChanceValue = Component.literal(Green + "+" + CRIT_CHANCE.get() + "%");
+			MutableComponent armorPiercingV = Component.literal(Green + "+" + ARMOR_PIERCE.get() + "%");
+			MutableComponent armorShreddingV = Component.literal(Green + "+" + ARMOR_SHRED.get() + "%");
+			MutableComponent arrowVelocityValue = Component.literal(Green + "+" + ARROW_VELOCITY.get() + "%");
+			MutableComponent arrowDamageValue = Component.literal(Green + "+" + ARROW_DAMAGE.get() + "%");
+			MutableComponent drawSpeedValue = Component.literal(Green + "+" + DRAW_SPEED.get()+ "%");
+
+			if (Tattack.get()) {
+				tooltip.add(attack.append(attackDamageValue));
+			}
+			if (TArmor.get()) {
+				tooltip.add(armor.append(armorValue));
+			}
+			if (TArmorToughness.get()) {
+				tooltip.add(toughness.append(armorToughValue));
+			}
+			if (TMAXHealth.get()) {
+				tooltip.add(health.append(maxHeartValue));
+			}
+			if (TKnockbackResistance.get()) {
+				tooltip.add(knockResist.append(knockValue));
+			}
+			if (TStepHeight.get()) {
+				tooltip.add(step.append(stepHeightValue));
+			}
+			if (TBlockReach.get()) {
+				tooltip.add(blockReach.append(blockReachValue));
+			}
+			if (TEntityReach.get()) {
+				tooltip.add(entityReach.append(entityReachValue));
+			}
+			if (TMovementSpeed.get()) {
+				tooltip.add(movementSpeed.append(moveSpeedValue));
+			}
+			if (TSwimSpeed.get()) {
+				tooltip.add(swimSpeed.append(swimSpeedValue));
+			}
+			if (TFlyingSpeed.get()) {
+				tooltip.add(flyingSpeed.append(flaySpeedValue));
+			}
+			if (TLuck.get()) {
+				tooltip.add(luck.append(luckValue));
+			}
+			if (TCritChance.get()) {
+				tooltip.add(critChance.append(critChanceValue));
+			}
+			if (TArmorPierce.get()) {
+				tooltip.add(armorPiercing.append(armorPiercingV));
+			}
+			if (TArmorShred.get()) {
+				tooltip.add(armorShredding.append(armorShreddingV));
+			}
+			if (TArrowVelocity.get()) {
+				tooltip.add(arrowVelocity.append(arrowVelocityValue));
+			}
+			if (TArrowDamage.get()) {
+				tooltip.add(arrowDamage.append(arrowDamageValue));
+			}
+			if (TDrawSpeed.get()) {
+				tooltip.add(drawSpeed.append(drawSpeedValue));
+			}
 
 			tooltip.add(Component.literal(""));
 		}

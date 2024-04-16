@@ -37,9 +37,9 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
+import static nk.divineartifacts.config.Config.*;
 
 public class DivineOrbBase extends Item implements ICurioItem {
-
 
 	protected String tooltip;
 	public final boolean isEnabled;
@@ -53,20 +53,17 @@ public class DivineOrbBase extends Item implements ICurioItem {
 		ModItemOrb.GodOrb.add(this);
 	}
 
-
 	@Override
 
 	public @NotNull Component getName(@NotNull ItemStack stack) {
 		TextColor color = TextColor.fromRgb(0xCC1AD8); //
 
-		return super.getName(stack).copy().withStyle(ChatFormatting.BOLD ).withStyle(s -> s.withColor(color));
+		return super.getName(stack).copy().withStyle(ChatFormatting.BOLD).withStyle(s -> s.withColor(color));
 	}
-
 
 	public Rarity getRarity(ItemStack stack) {
 		return Rarity.EPIC;
 	}
-
 
 	public void tickCurio(String identifier , int index , LivingEntity livingEntity) {
 	}
@@ -210,7 +207,7 @@ public class DivineOrbBase extends Item implements ICurioItem {
 			TextColor attributes = TextColor.fromRgb(0xD535D5);
 			MutableComponent atr = Component.literal(ChatFormatting.BOLD + "Attributes:").withStyle(s -> s.withColor(attributes));
 			tooltip.add(atr);
-			tooltip.add(Component.literal("---------").withStyle(ChatFormatting.BOLD ).withStyle(s -> s.withColor(color2)));
+			tooltip.add(Component.literal("---------").withStyle(ChatFormatting.BOLD).withStyle(s -> s.withColor(color2)));
 			String Green = "\u00A7a";
 
 			TextColor Purple = TextColor.fromLegacyFormat(ChatFormatting.LIGHT_PURPLE);
@@ -221,15 +218,31 @@ public class DivineOrbBase extends Item implements ICurioItem {
 			MutableComponent cooldownReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cooldown.reduction").withStyle(s -> s.withColor(Purple));
 			MutableComponent castTimeReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cast.reduction").withStyle(s -> s.withColor(Purple));
 
-			MutableComponent int100p = Component.literal(Green + "+100%");
-			MutableComponent int200p = Component.literal(Green + "+200%");
+			MutableComponent spellResistValue = Component.literal(Green + "+" + SPELL_RESIST.get() + "%");
+			MutableComponent spellPowerValue = Component.literal(Green + "+" + SPELL_POWER.get() + "%");
+			MutableComponent manaRegenValue = Component.literal(Green + "+" + MANA_REGEN.get() + "%");
+			MutableComponent maxManaValue = Component.literal(Green + "+" + MAX_MANA.get() + "%");
+			MutableComponent CoolDawnValue = Component.literal(Green + "+" + COOLDOWN_REDUCTION.get() + "%");
+			MutableComponent castTimeValue = Component.literal(Green + "+" + CAST_TIME_REDUCTION.get() + "%");
 
-			tooltip.add(spellResist.append(int100p));
-			tooltip.add(spellPower.append(int100p));
-			tooltip.add(manaRegen.append(int200p));
-			tooltip.add(maxMana.append(int200p));
-			tooltip.add(cooldownReduction.append(int200p));
-			tooltip.add(castTimeReduction.append(int200p));
+			if (TSPELL_RESIST.get()) {
+				tooltip.add(spellResist.append(spellResistValue));
+			}
+			if (TSPELL_POWER.get()) {
+				tooltip.add(spellPower.append(spellPowerValue));
+			}
+			if (TMANA_REGEN.get()) {
+				tooltip.add(manaRegen.append(manaRegenValue));
+			}
+			if (TMAX_MANA.get()) {
+				tooltip.add(maxMana.append(maxManaValue));
+			}
+			if (TCOOLDOWN_REDUCTION.get()) {
+				tooltip.add(cooldownReduction.append(CoolDawnValue));
+			}
+			if (TCAST_TIME_REDUCTION.get()) {
+				tooltip.add(castTimeReduction.append(castTimeValue));
+			}
 
 			tooltip.add(Component.literal(""));
 		}
@@ -259,6 +272,5 @@ public class DivineOrbBase extends Item implements ICurioItem {
 
 		return mutable;
 	}
-
 
 }

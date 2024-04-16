@@ -36,6 +36,7 @@ import java.util.List;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
+import static nk.divineartifacts.config.Config.ExtraDrops;
 import static nk.divineartifacts.config.Config.configDivineArtifacts;
 import static nk.divineartifacts.events.DivineHelper.*;
 
@@ -80,7 +81,7 @@ public class DivineLuck {
 				boolean isSpawnEgg = item.getItem().getItem() instanceof SpawnEggItem;
 				boolean isToolOrArmor = item.getItem().is(Tags.Items.TOOLS) || item.getItem().is(Tags.Items.ARMORS);
 				if ( ! ( IsCurioItem(item.getItem()) || banItems(item.getItem()) || isToolOrArmor || isGem || isSpawnEgg || isArtifacts(item.getItem()) ) ) {
-					for ( int i = 0; i < 9; i++ ) {
+					for ( int i = 0; i < ExtraDrops.get(); i++ ) {
 						event.getDrops().add(new ItemEntity(player.level() , item.getX() , item.getY() , item.getZ() , item.getItem().copy()));
 					}
 				}
@@ -126,7 +127,7 @@ public class DivineLuck {
 						if ( ! ( stack.getItem() instanceof BookItem ) ) {
 							stack.setCount(drop.getCount() + fortuneLvl);
 							ItemStack stack2 = stack.copy();
-							stack2.setCount(stack.getCount() * 5);
+							stack2.setCount(stack.getCount() * (ExtraDrops.get() / 2 ));
 							Block.popResource(player.level() , event.getPos() , stack2);
 						}
 						if ( exp > 0 ) {
@@ -167,7 +168,7 @@ public class DivineLuck {
 					for ( ItemStack drop : drops ) {
 						ItemStack stack = drop.copy();
 						if ( ! ( stack.getItem() instanceof BookItem ) ) {
-							stack.setCount(drop.getCount() * 9);
+							stack.setCount(drop.getCount() * ExtraDrops.get());
 							Block.popResource(player.level() , event.getPos() , stack);
 						}
 						if ( exp > 0 ) {
