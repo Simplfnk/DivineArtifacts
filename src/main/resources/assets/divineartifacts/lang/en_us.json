@@ -5,6 +5,12 @@
   "item.divineartifacts.div_crystal": "Crystallized Divine Essence",
   "item.divineartifacts.div_gold_ring": "Angelic Gold ring",
   "tooltip.divineorb.orb": "Grants You Magical Power",
+  "advancements.divineartifacts.title.magic": "Its flow!!",
+  "advancements.divineartifacts.descr.magic": "step up your wizardry",
+  "advancements.divineartifacts.title.divgold": "what is this ?",
+  "advancements.divineartifacts.descr.divgold": "I wonder!!",
+  "advancements.divineartifacts.title.crystal": "Divine essence ?",
+  "advancements.divineartifacts.descr.crystal": "its so powerful",
   "tooltip.divineartifacts.slot": "Slot: ",
   "tooltip.divineartifacts.ring": "Ring",
   "tooltip.divineartifacts.charm": "Body",
@@ -73,5 +79,6 @@
   "tooltip.divineartifacts.mana.regen": "Mana Regen   ",
   "tooltip.divineartifacts.max.mana": "Max Mana   ",
   "tooltip.divineartifacts.cooldown.reduction": "Cooldown Reduction  ",
-  "tooltip.divineartifacts.cast.reduction": "Cast Time Reduction  "
+  "tooltip.divineartifacts.cast.reduction": "Cast Time Reduction  ",
+  "advancements.divineartifacts.root": "Good Luck :)"
 }

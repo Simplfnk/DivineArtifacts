@@ -2,15 +2,16 @@
   "parent": "divineartifacts:root",
   "display": {
     "icon": {
-      "item": "divineartifacts:ring_divine"
+      "item": "divineartifacts:orb_divine",
+      "color": "purple"
     },
     "title": {
-      "translate": "advancements.divineartifacts.title",
-      "color": "gold"
+      "translate": "advancements.divineartifacts.title.magic",
+      "color": "purple"
     },
     "description": {
-      "translate": "advancements.divineartifacts.descr",
-      "color": "gold"
+      "translate": "advancements.divineartifacts.descr.magic",
+      "color": "purple"
     },
     "background": "minecraft:textures/block/polished_deepslate.png",
     "frame": "challenge",
@@ -26,7 +27,7 @@
         "items": [
           {
             "items": [
-              "divineartifacts:ring_divine"
+              "divineartifacts:orb_divine"
             ],
             "count": {
               "min": 1,

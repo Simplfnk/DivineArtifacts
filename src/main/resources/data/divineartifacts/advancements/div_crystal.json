@@ -2,15 +2,15 @@
   "parent": "divineartifacts:root",
   "display": {
     "icon": {
-      "item": "divineartifacts:ring_divine"
+      "item": "divineartifacts:div_crystal"
     },
     "title": {
-      "translate": "advancements.divineartifacts.title",
-      "color": "gold"
+      "translate": "advancements.divineartifacts.title.crystal",
+      "color": "aqua"
     },
     "description": {
-      "translate": "advancements.divineartifacts.descr",
-      "color": "gold"
+      "translate": "advancements.divineartifacts.descr.crystal",
+      "color": "aqua"
     },
     "background": "minecraft:textures/block/polished_deepslate.png",
     "frame": "challenge",
@@ -20,13 +20,13 @@
     "sounds": "ui.toast.challenge_complete"
   },
   "criteria": {
-    "ring_divine": {
+    "div_crystal": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "divineartifacts:ring_divine"
+              "divineartifacts:div_crystal"
             ],
             "count": {
               "min": 1,
