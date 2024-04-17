@@ -2,16 +2,15 @@
   "parent": "divineartifacts:root",
   "display": {
     "icon": {
-      "item": "divineartifacts:orb_divine",
-      "color": "purple"
+      "item": "divineartifacts:orb_divine"
     },
     "title": {
       "translate": "advancements.divineartifacts.title.magic",
-      "color": "purple"
+      "color": "dark_purple"
     },
     "description": {
       "translate": "advancements.divineartifacts.descr.magic",
-      "color": "purple"
+      "color": "light_purple"
     },
     "background": "minecraft:textures/block/polished_deepslate.png",
     "frame": "challenge",
