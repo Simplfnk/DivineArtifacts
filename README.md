@@ -1,7 +1,7 @@
 
 
 
-<img src="https://i.imgur.com/Cdihjzc.png" />
+# <img src="https://i.imgur.com/Cdihjzc.png" >
 
 # DivineArtifacts     <img src="https://cf.way2muchnoise.eu/full_1003108_downloads.svg">
 This mod adds two curio rings they are OP but hard to get.
