@@ -9,7 +9,8 @@ public class Config {
 	private static final General GENERAL = new General(BUILDER);
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
-	public static BooleanValue configDivineArtifacts;
+	public static BooleanValue configDivineRing;
+	public static BooleanValue configRingOfMagic;
 	public static BooleanValue toggleMagnet;
 	public static BooleanValue toggleAioDamage;
 	public static BooleanValue toggleShield;
@@ -86,7 +87,8 @@ public class Config {
 		public General(final ForgeConfigSpec.Builder builder) {
 			builder.push("Divine Artifacts");
 			builder.push("Enable/Disable Artifacts");
-			configDivineArtifacts = builder.define("Items.Rings" , true);
+			configDivineRing = builder.define("Items.Rings" , true);
+			configRingOfMagic = builder.define("Items.Rings" , true);
 			toggleMagnet = BUILDER.comment("On/Off Magnet state").define("State.MagnetState" , true);
 			toggleAioDamage = BUILDER.comment("On/Off AIO Damage state").define("State.AIO State" , true);
 			toggleShield = BUILDER.comment("On/Off Shield state").define("State. Shield State" , true);

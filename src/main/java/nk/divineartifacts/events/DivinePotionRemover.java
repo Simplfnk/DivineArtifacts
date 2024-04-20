@@ -24,7 +24,7 @@ import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
-import static nk.divineartifacts.config.Config.configDivineArtifacts;
+import static nk.divineartifacts.config.Config.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -47,7 +47,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent
 	public static void CreeperAttack(LivingChangeTargetEvent event) {
-		if (!configDivineArtifacts.get()) return;
+		if (!configDivineRing.get()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			String vx1 = EntityType.getKey(event.getEntity().getType()).toString();
@@ -59,7 +59,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent
 	public static void phantomSpawn(LivingChangeTargetEvent event) {
-		if (!configDivineArtifacts.get()) return;
+		if (!configDivineRing.get()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
@@ -72,7 +72,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void handleBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
-		if (!configDivineArtifacts.get()) return;
+		if (!configDivineRing.get()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
@@ -84,7 +84,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
-		if (!configDivineArtifacts.get()) return;
+		if (!configDivineRing.get()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;

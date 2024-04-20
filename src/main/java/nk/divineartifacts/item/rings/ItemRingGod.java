@@ -104,7 +104,7 @@ public class ItemRingGod extends DivineRingBase {
 
 	public void onEquippedCurio(String identifier , LivingEntity livingEntity) {
 		if (!isEnabled) return;
-		if (livingEntity instanceof Player player && configDivineArtifacts.get()) {
+		if (livingEntity instanceof Player player && configDivineRing.get()) {
 			player.getAbilities().mayfly = true;
 			player.getAbilities().flying = true;
 			player.onUpdateAbilities();
@@ -113,10 +113,10 @@ public class ItemRingGod extends DivineRingBase {
 
 	public void tickCurio(String identifier , int index , LivingEntity livingEntity) {
 		if (!this.isEnabled) return;
-		if (livingEntity instanceof Player player && configDivineArtifacts.get()) {
+		if (livingEntity instanceof Player player && configDivineRing.get()) {
 			player.getAbilities().setFlyingSpeed(0.08F);
 		}
-		if (livingEntity instanceof Player player && configDivineArtifacts.get()) {
+		if (livingEntity instanceof Player player && configDivineRing.get()) {
 
 			if (!player.getAbilities().mayfly) {
 
@@ -124,7 +124,7 @@ public class ItemRingGod extends DivineRingBase {
 				player.onUpdateAbilities();
 			}
 		}
-		if (livingEntity instanceof Player player && !configDivineArtifacts.get()) {
+		if (livingEntity instanceof Player player && !configDivineRing.get()) {
 
 			if (player.getAbilities().mayfly) {
 
@@ -132,7 +132,7 @@ public class ItemRingGod extends DivineRingBase {
 				player.onUpdateAbilities();
 			}
 		}
-		if (livingEntity instanceof Player player && !configDivineArtifacts.get() && !player.isCreative()) {
+		if (livingEntity instanceof Player player && !configDivineRing.get() && !player.isCreative()) {
 			player.getAbilities().mayfly = false;
 			player.getAbilities().flying = false;
 			player.onUpdateAbilities();
@@ -142,14 +142,14 @@ public class ItemRingGod extends DivineRingBase {
 
 		// First, identify all harmful effects without modifying the original collection
 		livingEntity.getActiveEffects().forEach(effectInstance -> {
-			if (effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL && configDivineArtifacts.get()) {
+			if (effectInstance.getEffect().getCategory() == MobEffectCategory.HARMFUL && configDivineRing.get()) {
 				effectsToRemove.add(effectInstance.getEffect());
 			}
 		});
 		// Now, remove the identified harmful effects from the livingEntity
 		effectsToRemove.forEach(livingEntity::removeEffect);
 
-		if (livingEntity instanceof Player && configDivineArtifacts.get() && !livingEntity.level().isClientSide && !livingEntity.isCrouching() && toggleMagnet()) {
+		if (livingEntity instanceof Player && configDivineRing.get() && !livingEntity.level().isClientSide && !livingEntity.isCrouching() && toggleMagnet()) {
 			BlockPos pos = new BlockPos(livingEntity.getBlockX() , livingEntity.getBlockY() , livingEntity.getBlockZ());
 			List<ItemEntity> entities = livingEntity.level().getEntitiesOfClass(ItemEntity.class , new AABB(pos.getX() + RANGE , pos.getY() + RANGE , pos.getZ() + RANGE , pos.getX() - RANGE , pos.getY() - RANGE , pos.getZ() - RANGE));
 			for (ItemEntity item : entities) {
@@ -158,7 +158,7 @@ public class ItemRingGod extends DivineRingBase {
 				}
 			}
 		}
-		if (livingEntity instanceof Player && configDivineArtifacts.get() && !livingEntity.level().isClientSide && !livingEntity.isCrouching()) {
+		if (livingEntity instanceof Player && configDivineRing.get() && !livingEntity.level().isClientSide && !livingEntity.isCrouching()) {
 
 			BlockPos pos = new BlockPos(livingEntity.getBlockX() , livingEntity.getBlockY() , livingEntity.getBlockZ());
 			List<ExperienceOrb> entities = livingEntity.level().getEntitiesOfClass(ExperienceOrb.class , new AABB(pos.getX() + RANGE , pos.getY() + RANGE , pos.getZ() + RANGE , pos.getX() - RANGE , pos.getY() - RANGE , pos.getZ() - RANGE));
@@ -169,39 +169,39 @@ public class ItemRingGod extends DivineRingBase {
 			}
 		}
 
-		if (livingEntity instanceof Player player && configDivineArtifacts.get()) {
+		if (livingEntity instanceof Player player && configDivineRing.get()) {
 			int arrowCount = player.getArrowCount();
 			if (arrowCount > 0) {
 				player.setArrowCount(0);
 			}
 		}
-		if (livingEntity instanceof Player player && configDivineArtifacts.get()) {
+		if (livingEntity instanceof Player player && configDivineRing.get()) {
 			int ticksFrozen = player.getTicksFrozen();
 			if (ticksFrozen > 0) {
 				player.setTicksFrozen(0);
 			}
 		}
-		if (!livingEntity.hasEffect(effect1) && configDivineArtifacts.get()) {
+		if (!livingEntity.hasEffect(effect1) && configDivineRing.get()) {
 			MobEffectInstance effectInstance = new MobEffectInstance(effect1 , Integer.MAX_VALUE , amplifier1 , false , false);
 			livingEntity.addEffect(effectInstance);
 		}
-		if (!livingEntity.hasEffect(effect2) && configDivineArtifacts.get()) {
+		if (!livingEntity.hasEffect(effect2) && configDivineRing.get()) {
 			MobEffectInstance effectInstance = new MobEffectInstance(effect2 , Integer.MAX_VALUE , amplifier2 , false , false);
 			livingEntity.addEffect(effectInstance);
 		}
-		if (!livingEntity.hasEffect(effect3) && configDivineArtifacts.get()) {
+		if (!livingEntity.hasEffect(effect3) && configDivineRing.get()) {
 			MobEffectInstance effectInstance = new MobEffectInstance(effect3 , Integer.MAX_VALUE , amplifier3 , false , false);
 			livingEntity.addEffect(effectInstance);
 		}
-		if (!livingEntity.hasEffect(effect4) && configDivineArtifacts.get()) {
+		if (!livingEntity.hasEffect(effect4) && configDivineRing.get()) {
 			MobEffectInstance effectInstance = new MobEffectInstance(effect4 , Integer.MAX_VALUE , amplifier4 , false , false);
 			livingEntity.addEffect(effectInstance);
 		}
-		if (!livingEntity.hasEffect(effect5) && configDivineArtifacts.get()) {
+		if (!livingEntity.hasEffect(effect5) && configDivineRing.get()) {
 			MobEffectInstance effectInstance = new MobEffectInstance(effect5 , Integer.MAX_VALUE , amplifier5 , false , false);
 			livingEntity.addEffect(effectInstance);
 		}
-		if (!livingEntity.hasEffect(effect6) && configDivineArtifacts.get()) {
+		if (!livingEntity.hasEffect(effect6) && configDivineRing.get()) {
 			MobEffectInstance effectInstance = new MobEffectInstance(effect6 , Integer.MAX_VALUE , amplifier6 , false , false);
 			livingEntity.addEffect(effectInstance);
 		}
@@ -210,92 +210,92 @@ public class ItemRingGod extends DivineRingBase {
 	@Override
 	public Multimap<Attribute, AttributeModifier> curioModifiers(ItemStack stack , String identifier) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && Tattack.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && Tattack.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.ATTACK_DAMAGE ,
 					new AttributeModifier(ATTACK_DAMAGE_UUID , "" , ATTACK_DAMAGE.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TArmor.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TArmor.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.ARMOR ,
 					new AttributeModifier(ARMOR_UUID , "" , ARMOR.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TArmorToughness.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TArmorToughness.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.ARMOR_TOUGHNESS ,
 					new AttributeModifier(ARMOR_TOUGHNESS_UUID , "" , ARMOR_TOUGHNESS.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMAXHealth.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMAXHealth.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.MAX_HEALTH ,
 					new AttributeModifier(HEALTH_UUID , "" , 20 * MaxHeart.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TKnockbackResistance.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TKnockbackResistance.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.KNOCKBACK_RESISTANCE ,
 					new AttributeModifier(KNOBACK_RESISTANCE_UUID , "" , KNOCKBACK_RESISTANCE.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TStepHeight.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TStepHeight.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.STEP_HEIGHT_ADDITION.get() ,
 					new AttributeModifier(STEP_HEIGHT_UUID , "" , (float) STEP_HEIGHT.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TBlockReach.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TBlockReach.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.BLOCK_REACH.get() ,
 					new AttributeModifier(BLOCK_REACH_UUID , "" , (float) BLOCK_REACH.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TEntityReach.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TEntityReach.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.ENTITY_REACH.get() ,
 					new AttributeModifier(ENTITY_REACH_UUID , "" , (float) ENTITY_REACH.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMovementSpeed.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMovementSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.MOVEMENT_SPEED ,
 					new AttributeModifier(MOVEMENT_SPEED_UUID , "" , (float) MOVEMENT_SPEED.get() ,
 							AttributeModifier.Operation.MULTIPLY_BASE));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TDrawSpeed.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TDrawSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.SWIM_SPEED.get() ,
 					new AttributeModifier(SWIM_SPEED_UUID , "" , SWIM_SPEED.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TFlyingSpeed.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TFlyingSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.FLYING_SPEED ,
 					new AttributeModifier(FLYING_SPEED_UUID , "" , FLYING_SPEED.get() ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TLuck.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TLuck.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.LUCK ,
 					new AttributeModifier(LUCK_UUID , "" , LUCK.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TCritChance.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TCritChance.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.CRIT_CHANCE.get() ,
 					new AttributeModifier(CRIT_CHANCE_UUID , "" , CRIT_CHANCE.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArmorPierce.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArmorPierce.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARMOR_PIERCE.get() ,
 					new AttributeModifier(ARMOR_PIERCE_UUID , "" , ARMOR_PIERCE.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArmorShred.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArmorShred.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARMOR_SHRED.get() ,
 					new AttributeModifier(ARMOR_SHRED_UUID , "" , ARMOR_SHRED.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArrowVelocity.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArrowVelocity.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARROW_VELOCITY.get() ,
 					new AttributeModifier(ARROW_VELOCITY_UUID , "" , (float) ARROW_VELOCITY.get() ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArrowDamage.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArrowDamage.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARROW_DAMAGE.get() ,
 					new AttributeModifier(ARROW_DAMAGE_UUID , "" , (float) ARROW_DAMAGE.get() ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TDrawSpeed.get() && configDivineArtifacts.get() && isEnabled) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TDrawSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.DRAW_SPEED.get() ,
 					new AttributeModifier(DRAW_SPEED_UUID , "" , (float) DRAW_SPEED.get() ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));

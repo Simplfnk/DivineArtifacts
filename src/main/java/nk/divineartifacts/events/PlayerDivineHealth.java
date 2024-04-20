@@ -17,14 +17,14 @@ import nk.divineartifacts.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static nk.divineartifacts.config.Config.configDivineArtifacts;
+import static nk.divineartifacts.config.Config.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.getAllCurioItems;
 
 public class PlayerDivineHealth {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-		if (!configDivineArtifacts.get()) return;
+		if (!configDivineRing.get()) return;
 		Player player = event.getEntity();
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
 		if (ring != null) {
@@ -34,7 +34,7 @@ public class PlayerDivineHealth {
 
 	@SubscribeEvent
 	public void onPlayerUpdate(LivingEvent.LivingTickEvent event) {
-		if (!configDivineArtifacts.get()) return;
+		if (!configDivineRing.get()) return;
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.isCreative() || player.isSpectator()) return;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);

@@ -37,7 +37,7 @@ import java.util.List;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
 import static nk.divineartifacts.config.Config.ExtraDrops;
-import static nk.divineartifacts.config.Config.configDivineArtifacts;
+import static nk.divineartifacts.config.Config.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.*;
 
 @Mod.EventBusSubscriber( bus = Mod.EventBusSubscriber.Bus.FORGE )
@@ -49,7 +49,7 @@ public class DivineLuck {
 
 	@SubscribeEvent( priority = EventPriority.LOW )
 	public static void handleExp(LivingExperienceDropEvent event) {
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( ! toggleExtraDrops() ) return;
 		if ( event.getAttackingPlayer() instanceof ServerPlayer player ) {
 			if ( ! player.level().isClientSide ) {
@@ -65,7 +65,7 @@ public class DivineLuck {
 	@SubscribeEvent( priority = EventPriority.LOW )
 	public static void onLivingDrop(LivingDropsEvent event) {
 		if ( ! toggleExtraDrops() ) return;
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( ! ( event.getSource().getEntity() instanceof ServerPlayer player ) || player.level().isClientSide() )
 			return;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
@@ -105,7 +105,7 @@ public class DivineLuck {
 	@SubscribeEvent
 	public static void onBlockBreakS(BlockEvent.BreakEvent event) {
 		if ( ! toggleExtraDrops() ) return;
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( ! event.getLevel().isClientSide() ) {
 			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
 			if ( player.isCreative() || player.isSpectator() ) return;
@@ -147,7 +147,7 @@ public class DivineLuck {
 	@SubscribeEvent
 	public static void onLeftClickBlocks(BlockEvent.BreakEvent event) {
 		if ( ! toggleExtraDrops() ) return;
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( ! ( event.getLevel().isClientSide() ) ) {
 			if ( ! ( event.getPlayer() instanceof ServerPlayer player ) ) return;
 			if ( player.isCreative() || player.isSpectator() ) return;
@@ -190,7 +190,7 @@ public class DivineLuck {
 	@SubscribeEvent( priority = EventPriority.HIGHEST )
 	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
 		if (!toggleBlockBreak()) return;
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( ! ( event.getLevel().isClientSide ) ) {
 			if ( ! ( event.getEntity() instanceof ServerPlayer player ) ) return;
 			if ( player.isCreative() || player.isSpectator() ) return;
@@ -238,7 +238,7 @@ public class DivineLuck {
 	}
 
 	private static void breakTire(PlayerEvent.HarvestCheck event) {
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if (!toggleBlockBreak()) return;
 		if ( ! event.getEntity().level().isClientSide ) {
 			Player player = event.getEntity();
@@ -252,7 +252,7 @@ public class DivineLuck {
 	}
 
 	private static void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if (!toggleBlockBreak()) return;
 		Player player = event.getEntity();
 		if ( player.isCreative() || player.isSpectator() ) return;

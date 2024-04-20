@@ -34,7 +34,7 @@ import top.theillusivec4.curios.api.type.ISlotType;
 
 import java.util.*;
 
-import static nk.divineartifacts.client.handler.ToggleHelper.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleAioDamage;
 
 public class DivineHelper {
 	public static final HashMap<UUID, Long> lastActionTimes = new HashMap<>();
@@ -314,5 +314,4 @@ public class DivineHelper {
 		}
 		return false; // The itemStack does not match any banned item IDs
 	}
-
 }

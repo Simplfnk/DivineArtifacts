@@ -18,7 +18,7 @@ import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.config.Config.AioDamage;
-import static nk.divineartifacts.config.Config.configDivineArtifacts;
+import static nk.divineartifacts.config.Config.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.*;
 
 @Mod.EventBusSubscriber( bus = Mod.EventBusSubscriber.Bus.FORGE )
@@ -27,7 +27,7 @@ public class DivinationAttack {
 
 	@SubscribeEvent( priority = EventPriority.HIGH )
 	public static void onPlayerAttack(LivingAttackEvent event) {
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		Entity sourceEntity = event.getSource().getEntity();
 		if ( sourceEntity instanceof Player player && ! ( player.level().isClientSide ) ) {
 			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
@@ -60,7 +60,7 @@ public class DivinationAttack {
 
 	@SubscribeEvent( priority = EventPriority.HIGH )
 	public static void onProjImpact(ProjectileImpactEvent event) {
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( event.getProjectile().getOwner() instanceof Player player ) {
 			Projectile arrow = event.getProjectile();
 			if ( arrow.getTags().stream().anyMatch(tag -> tag.equals(MARKER)) ) return;

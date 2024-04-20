@@ -29,14 +29,14 @@ public class ItemInit {
 			"div_crystal" , () -> new DivineCrystal(
 					new Item.Properties() ,
 					"" ,
-					Config.configDivineArtifacts.get() ,
+					Config.configDivineRing.get() ,
 					GlintRenderTypes.PURPLE)
 	);
 	public static final RegistryObject< Item > diveGold = register(
 			"div_gold_ring" , () -> new DiveGoldRing(
 					new Item.Properties() ,
 					"" ,
-					Config.configDivineArtifacts.get() ,
+					Config.configDivineRing.get() ,
 					GlintRenderTypes.ORANGE)
 	);
 

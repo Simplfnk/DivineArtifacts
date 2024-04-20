@@ -13,12 +13,12 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
-import static nk.divineartifacts.config.Config.configDivineArtifacts;
+import static nk.divineartifacts.config.Config.configDivineRing;
 
 public class PlayerDivineDeath {
 	@SubscribeEvent
 	public void onLivingDeath( LivingDeathEvent event ) {
-		if ( ! configDivineArtifacts.get() ) return;
+		if ( ! configDivineRing.get() ) return;
 		if ( ! ( event.getEntity( ) instanceof ServerPlayer player ) ) return;
 		if ( player.isCreative( ) || player.isSpectator( ) ) return;
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get( ) , player );

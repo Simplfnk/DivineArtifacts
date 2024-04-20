@@ -26,7 +26,7 @@ public class ModItemGod {
 	public static RegistryObject<DivineRingBase> ringDivine = register("ring_divine" , () -> new ItemRingGod(
 			new Item.Properties() ,
 			"" ,
-			Config.configDivineArtifacts.get() ,
+			Config.configDivineRing.get() ,
 			MobEffects.REGENERATION ,
 			MobEffects.LUCK ,
 			MobEffects.FIRE_RESISTANCE ,
