@@ -87,8 +87,8 @@ public class Config {
 		public General(final ForgeConfigSpec.Builder builder) {
 			builder.push("Divine Artifacts");
 			builder.push("Enable/Disable Artifacts");
-			configDivineRing = builder.define("Items.Rings" , true);
-			configRingOfMagic = builder.define("Items.Rings" , true);
+			configDivineRing = builder.define("Items.Ring Of Divinity" , true);
+			configRingOfMagic = builder.define("Items.Ring Of Divine Magic" , true);
 			toggleMagnet = BUILDER.comment("On/Off Magnet state").define("State.MagnetState" , true);
 			toggleAioDamage = BUILDER.comment("On/Off AIO Damage state").define("State.AIO State" , true);
 			toggleShield = BUILDER.comment("On/Off Shield state").define("State. Shield State" , true);
