@@ -10,7 +10,7 @@ public class Config {
 	public static final ForgeConfigSpec spec = BUILDER.build();
 
 	public static BooleanValue configDivineRing;
-	public static BooleanValue configRingOfMagic;
+	public static BooleanValue configOrbOfMagic;
 	public static BooleanValue toggleMagnet;
 	public static BooleanValue toggleAioDamage;
 	public static BooleanValue toggleShield;
@@ -67,7 +67,7 @@ public class Config {
 	public static IntValue ExtraDrops;
 
 
-	//============================== ring of magic
+	//============================== Orb Of Magic
 
 	public static BooleanValue TSPELL_RESIST;
 	public static BooleanValue TSPELL_POWER;
@@ -88,7 +88,7 @@ public class Config {
 			builder.push("Divine Artifacts");
 			builder.push("Enable/Disable Artifacts");
 			configDivineRing = builder.define("Items.Ring Of Divinity" , true);
-			configRingOfMagic = builder.define("Items.Ring Of Divine Magic" , true);
+			configOrbOfMagic = builder.define("Items.Divine Orb" , true);
 			toggleMagnet = BUILDER.comment("On/Off Magnet state").define("State.MagnetState" , true);
 			toggleAioDamage = BUILDER.comment("On/Off AIO Damage state").define("State.AIO State" , true);
 			toggleShield = BUILDER.comment("On/Off Shield state").define("State. Shield State" , true);
@@ -124,69 +124,69 @@ public class Config {
 			ARMOR_TOUGHNESS = BUILDER.comment("Armor Toughness").defineInRange("Ring Of Divinity.Attribute.Value.Armor Toughness" , 10 , 1 , 1000);
 
 			TKnockbackResistance = BUILDER.comment("Enable Knockback Resistance Attribute").define("Ring Of Divinity.Attribute.Toggle.Knockback Resistance" , true);
-			KNOCKBACK_RESISTANCE = BUILDER.comment("Knock back Resistance").defineInRange("Ring Of Divinity.Attribute.Value.Knock back Resistance" , 10 , 1 , 1000);
+			KNOCKBACK_RESISTANCE = BUILDER.comment("Knock back Resistance").defineInRange("Ring Of Divinity.Attribute.Value.Knock back Resistance" , 100 , 10 , 100);
 
 			TMAXHealth = BUILDER.comment("Enable Max Health Attribute").define("Ring Of Divinity.Attribute.Toggle.Max Health" , true);
 			MaxHeart = BUILDER.comment("Max Heart").defineInRange("Ring Of Divinity.Attribute.Value.Max Health" , 5 , 2 , 5);
 
 			TStepHeight = BUILDER.comment("Enable Step Height Attribute").define("Ring Of Divinity.Attribute.Toggle.Step Height" , true);
-			STEP_HEIGHT = BUILDER.comment("Step Height").defineInRange("Ring Of Divinity.Attribute.Value.Step Height" , 1 , 1 , 1000);
+			STEP_HEIGHT = BUILDER.comment("Step Height").defineInRange("Ring Of Divinity.Attribute.Value.Step Height" , 1 , 1 , 4);
 
 			TBlockReach = BUILDER.comment("Enable Block Reach Attribute").define("Ring Of Divinity.Attribute.Toggle.Block Reach" , true);
-			BLOCK_REACH = BUILDER.comment("Block Reach").defineInRange("Ring Of Divinity.Attribute.Value.Block Reach" , 10 , 1 , 1000);
+			BLOCK_REACH = BUILDER.comment("Block Reach").defineInRange("Ring Of Divinity.Attribute.Value.Block Reach" , 10 , 1 , 100);
 
 			TEntityReach = BUILDER.comment("Enable Entity Reach Attribute").define("Ring Of Divinity.Attribute.Toggle.Entity Reach" , true);
-			ENTITY_REACH = BUILDER.comment("Entity Reach").defineInRange("Ring Of Divinity.Attribute.Value.Entity Reach" , 10 , 1 , 1000);
+			ENTITY_REACH = BUILDER.comment("Entity Reach").defineInRange("Ring Of Divinity.Attribute.Value.Entity Reach" , 10 , 1 , 100);
 
 			TMovementSpeed = BUILDER.comment("Enable Movement Speed Attribute").define("Ring Of Divinity.Attribute.Toggle.Movement Speed" , true);
-			MOVEMENT_SPEED = BUILDER.comment("Movement Speed").defineInRange("Ring Of Divinity.Attribute.Value.Movement Speed" , 2 , 1 , 1000);
+			MOVEMENT_SPEED = BUILDER.comment("Movement Speed").defineInRange("Ring Of Divinity.Attribute.Value.Movement Speed %" , 200 , 100 , 1000);
 
 			TSwimSpeed = BUILDER.comment("Enable Swim Speed Attribute").define("Ring Of Divinity.Attribute.Toggle.Swim Speed" , true);
-			SWIM_SPEED = BUILDER.comment("Swim Speed").defineInRange("Ring Of Divinity.Attribute.Value.Swim Speed" , 4 , 1 , 1000);
+			SWIM_SPEED = BUILDER.comment("Swim Speed").defineInRange("Ring Of Divinity.Attribute.Value.Swim Speed %" , 400 , 100 , 1000);
 
 			TFlyingSpeed = BUILDER.comment("Enable Flying Speed Attribute").define("Ring Of Divinity.Attribute.Toggle.Flying Speed" , true);
-			FLYING_SPEED = BUILDER.comment("Flying Speed").defineInRange("Ring Of Divinity.Attribute.Value.Flying Speed" , 1 , 1 , 1000);
+			FLYING_SPEED = BUILDER.comment("Flying Speed").defineInRange("Ring Of Divinity.Attribute.Value.Flying Speed %" , 100 , 100 , 1000);
 
 			TLuck = BUILDER.comment("Enable Luck Attribute").define("Ring Of Divinity.Attribute.Toggle.Luck" , true);
 			LUCK = BUILDER.comment("Luck").defineInRange("Ring Of Divinity.Attribute.Value.Luck" , 10 , 1 , 1000);
 
 			TCritChance = BUILDER.comment("Enable Crit Chance Attribute").define("Ring Of Divinity.Attribute.Toggle.Crit Chance" , true);
-			CRIT_CHANCE = BUILDER.comment("Crit Chance").defineInRange("Ring Of Divinity.Attribute.Value.Crit Chance" , 1 , 1 , 1000);
+			CRIT_CHANCE = BUILDER.comment("Crit Chance").defineInRange("Ring Of Divinity.Attribute.Value.Crit Chance %" , 100 , 100 , 1000);
 
 			TArmorPierce = BUILDER.comment("Enable Armor Pierce Attribute").define("Ring Of Divinity.Attribute.Toggle.Armor Pierce" , true);
-			ARMOR_PIERCE = BUILDER.comment("Armor Pierce").defineInRange("Ring Of Divinity.Attribute.Value.Armor Pierce" , 100 , 1 , 1000);
+			ARMOR_PIERCE = BUILDER.comment("Armor Pierce").defineInRange("Ring Of Divinity.Attribute.Value.Armor Pierce %" , 100 , 100 , 1000);
 
 			TArmorShred = BUILDER.comment("Enable Armor Shred Attribute").define("Ring Of Divinity.Attribute.Toggle.Armor Shred" , true);
-			ARMOR_SHRED = BUILDER.comment("Armor Shred").defineInRange("Ring Of Divinity.Attribute.Value.Armor Shred" , 100 , 1 , 1000);
+			ARMOR_SHRED = BUILDER.comment("Armor Shred").defineInRange("Ring Of Divinity.Attribute.Value.Armor Shred %" , 100 , 100 , 1000);
 
 			TArrowVelocity = BUILDER.comment("Enable Arrow Velocity Attribute").define("Ring Of Divinity.Attribute.Toggle.Arrow Velocity" , true);
-			ARROW_VELOCITY = BUILDER.comment("Arrow Velocity").defineInRange("Ring Of Divinity.Attribute.Value.Arrow Velocity" , 1 , 1 , 1000);
+			ARROW_VELOCITY = BUILDER.comment("Arrow Velocity").defineInRange("Ring Of Divinity.Attribute.Value.Arrow Velocity %" , 100 , 100 , 1000);
 
 			TArrowDamage = BUILDER.comment("Enable Arrow Damage Attribute").define("Ring Of Divinity.Attribute.Toggle.Arrow Damage" , true);
-			ARROW_DAMAGE = BUILDER.comment("Arrow Damage").defineInRange("Ring Of Divinity.Attribute.Value.Arrow Damage" , 2 , 1 , 1000);
+			ARROW_DAMAGE = BUILDER.comment("Arrow Damage").defineInRange("Ring Of Divinity.Attribute.Value.Arrow Damage %" , 200 , 100 , 1000);
 
 			TDrawSpeed = BUILDER.comment("Enable Draw Speed Attribute").define("Ring Of Divinity.Attribute.Toggle.Draw Speed" , true);
-			DRAW_SPEED = BUILDER.comment("Draw Speed").defineInRange("Ring Of Divinity.Attribute.Value.Draw Speed" , 2 , 1 , 1000);
+			DRAW_SPEED = BUILDER.comment("Draw Speed").defineInRange("Ring Of Divinity.Attribute.Value.Draw Speed %" , 200 , 100, 1000);
 
-			//================================================ RIng of Magic
+			//================================================ Orb of Magic
 
-			TSPELL_RESIST = BUILDER.comment("Enable Spell Resist Attribute").define("Ring Of Magic.Attribute.Toggle.Spell Resist" , true);
-			SPELL_RESIST = BUILDER.comment("Spell Resist").defineInRange("Ring Of Magic.Attribute.Value.Spell Resist" , 2 , 1 , 1000);
+			TSPELL_RESIST = BUILDER.comment("Enable Spell Resist Attribute").define("Orb Of Magic.Attribute.Toggle.Spell Resist" , true);
+			SPELL_RESIST = BUILDER.comment("Spell Resist").defineInRange("Orb Of Magic.Attribute.Value.Spell Resist" , 200 , 100 , 1000);
 
-			TSPELL_POWER = BUILDER.comment("Enable Spell Power Attribute").define("Ring Of Magic.Attribute.Toggle.Spell Power" , true);
-			SPELL_POWER = BUILDER.comment("Spell Power").defineInRange("Ring Of Magic.Attribute.Value.Spell Power" , 2 , 1 , 1000);
+			TSPELL_POWER = BUILDER.comment("Enable Spell Power Attribute").define("Orb Of Magic.Attribute.Toggle.Spell Power" , true);
+			SPELL_POWER = BUILDER.comment("Spell Power").defineInRange("Orb Of Magic.Attribute.Value.Spell Power %" , 200 , 100 , 1000);
 
-			TMANA_REGEN = BUILDER.comment("Enable Mana Regen Attribute").define("Ring Of Magic.Attribute.Toggle.Mana Regen" , true);
-			MANA_REGEN = BUILDER.comment("Mana Regen").defineInRange("Ring Of Magic.Attribute.Value.Mana Regen" , 2 , 1 , 1000);
+			TMANA_REGEN = BUILDER.comment("Enable Mana Regen Attribute").define("Orb Of Magic.Attribute.Toggle.Mana Regen" , true);
+			MANA_REGEN = BUILDER.comment("Mana Regen").defineInRange("Orb Of Magic.Attribute.Value.Mana Regen %" , 200 , 100 , 1000);
 
-			TMAX_MANA = BUILDER.comment("Enable Max Mana Attribute").define("Ring Of Magic.Attribute.Toggle.Max Mana" , true);
-			MAX_MANA = BUILDER.comment("Max Mana").defineInRange("Ring Of Magic.Attribute.Value.Max Mana" , 2 , 1 , 1000);
+			TMAX_MANA = BUILDER.comment("Enable Max Mana Attribute").define("Orb Of Magic.Attribute.Toggle.Max Mana" , true);
+			MAX_MANA = BUILDER.comment("Max Mana").defineInRange("Orb Of Magic.Attribute.Value.Max Mana %" , 200 , 100 , 1000);
 
-			TCOOLDOWN_REDUCTION = BUILDER.comment("Enable Cool-Down Reduction Attribute").define("Ring Of Magic.Attribute.Toggle.Cool-Down Reduction" , true);
-			COOLDOWN_REDUCTION = BUILDER.comment("Cool-Down Reduction").defineInRange("Ring Of Magic.Attribute.Value.Cool-Down Reduction" , 2 , 1 , 1000);
+			TCOOLDOWN_REDUCTION = BUILDER.comment("Enable Cool-Down Reduction Attribute").define("Orb Of Magic.Attribute.Toggle.Cool-Down Reduction" , true);
+			COOLDOWN_REDUCTION = BUILDER.comment("Cool-Down Reduction").defineInRange("Orb Of Magic.Attribute.Value.Cool-Down Reduction %" , 200 , 100 , 1000);
 
-			TCAST_TIME_REDUCTION = BUILDER.comment("Enable Cast-Time Reduction Attribute").define("Ring Of Magic.Attribute.Toggle.Cast-Time Reduction" , true);
-			CAST_TIME_REDUCTION = BUILDER.comment("Cast-Time Reduction").defineInRange("Ring Of Magic.Attribute.Value.Cast-Time Reduction" , 2 , 1 , 1000);
+			TCAST_TIME_REDUCTION = BUILDER.comment("Enable Cast-Time Reduction Attribute").define("Orb Of Magic.Attribute.Toggle.Cast-Time Reduction" , true);
+			CAST_TIME_REDUCTION = BUILDER.comment("Cast-Time Reduction").defineInRange("Orb Of Magic.Attribute.Value.Cast-Time Reduction %" , 200 , 100 , 1000);
 
 		}
 	}

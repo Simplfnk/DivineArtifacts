@@ -20,7 +20,7 @@ public class ModItemOrb {
     public static RegistryObject<DivineOrbBase> divineOrb = register("orb_divine",() -> new ItemDivineOrb(
             new Item.Properties(),
             "",
-            Config.configRingOfMagic.get(),
+            Config.configOrbOfMagic.get(),
             GlintRenderTypes.PURPLE));
 
     public static void init(IEventBus bus) {

@@ -38,7 +38,11 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.client.handler.ToggleHelper.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleAioDamage;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
 import static nk.divineartifacts.config.Config.*;
 
 public class DivineRingBase extends Item implements ICurioItem {
@@ -435,25 +439,24 @@ public class DivineRingBase extends Item implements ICurioItem {
 			MutableComponent arrowDamage = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.damage").withStyle(s -> s.withColor(Gold));
 			MutableComponent drawSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".draw.speed").withStyle(s -> s.withColor(Gold));
 
-
-			MutableComponent attackDamageValue = Component.literal(Green +"+" + ATTACK_DAMAGE.get());
+			MutableComponent attackDamageValue = Component.literal(Green + "+" + ATTACK_DAMAGE.get());
 			MutableComponent armorValue = Component.literal(Green + "+" + ARMOR.get());
 			MutableComponent armorToughValue = Component.literal(Green + "+" + ARMOR_TOUGHNESS.get());
 			MutableComponent maxHeartValue = Component.literal(Green + "+" + MaxHeart.get() + "%");
-			MutableComponent knockValue = Component.literal(Green + "+" + KNOCKBACK_RESISTANCE.get());
+			MutableComponent knockValue = Component.literal(Green + "+" + KNOCKBACK_RESISTANCE.get() + "%");
 			MutableComponent stepHeightValue = Component.literal(Green + "+" + STEP_HEIGHT.get());
 			MutableComponent blockReachValue = Component.literal(Green + "+" + BLOCK_REACH.get());
 			MutableComponent entityReachValue = Component.literal(Green + "+" + ENTITY_REACH.get());
 			MutableComponent moveSpeedValue = Component.literal(Green + "+" + MOVEMENT_SPEED.get() + "%");
-			MutableComponent swimSpeedValue = Component.literal(Green + "+" + SWIM_SPEED.get()+ "%");
+			MutableComponent swimSpeedValue = Component.literal(Green + "+" + SWIM_SPEED.get() + "%");
 			MutableComponent flaySpeedValue = Component.literal(Green + "+" + FLYING_SPEED.get() + "%");
-			MutableComponent luckValue = Component.literal(Green +"+" + LUCK.get());
+			MutableComponent luckValue = Component.literal(Green + "+" + LUCK.get());
 			MutableComponent critChanceValue = Component.literal(Green + "+" + CRIT_CHANCE.get() + "%");
 			MutableComponent armorPiercingV = Component.literal(Green + "+" + ARMOR_PIERCE.get() + "%");
 			MutableComponent armorShreddingV = Component.literal(Green + "+" + ARMOR_SHRED.get() + "%");
 			MutableComponent arrowVelocityValue = Component.literal(Green + "+" + ARROW_VELOCITY.get() + "%");
 			MutableComponent arrowDamageValue = Component.literal(Green + "+" + ARROW_DAMAGE.get() + "%");
-			MutableComponent drawSpeedValue = Component.literal(Green + "+" + DRAW_SPEED.get()+ "%");
+			MutableComponent drawSpeedValue = Component.literal(Green + "+" + DRAW_SPEED.get() + "%");
 
 			if (Tattack.get()) {
 				tooltip.add(attack.append(attackDamageValue));

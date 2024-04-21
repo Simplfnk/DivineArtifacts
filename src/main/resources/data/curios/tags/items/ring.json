@@ -1,7 +1,6 @@
 {
   "replace": false,
   "values": [
-    "divineartifacts:orb_divine",
     "divineartifacts:ring_divine"
   ]
 }

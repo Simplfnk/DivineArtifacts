@@ -183,7 +183,7 @@ public class DivineOrbBase extends Item implements ICurioItem {
 		TextColor color = TextColor.fromRgb(0xD00CD0);
 		TextColor color2 = TextColor.fromLegacyFormat(ChatFormatting.LIGHT_PURPLE);
 		MutableComponent slot = Component.translatable("slot." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
-		MutableComponent ring = Component.translatable("ring." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+		MutableComponent ring = Component.translatable("charm." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
 		tooltip.add(slot.append(ring));
 
 		//================================================================ description and lore

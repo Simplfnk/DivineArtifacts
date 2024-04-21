@@ -232,37 +232,37 @@ public class ItemRingGod extends DivineRingBase {
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TKnockbackResistance.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.KNOCKBACK_RESISTANCE ,
-					new AttributeModifier(KNOBACK_RESISTANCE_UUID , "" , KNOCKBACK_RESISTANCE.get() ,
+					new AttributeModifier(KNOBACK_RESISTANCE_UUID , "" , (double) KNOCKBACK_RESISTANCE.get() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TStepHeight.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.STEP_HEIGHT_ADDITION.get() ,
-					new AttributeModifier(STEP_HEIGHT_UUID , "" , (float) STEP_HEIGHT.get() ,
+					new AttributeModifier(STEP_HEIGHT_UUID , "" ,  STEP_HEIGHT.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TBlockReach.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.BLOCK_REACH.get() ,
-					new AttributeModifier(BLOCK_REACH_UUID , "" , (float) BLOCK_REACH.get() ,
+					new AttributeModifier(BLOCK_REACH_UUID , "" ,  BLOCK_REACH.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TEntityReach.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.ENTITY_REACH.get() ,
-					new AttributeModifier(ENTITY_REACH_UUID , "" , (float) ENTITY_REACH.get() ,
+					new AttributeModifier(ENTITY_REACH_UUID , "" ,  ENTITY_REACH.get() ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMovementSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.MOVEMENT_SPEED ,
-					new AttributeModifier(MOVEMENT_SPEED_UUID , "" , (float) MOVEMENT_SPEED.get() ,
+					new AttributeModifier(MOVEMENT_SPEED_UUID , "" , (double) MOVEMENT_SPEED.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_BASE));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TDrawSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ForgeMod.SWIM_SPEED.get() ,
-					new AttributeModifier(SWIM_SPEED_UUID , "" , SWIM_SPEED.get() ,
+					new AttributeModifier(SWIM_SPEED_UUID , "" , (double) SWIM_SPEED.get() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TFlyingSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(Attributes.FLYING_SPEED ,
-					new AttributeModifier(FLYING_SPEED_UUID , "" , FLYING_SPEED.get() ,
+					new AttributeModifier(FLYING_SPEED_UUID , "" , (double) FLYING_SPEED.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TLuck.get() && configDivineRing.get() && isEnabled) {
@@ -272,32 +272,32 @@ public class ItemRingGod extends DivineRingBase {
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TCritChance.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.CRIT_CHANCE.get() ,
-					new AttributeModifier(CRIT_CHANCE_UUID , "" , CRIT_CHANCE.get() ,
+					new AttributeModifier(CRIT_CHANCE_UUID , "" , (double) CRIT_CHANCE.get() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArmorPierce.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARMOR_PIERCE.get() ,
-					new AttributeModifier(ARMOR_PIERCE_UUID , "" , ARMOR_PIERCE.get() ,
+					new AttributeModifier(ARMOR_PIERCE_UUID , "" ,  ARMOR_PIERCE.get()  ,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArmorShred.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARMOR_SHRED.get() ,
-					new AttributeModifier(ARMOR_SHRED_UUID , "" , ARMOR_SHRED.get() ,
+					new AttributeModifier(ARMOR_SHRED_UUID , "" , (double) ARMOR_SHRED.get() / 100,
 							AttributeModifier.Operation.ADDITION));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArrowVelocity.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARROW_VELOCITY.get() ,
-					new AttributeModifier(ARROW_VELOCITY_UUID , "" , (float) ARROW_VELOCITY.get() ,
+					new AttributeModifier(ARROW_VELOCITY_UUID , "" , (double) ARROW_VELOCITY.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TArrowDamage.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.ARROW_DAMAGE.get() ,
-					new AttributeModifier(ARROW_DAMAGE_UUID , "" , (float) ARROW_DAMAGE.get() ,
+					new AttributeModifier(ARROW_DAMAGE_UUID , "" ,  (double) ARROW_DAMAGE.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TDrawSpeed.get() && configDivineRing.get() && isEnabled) {
 			modifiers.put(ALObjects.Attributes.DRAW_SPEED.get() ,
-					new AttributeModifier(DRAW_SPEED_UUID , "" , (float) DRAW_SPEED.get() ,
+					new AttributeModifier(DRAW_SPEED_UUID , "" ,  (double) DRAW_SPEED.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		return modifiers;

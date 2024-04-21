@@ -14,6 +14,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.UUID;
 
 import static nk.divineartifacts.config.Config.*;
+
 public class ItemDivineOrb extends DivineOrbBase {
 
 	private static final UUID SPELL_RESIST_UUID = UUID.fromString("b29c34f3-1450-48ff-ab28-639647e11861");
@@ -30,45 +31,45 @@ public class ItemDivineOrb extends DivineOrbBase {
 	}
 
 	@Override
-	public Multimap< Attribute, AttributeModifier > curioModifiers(ItemStack stack , String identifier) {
-		Multimap< Attribute, AttributeModifier > modifiers = HashMultimap.create();
+	public Multimap<Attribute, AttributeModifier> curioModifiers(ItemStack stack , String identifier) {
+		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
-		if ( CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TSPELL_RESIST.get() && configRingOfMagic.get() || isEnabled ) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TSPELL_RESIST.get() && configOrbOfMagic.get() || isEnabled) {
 			modifiers.put(AttributeRegistry.SPELL_RESIST.get() ,
-			              new AttributeModifier(SPELL_RESIST_UUID , "Spell Resistance" , SPELL_RESIST.get() ,
-			                                    AttributeModifier.Operation.MULTIPLY_TOTAL));
+					new AttributeModifier(SPELL_RESIST_UUID , "Spell Resistance" , (double) SPELL_RESIST.get() / 100 ,
+							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if ( CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TSPELL_POWER.get() && configRingOfMagic.get() || isEnabled ) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TSPELL_POWER.get() && configOrbOfMagic.get() || isEnabled) {
 			modifiers.put(AttributeRegistry.SPELL_POWER.get() ,
-			              new AttributeModifier(SPELL_POWER_UUID , "Spell Power" , SPELL_POWER.get() ,
-			                                    AttributeModifier.Operation.MULTIPLY_TOTAL));
+					new AttributeModifier(SPELL_POWER_UUID , "Spell Power" , (double) SPELL_POWER.get() / 100 ,
+							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if ( CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMANA_REGEN.get() && configRingOfMagic.get() || isEnabled ) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMANA_REGEN.get() && configOrbOfMagic.get() || isEnabled) {
 			modifiers.put(AttributeRegistry.MANA_REGEN.get() ,
-			              new AttributeModifier(MANA_REGEN_UUID , "Mana Regen" , MANA_REGEN.get() ,
-			                                    AttributeModifier.Operation.MULTIPLY_TOTAL));
+					new AttributeModifier(MANA_REGEN_UUID , "Mana Regen" , (double) MANA_REGEN.get() / 100 ,
+							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if ( CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMAX_MANA.get() && configRingOfMagic.get() || isEnabled ) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMAX_MANA.get() && configOrbOfMagic.get() || isEnabled) {
 			modifiers.put(AttributeRegistry.MAX_MANA.get() ,
-			              new AttributeModifier(MAX_MANA_UUID , "Max Mana" , MAX_MANA.get() ,
-			                                    AttributeModifier.Operation.MULTIPLY_TOTAL));
+					new AttributeModifier(MAX_MANA_UUID , "Max Mana" , (double) MAX_MANA.get() / 100 ,
+							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if ( CuriosApi.getItemStackSlots(stack).containsKey(identifier)&& TCOOLDOWN_REDUCTION.get() && configRingOfMagic.get() || isEnabled ) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCOOLDOWN_REDUCTION.get() && configOrbOfMagic.get() || isEnabled) {
 			modifiers.put(AttributeRegistry.COOLDOWN_REDUCTION.get() ,
-			              new AttributeModifier(COOLDOWN_REDUCTION_UUID , "Cooldown Reduction" , COOLDOWN_REDUCTION.get() ,
-			                                    AttributeModifier.Operation.MULTIPLY_TOTAL));
+					new AttributeModifier(COOLDOWN_REDUCTION_UUID , "Cooldown Reduction" , (double) COOLDOWN_REDUCTION.get() / 100,
+							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if ( CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCAST_TIME_REDUCTION.get() && configRingOfMagic.get() || isEnabled ) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCAST_TIME_REDUCTION.get() && configOrbOfMagic.get() || isEnabled) {
 			modifiers.put(AttributeRegistry.CAST_TIME_REDUCTION.get() ,
-			              new AttributeModifier(CAST_TIME_REDUCTION_UUID , "Cast Time Reduction" , CAST_TIME_REDUCTION.get() ,
-			                                    AttributeModifier.Operation.MULTIPLY_TOTAL));
+					new AttributeModifier(CAST_TIME_REDUCTION_UUID , "Cast Time Reduction" , (double) CAST_TIME_REDUCTION.get() / 100 ,
+							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		return modifiers;
 	}
 
 	@Override
 	public void onUnequippedCurio(String identifier , LivingEntity livingEntity) {
-		if ( ! isEnabled ) {
+		if (!isEnabled) {
 		}
 
 	}
