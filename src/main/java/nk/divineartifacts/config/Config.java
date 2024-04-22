@@ -127,7 +127,7 @@ public class Config {
 			KNOCKBACK_RESISTANCE = BUILDER.comment("Knock back Resistance").defineInRange("Ring Of Divinity.Attribute.Value.Knock back Resistance" , 100 , 10 , 100);
 
 			TMAXHealth = BUILDER.comment("Enable Max Health Attribute").define("Ring Of Divinity.Attribute.Toggle.Max Health" , true);
-			MaxHeart = BUILDER.comment("Max Heart").defineInRange("Ring Of Divinity.Attribute.Value.Max Health" , 5 , 2 , 5);
+			MaxHeart = BUILDER.comment("Max Heart").defineInRange("Ring Of Divinity.Attribute.Value.Max Health" , 500 , 100 , 1000);
 
 			TStepHeight = BUILDER.comment("Enable Step Height Attribute").define("Ring Of Divinity.Attribute.Toggle.Step Height" , true);
 			STEP_HEIGHT = BUILDER.comment("Step Height").defineInRange("Ring Of Divinity.Attribute.Value.Step Height" , 1 , 1 , 4);
