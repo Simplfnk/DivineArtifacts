@@ -1,9 +1,9 @@
 
 
 
- <img src="https://i.imgur.com/Cdihjzc.png" >
+ <img src="https://i.imgur.com/Cdihjzc.png">
 
-# DivineArtifacts     <a href="https://www.curseforge.com/minecraft/mc-mods/divine-artifacts-forge-1-20-1"><img src="https://cf.way2muchnoise.eu/full_1003108_downloads.svg" /></a>
+# DivineArtifacts     <img src="https://cf.way2muchnoise.eu/full_1003108_downloads.svg" />
 This mod adds two curio rings they are OP but hard to get.
 to craft any of those rings, u gonna need a crystallized divine essence and an angelic ring.
 the crystallized divine essence obtainable as loot from the end city chest, with a chance of 2% to generate.
