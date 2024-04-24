@@ -31,9 +31,13 @@ minecraft {
             workingDirectory project.file('run')
             property 'forge.logging.markers', 'REGISTRIES'
             property 'forge.logging.console.level', 'debug'
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
         client {
             property 'forge.enabledGameTestNamespaces', mod_id
+            property 'mixin.env.remapRefMap', 'true'
+            property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
         }
         server {
             property 'forge.enabledGameTestNamespaces', mod_id
@@ -56,14 +60,19 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven { url = "https://maven.theillusivec4.top" }
     maven { url = "https://cursemaven.com" }
+    maven {
+        name = "Illusive Soulworks maven"
+        url = "https://maven.theillusivec4.top/"
+    }
 }
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    runtimeOnly "top.theillusivec4.curios:curios-forge:7.3.2+1.20.4"
-    compileOnly "top.theillusivec4.curios:curios-forge:7.3.2+1.20.4:api"
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    compileOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api"))
+    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
     implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:5061897")
     implementation fg.deobf("curse.maven:apothic-attributes-898963:5209162")
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+
 }
 tasks.named('processResources', ProcessResources).configure {
     var replaceProperties = [

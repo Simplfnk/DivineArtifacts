@@ -2,11 +2,11 @@
   "required": true,
   "minVersion": "0.8",
   "package": "nk.divineartifacts.mixin",
-  "compatibilityLevel": "JAVA_8",
-  "refmap": "divineartifacts.refmap.json",
-  "mixins": [
-  ],
+  "refmap": "ringsofascension.refmap.json",
+  "mixins": [],
   "client": [
+    "ItemRendererMixin",
+    "RenderBuffersMixin"
   ],
   "injectors": {
     "defaultRequire": 1

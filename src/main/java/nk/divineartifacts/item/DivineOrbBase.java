@@ -67,7 +67,9 @@ public class DivineOrbBase extends Item implements ICurio {
 	public void tickCurio(String identifier , int index , LivingEntity livingEntity) {
 	}
 
-	public Multimap<Attribute, AttributeModifier> curioModifiers(ItemStack stack , String identifier) {
+	public Multimap<Attribute, AttributeModifier> curioModifiers(
+			SlotContext slotContext, UUID uuid, ItemStack stack)  {
+
 		return HashMultimap.create();
 	}
 
@@ -137,8 +139,11 @@ public class DivineOrbBase extends Item implements ICurio {
 				}
 
 				@Override
-				public Multimap<Attribute, AttributeModifier> getAttributeModifiers(SlotContext slotContext , UUID uuid) {
-					return curioModifiers(stack , slotContext.identifier());
+				public Multimap<Attribute, AttributeModifier> getAttributeModifiers(
+						SlotContext slotContext , UUID uuid
+				) {
+
+					return curioModifiers(slotContext , uuid, stack);
 				}
 
 				@Override

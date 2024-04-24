@@ -30,6 +30,7 @@ public class GlintRenderType extends RenderType {
                 .setTexturingState(RenderStateShard.GLINT_TEXTURING)
                 .createCompositeState(false));
     }
+
     static RenderType buildGlintTranslucentRenderType(String name) {
         return RenderType.create("glint_translucent_" + name, DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, CompositeState.builder()
                 .setShaderState(RenderStateShard.RENDERTYPE_GLINT_TRANSLUCENT_SHADER)
@@ -42,6 +43,7 @@ public class GlintRenderType extends RenderType {
                 .setTexturingState(RenderStateShard.GLINT_TEXTURING)
                 .createCompositeState(false));
     }
+
     static RenderType buildGlintDirectRenderType(String name) {
         return RenderType.create("glint_direct_" + name, DefaultVertexFormat.POSITION_TEX, VertexFormat.Mode.QUADS, 256, false, false, CompositeState.builder()
                 .setShaderState(RenderStateShard.RENDERTYPE_GLINT_DIRECT_SHADER)
@@ -51,8 +53,7 @@ public class GlintRenderType extends RenderType {
                 .setDepthTestState(RenderStateShard.EQUAL_DEPTH_TEST)
                 .setTransparencyState(RenderStateShard.GLINT_TRANSPARENCY)
                 .setTexturingState(RenderStateShard.GLINT_TEXTURING)
-                .createCompositeState(false)
-        );
+                .createCompositeState(false));
     }
 
 }

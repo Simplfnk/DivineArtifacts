@@ -80,8 +80,8 @@ public class DivineRingBase extends Item implements ICurioItem {
 	public void tickCurio(String identifier , int index , LivingEntity livingEntity) {
 
 	}
-
-	public Multimap<Attribute, AttributeModifier> curioModifiers(ItemStack stack , String identifier) {
+	public Multimap<Attribute, AttributeModifier> curioModifiers(
+			SlotContext slotContext, UUID uuid, ItemStack stack)  {
 
 		return HashMultimap.create();
 	}
@@ -173,7 +173,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 						SlotContext slotContext , UUID uuid
 				) {
 
-					return curioModifiers(stack , slotContext.identifier());
+					return curioModifiers(slotContext , uuid, stack);
 				}
 
 				@Override
