@@ -29,7 +29,6 @@ import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -39,7 +38,7 @@ import java.util.UUID;
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
 import static nk.divineartifacts.config.Config.*;
 
-public class DivineOrbBase extends Item implements ICurioItem {
+public class DivineOrbBase extends Item implements ICurio {
 
 	protected String tooltip;
 	public final boolean isEnabled;
@@ -167,6 +166,10 @@ public class DivineOrbBase extends Item implements ICurioItem {
 		};
 	}
 
+	@Override
+	public ItemStack getStack() {
+		return null;
+	}
 	public List<Component> getAttributesTooltip(List<Component> tt) {
 		return tt;
 	}

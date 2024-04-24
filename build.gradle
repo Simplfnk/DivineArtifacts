@@ -59,9 +59,10 @@ repositories {
 }
 dependencies {
     minecraft "net.minecraftforge:forge:${minecraft_version}-${forge_version}"
-    compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.6.1+1.20.1")
+    runtimeOnly "top.theillusivec4.curios:curios-forge:7.3.2+1.20.4"
+    compileOnly "top.theillusivec4.curios:curios-forge:7.3.2+1.20.4:api"
     implementation fg.deobf("curse.maven:irons-spells-n-spellbooks-855414:5061897")
-    implementation fg.deobf("curse.maven:apothic-attributes-898963:4954000")
+    implementation fg.deobf("curse.maven:apothic-attributes-898963:5209162")
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 }
 tasks.named('processResources', ProcessResources).configure {

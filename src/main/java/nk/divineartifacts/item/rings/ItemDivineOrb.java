@@ -30,7 +30,7 @@ public class ItemDivineOrb extends DivineOrbBase {
 		super(properties , tooltip , enabled , glintType);
 	}
 
-	@Override
+
 	public Multimap<Attribute, AttributeModifier> curioModifiers(ItemStack stack , String identifier) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
@@ -44,7 +44,7 @@ public class ItemDivineOrb extends DivineOrbBase {
 					new AttributeModifier(SPELL_POWER_UUID , "Spell Power" , (double) SPELL_POWER.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMANA_REGEN.get() &&  configOrbOfMagic.get()) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TMANA_REGEN.get() && configOrbOfMagic.get()) {
 			modifiers.put(AttributeRegistry.MANA_REGEN.get() ,
 					new AttributeModifier(MANA_REGEN_UUID , "Mana Regen" , (double) MANA_REGEN.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
@@ -54,12 +54,12 @@ public class ItemDivineOrb extends DivineOrbBase {
 					new AttributeModifier(MAX_MANA_UUID , "Max Mana" , (double) MAX_MANA.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCOOLDOWN_REDUCTION.get() &&  configOrbOfMagic.get()) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCOOLDOWN_REDUCTION.get() && configOrbOfMagic.get()) {
 			modifiers.put(AttributeRegistry.COOLDOWN_REDUCTION.get() ,
-					new AttributeModifier(COOLDOWN_REDUCTION_UUID , "Cooldown Reduction" , (double) COOLDOWN_REDUCTION.get() / 100,
+					new AttributeModifier(COOLDOWN_REDUCTION_UUID , "Cooldown Reduction" , (double) COOLDOWN_REDUCTION.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCAST_TIME_REDUCTION.get()  && configOrbOfMagic.get()) {
+		if (CuriosApi.getItemStackSlots(stack).containsKey(identifier) && TCAST_TIME_REDUCTION.get() && configOrbOfMagic.get()) {
 			modifiers.put(AttributeRegistry.CAST_TIME_REDUCTION.get() ,
 					new AttributeModifier(CAST_TIME_REDUCTION_UUID , "Cast Time Reduction" , (double) CAST_TIME_REDUCTION.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
