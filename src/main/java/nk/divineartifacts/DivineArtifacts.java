@@ -51,7 +51,6 @@ public class DivineArtifacts {
 	public DivineArtifacts() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		SoundRegistry.register( modEventBus );
-		DivineLuck.register();
 		ModLoadingContext.get().registerConfig( ModConfig.Type.COMMON , Config.spec );
 		FMLJavaModLoadingContext.get().getModEventBus().addListener( this::doClientStuff );
 		FMLJavaModLoadingContext.get().getModEventBus().addListener( this::commonSetup );

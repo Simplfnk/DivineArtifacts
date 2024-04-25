@@ -14,7 +14,6 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.event.entity.living.LivingDropsEvent;
 import net.minecraftforge.event.entity.living.LivingExperienceDropEvent;
@@ -42,11 +41,6 @@ import static nk.divineartifacts.events.DivineHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DivineLuck {
-	public static void register() {
-		MinecraftForge.EVENT_BUS.addListener(DivineLuck::handleBreakSpeed);
-		MinecraftForge.EVENT_BUS.addListener(DivineLuck::breakTire);
-	}
-
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void handleExp(LivingExperienceDropEvent event) {
 		if (!configDivineRing.get()) return;
@@ -78,7 +72,7 @@ public class DivineLuck {
 				boolean isGem = matchedItemId(item.getItem() , "apotheosis:gem");
 				boolean isSpawnEgg = item.getItem().getItem() instanceof SpawnEggItem;
 				boolean isToolOrArmor = item.getItem().is(Tags.Items.TOOLS) || item.getItem().is(Tags.Items.ARMORS);
-				if (!(IsCurioItem(item.getItem()) || banItems(item.getItem()) || isToolOrArmor || isGem || isSpawnEgg || isArtifacts(item.getItem()))) {
+				if (!(IsCurioItem(item.getItem() , player) || banItems(item.getItem()) || isToolOrArmor || isGem || isSpawnEgg || isArtifacts(item.getItem()))) {
 					for (int i = 0; i < ExtraDrops.get(); i++) {
 						event.getDrops().add(new ItemEntity(player.level() , item.getX() , item.getY() , item.getZ() , item.getItem().copy()));
 					}
@@ -101,7 +95,7 @@ public class DivineLuck {
 	}
 
 	@SubscribeEvent
-	public static void onBlockBreakS(BlockEvent.BreakEvent event) {
+	public static void DivBlockBreakEmptyHand(BlockEvent.BreakEvent event) {
 		if (!toggleExtraDrops()) return;
 		if (!configDivineRing.get()) return;
 		if (!event.getLevel().isClientSide()) {
@@ -143,7 +137,7 @@ public class DivineLuck {
 	}
 
 	@SubscribeEvent
-	public static void onLeftClickBlocks(BlockEvent.BreakEvent event) {
+	public static void DivBlockBreak(BlockEvent.BreakEvent event) {
 		if (!toggleExtraDrops()) return;
 		if (!configDivineRing.get()) return;
 		if (!(event.getLevel().isClientSide())) {
@@ -183,10 +177,10 @@ public class DivineLuck {
 		}
 	}
 
-	private static float breakSpeed;
+	public static float divBreakSpeed;
 
 	@SubscribeEvent(priority = EventPriority.HIGHEST)
-	public static void onLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
+	public static void divLeftClickBlock(PlayerInteractEvent.LeftClickBlock event) {
 		if (!toggleBlockBreak()) return;
 		if (!configDivineRing.get()) return;
 		if (!(event.getLevel().isClientSide)) {
@@ -207,7 +201,7 @@ public class DivineLuck {
 					if (currentTime - lastActionTime >= 100) {
 						PacketHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> player) , packet);
 						serverLevel.playSound(null , pos , sound , SoundSource.BLOCKS);
-						breakSpeed = Float.MAX_VALUE;
+						divBreakSpeed = Float.MAX_VALUE;
 						lastActionTimes.put(player.getUUID() , currentTime);
 					}
 					else {
@@ -235,7 +229,8 @@ public class DivineLuck {
 		}
 	}
 
-	private static void breakTire(PlayerEvent.HarvestCheck event) {
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public static void divBreakTire(PlayerEvent.HarvestCheck event) {
 		if (!configDivineRing.get()) return;
 		if (!toggleBlockBreak()) return;
 		if (!event.getEntity().level().isClientSide) {
@@ -248,16 +243,17 @@ public class DivineLuck {
 			}
 		}
 	}
-
-	private static void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
+	@SubscribeEvent(priority = EventPriority.HIGHEST)
+	public static void divHandleBreakSpeed(PlayerEvent.BreakSpeed event) {
 		if (!configDivineRing.get()) return;
 		if (!toggleBlockBreak()) return;
+		if (event.getEntity().level().isClientSide) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
 		ItemStack handItem = player.getMainHandItem();
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
 		if (ring != null && isHandEmptyOrNotTool(handItem)) {
-			event.setNewSpeed(breakSpeed);
+			event.setNewSpeed( divBreakSpeed );
 		}
 	}
 

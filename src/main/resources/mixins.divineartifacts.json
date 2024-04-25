@@ -2,7 +2,7 @@
   "required": true,
   "minVersion": "0.8",
   "package": "nk.divineartifacts.mixin",
-  "refmap": "ringsofascension.refmap.json",
+  "refmap": "divineartifacts.refmap.json",
   "mixins": [],
   "client": [
     "ItemRendererMixin",

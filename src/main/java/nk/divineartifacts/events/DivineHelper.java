@@ -284,12 +284,12 @@ public class DivineHelper {
 		return curioTags.stream().anyMatch(item::is);
 	}
 
-	public static boolean IsCurioItem(ItemStack item) {
+	public static boolean IsCurioItem(ItemStack item, Player player) {
 		// Retrieve the slot types available to the player
-		Map<String, ISlotType> playerSlots = CuriosApi.getPlayerSlots();
+		Map<String, ISlotType> playerSlots = CuriosApi.getPlayerSlots(player);
 
 		// Retrieve the slot types that the item can go into
-		Map<String, ISlotType> itemSlots = CuriosApi.getItemStackSlots(item);
+		Map<String, ISlotType> itemSlots = CuriosApi.getItemStackSlots(item , player);
 
 		// Check if there's any overlap in the slot types (keys) between the player and the item
 		return itemSlots.keySet().stream().anyMatch(playerSlots::containsKey);
