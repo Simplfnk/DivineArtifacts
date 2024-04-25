@@ -247,7 +247,6 @@ public class DivineLuck {
 	public static void divHandleBreakSpeed(PlayerEvent.BreakSpeed event) {
 		if (!configDivineRing.get()) return;
 		if (!toggleBlockBreak()) return;
-		if (event.getEntity().level().isClientSide) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
 		ItemStack handItem = player.getMainHandItem();
