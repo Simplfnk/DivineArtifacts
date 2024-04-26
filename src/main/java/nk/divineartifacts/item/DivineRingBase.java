@@ -38,7 +38,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleAioDamage;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
@@ -354,11 +354,11 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		//================================================================ AIO Damage
 
-		if (toggleAioDamage()) {
+		if (toggleAoeDamage()) {
 			tooltip.add(explode.append(on));
 		}
 
-		if (!toggleAioDamage()) {
+		if (!toggleAoeDamage()) {
 			tooltip.add(explode.append(off));
 		}
 

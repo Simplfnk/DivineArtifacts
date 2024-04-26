@@ -18,10 +18,10 @@ public class RingAbilitiesHud {
 			"textures/gui/mag_on.png");
 	private static final ResourceLocation magOff = new ResourceLocation(DivineArtifacts.MODID ,
 			"textures/gui/mag_off.png");
-	private static final ResourceLocation aioOn = new ResourceLocation(DivineArtifacts.MODID ,
-			"textures/gui/aio_on.png");
-	private static final ResourceLocation aioOff = new ResourceLocation(DivineArtifacts.MODID ,
-			"textures/gui/aio_off.png");
+	private static final ResourceLocation aoeOn = new ResourceLocation(DivineArtifacts.MODID ,
+			"textures/gui/aoe_on.png");
+	private static final ResourceLocation aoeOff = new ResourceLocation(DivineArtifacts.MODID ,
+			"textures/gui/aoe_off.png");
 	private static final ResourceLocation shieldOn = new ResourceLocation(DivineArtifacts.MODID ,
 			"textures/gui/shield_on.png");
 	private static final ResourceLocation shieldOff = new ResourceLocation(DivineArtifacts.MODID ,
@@ -41,8 +41,8 @@ public class RingAbilitiesHud {
 		RenderSystem.setShaderColor(1.0F , 1.0F , 1.0F , 1.0F);
 		RenderSystem.setShaderTexture(0 , magOn);
 		RenderSystem.setShaderTexture(0 , magOff);
-		RenderSystem.setShaderTexture(0 , aioOn);
-		RenderSystem.setShaderTexture(0 , aioOff);
+		RenderSystem.setShaderTexture(0 , aoeOn);
+		RenderSystem.setShaderTexture(0 , aoeOff);
 		RenderSystem.setShaderTexture(0 , shieldOn);
 		RenderSystem.setShaderTexture(0 , shieldOff);
 		RenderSystem.setShaderTexture(0 , breakOn);
@@ -68,11 +68,11 @@ public class RingAbilitiesHud {
 			else {
 				poseStack.blit(magOff , xCord , yCord , 0 , 0 , size , size , size , size);
 			}
-			if (toggleAioDamage()) {
-				poseStack.blit(aioOn , xCord , yCord1 , 0 , 0 , size , size , size , size);
+			if (toggleAoeDamage()) {
+				poseStack.blit(aoeOn , xCord , yCord1 , 0 , 0 , size , size , size , size);
 			}
 			else {
-				poseStack.blit(aioOff , xCord , yCord1 , 0 , 0 , size , size , size , size);
+				poseStack.blit(aoeOff , xCord , yCord1 , 0 , 0 , size , size , size , size);
 			}
 			if (toggleShield()) {
 				poseStack.blit(shieldOn , xCord , yCord2 , 0 , 0 , size , size , size , size);

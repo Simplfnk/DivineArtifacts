@@ -69,13 +69,13 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff));
 		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
-			if (toggleAioDamage()) {
-				Config.toggleAioDamage.set(false);
+			if (toggleAoeDamage()) {
+				Config.toggleAoeDamage.set(false);
 				Config.spec.save();
 				player.displayClientMessage(aio.append(off) , true);
 			}
 			else {
-				Config.toggleAioDamage.set(true);
+				Config.toggleAoeDamage.set(true);
 				Config.spec.save();
 				player.displayClientMessage(aio.append(on) , true);
 			}
@@ -172,7 +172,7 @@ public class ClientForgeHandler {
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOn.consumeClick() && player != null) {
 			Config.toggleMagnet.set(true);
-			Config.toggleAioDamage.set(true);
+			Config.toggleAoeDamage.set(true);
 			Config.toggleShield.set(true);
 			Config.toggleBlockBreak.set(true);
 			Config.toggleExtraDrops.set(true);
@@ -188,7 +188,7 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
 
 			Config.toggleMagnet.set(false);
-			Config.toggleAioDamage.set(false);
+			Config.toggleAoeDamage.set(false);
 			Config.toggleShield.set(false);
 			Config.toggleBlockBreak.set(false);
 			Config.toggleExtraDrops.set(false);

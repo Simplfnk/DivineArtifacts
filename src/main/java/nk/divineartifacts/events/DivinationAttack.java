@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
-import static nk.divineartifacts.config.Config.AioDamage;
+import static nk.divineartifacts.config.Config.AoeDamage;
 import static nk.divineartifacts.config.Config.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.*;
 
@@ -42,7 +42,7 @@ public class DivinationAttack {
 					try {
 						processingEntities.add(target); // Mark this entity as being processed
 						target.setSecondsOnFire(10);
-						hitNearbyEntities(player , target , AioDamage.get());
+						hitNearbyEntities(player , target , AoeDamage.get());
 						addExplosionEffect(player , target);
 						if ( event.getSource().getDirectEntity() != player ) {
 							applyKnockBackFromSource(source , target);
@@ -70,7 +70,7 @@ public class DivinationAttack {
 				if ( event.getRayTraceResult() instanceof BlockHitResult ) {
 					if ( ! ( arrow instanceof ThrowableItemProjectile ) ) {
 						addExplosionEffect(player , arrow);
-						damageEntityNearArrow(player , arrow , AioDamage.get());
+						damageEntityNearArrow(player , arrow , AoeDamage.get());
 						if ( arrow instanceof AbstractArrow ) {
 							arrow.addTag(MARKER);
 						}

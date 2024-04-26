@@ -12,7 +12,7 @@ public class Config {
 	public static BooleanValue configDivineRing;
 	public static BooleanValue configOrbOfMagic;
 	public static BooleanValue toggleMagnet;
-	public static BooleanValue toggleAioDamage;
+	public static BooleanValue toggleAoeDamage;
 	public static BooleanValue toggleShield;
 	public static BooleanValue toggleBlockBreak;
 	public static BooleanValue toggleExtraDrops;
@@ -63,7 +63,7 @@ public class Config {
 	public static IntValue WATER_BREATHING;
 	public static IntValue NIGHT_VISION;
 	public static IntValue SATURATION;
-	public static IntValue AioDamage;
+	public static IntValue AoeDamage;
 	public static IntValue ExtraDrops;
 
 
@@ -90,7 +90,7 @@ public class Config {
 			configDivineRing = builder.define("Items.Ring Of Divinity" , true);
 			configOrbOfMagic = builder.define("Items.Divine Orb" , true);
 			toggleMagnet = BUILDER.comment("On/Off Magnet state").define("State.MagnetState" , true);
-			toggleAioDamage = BUILDER.comment("On/Off AIO Damage state").define("State.AIO State" , true);
+			toggleAoeDamage = BUILDER.comment("On/Off AOE Damage state").define("State.AOE State" , true);
 			toggleShield = BUILDER.comment("On/Off Shield state").define("State. Shield State" , true);
 			toggleBlockBreak = BUILDER.comment("On/Off Block Break state").define("State.Block Break State" , true);
 			toggleExtraDrops = BUILDER.comment("On/Off Extra Drops state").define("State.Extra Drops" , true);
@@ -100,7 +100,7 @@ public class Config {
 			//================================================================ Abilities
 
 			MagnetRange = BUILDER.comment("Magnet Range").defineInRange("Ring Of Divinity.Abilities.Magnet Range" , 60 , 1 , 100);
-			AioDamage = BUILDER.comment("Aio Damage").defineInRange("Ring Of Divinity.Abilities.Aio Damage" , 30 , 1 , 100);
+			AoeDamage = BUILDER.comment("AOE Damage").defineInRange("Ring Of Divinity.Abilities.AOE Damage" , 30 , 1 , 100);
 			ExtraDrops = BUILDER.comment("Extra Drops").defineInRange("Ring Of Divinity.Abilities.Drops Amounts" , 9 , 1 , 100);
 
 			//================================================================ Potion Effects
