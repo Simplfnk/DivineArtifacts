@@ -1,7 +1,7 @@
 [![](https://media.forgecdn.net/attachments/description/1009148/description_53ac4bba-501a-4488-8d53-595e77c1c59d.png)](https://www.curseforge.com/minecraft/mc-mods/noah-divine-artifact)
 
-[![](https://cf.way2muchnoise.eu/full_1009148_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/noah-divine-artifact)
-# DivineArtifacts     <img src="https://cf.way2muchnoise.eu/full_1009148_downloads.svg" />
+
+# DivineArtifacts     [![](https://cf.way2muchnoise.eu/full_1009148_downloads.svg)](https://www.curseforge.com/minecraft/mc-mods/noah-divine-artifact)
 This mod adds two curios Items they are OP but hard to get.
 to craft any of those items, u gonna need a crystallized divine essence and an angelic ring.
 the crystallized divine essence obtainable as loot from the end city chest, with a chance of 2% to generate.
