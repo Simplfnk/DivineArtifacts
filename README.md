@@ -1,8 +1,5 @@
-![](https://media.forgecdn.net/attachments/description/1009148/description_53ac4bba-501a-4488-8d53-595e77c1c59d.png)
+![https://media.forgecdn.net/attachments/description/1009148/description_53ac4bba-501a-4488-8d53-595e77c1c59d.png](https://www.curseforge.com/minecraft/mc-mods/noah-divine-artifact)
 
-
-
- <img src="https://media.forgecdn.net/attachments/description/1009148/description_53ac4bba-501a-4488-8d53-595e77c1c59d.png">
 
 # DivineArtifacts     <img src="https://cf.way2muchnoise.eu/full_1009148_downloads.svg" />
 This mod adds two curios Items they are OP but hard to get.
