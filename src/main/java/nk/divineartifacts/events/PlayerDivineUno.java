@@ -16,7 +16,7 @@ import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
-import static nk.divineartifacts.config.Config.configDivineRing;
+import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.*;
 
 @Mod.EventBusSubscriber( bus = Mod.EventBusSubscriber.Bus.FORGE )

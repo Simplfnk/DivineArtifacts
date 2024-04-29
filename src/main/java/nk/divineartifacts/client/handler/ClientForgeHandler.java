@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.Keybindings;
-import nk.divineartifacts.config.Config;
+import nk.divineartifacts.config.ToggleAbilities;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
@@ -41,13 +41,13 @@ public class ClientForgeHandler {
 				.withStyle(s -> s.withColor(clOff));
 		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
 			if (toggleMagnet()) {
-				Config.toggleMagnet.set(false);
-				Config.spec.save();
+				ToggleAbilities.toggleMagnet.set(false);
+				ToggleAbilities.ClientSpec.save();
 				minecraft.player.displayClientMessage(magnet.append(off) , true);
 			}
 			else {
-				Config.toggleMagnet.set(true);
-				Config.spec.save();
+				ToggleAbilities.toggleMagnet.set(true);
+				ToggleAbilities.ClientSpec.save();
 				minecraft.player.displayClientMessage(magnet.append(on) , true);
 			}
 
@@ -70,13 +70,13 @@ public class ClientForgeHandler {
 				.withStyle(s -> s.withColor(clOff));
 		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			if (toggleAoeDamage()) {
-				Config.toggleAoeDamage.set(false);
-				Config.spec.save();
+				ToggleAbilities.toggleAoeDamage.set(false);
+				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(aio.append(off) , true);
 			}
 			else {
-				Config.toggleAoeDamage.set(true);
-				Config.spec.save();
+				ToggleAbilities.toggleAoeDamage.set(true);
+				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(aio.append(on) , true);
 			}
 
@@ -100,12 +100,12 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null) {
 			if (toggleShield()) {
 				minecraft.player.displayClientMessage(shield.append(off) , true);
-				Config.toggleShield.set(false);
-				Config.spec.save();
+				ToggleAbilities.toggleShield.set(false);
+				ToggleAbilities.ClientSpec.save();
 			}
 			else {
-				Config.toggleShield.set(true);
-				Config.spec.save();
+				ToggleAbilities.toggleShield.set(true);
+				ToggleAbilities.ClientSpec.save();
 				minecraft.player.displayClientMessage(shield.append(on) , true);
 			}
 		}
@@ -127,12 +127,12 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.blockBreakKey.consumeClick() && minecraft.player != null) {
 			if (toggleBlockBreak()) {
 				minecraft.player.displayClientMessage(blockBreak.append(off) , true);
-				Config.toggleBlockBreak.set(false);
-				Config.spec.save();
+				ToggleAbilities.toggleBlockBreak.set(false);
+				ToggleAbilities.ClientSpec.save();
 			}
 			else {
-				Config.toggleBlockBreak.set(true);
-				Config.spec.save();
+				ToggleAbilities.toggleBlockBreak.set(true);
+				ToggleAbilities.ClientSpec.save();
 				minecraft.player.displayClientMessage(blockBreak.append(on) , true);
 			}
 		}
@@ -154,12 +154,12 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.extraDropsKey.consumeClick() && minecraft.player != null) {
 			if (toggleExtraDrops()) {
 				minecraft.player.displayClientMessage(extraDrops.append(off) , true);
-				Config.toggleExtraDrops.set(false);
-				Config.spec.save();
+				ToggleAbilities.toggleExtraDrops.set(false);
+				ToggleAbilities.ClientSpec.save();
 			}
 			else {
-				Config.toggleExtraDrops.set(true);
-				Config.spec.save();
+				ToggleAbilities.toggleExtraDrops.set(true);
+				ToggleAbilities.ClientSpec.save();
 				minecraft.player.displayClientMessage(extraDrops.append(on) , true);
 			}
 		}
@@ -171,13 +171,13 @@ public class ClientForgeHandler {
 		Player player = minecraft.player;
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOn.consumeClick() && player != null) {
-			Config.toggleMagnet.set(true);
-			Config.toggleAoeDamage.set(true);
-			Config.toggleShield.set(true);
-			Config.toggleBlockBreak.set(true);
-			Config.toggleExtraDrops.set(true);
+			ToggleAbilities.toggleMagnet.set(true);
+			ToggleAbilities.toggleAoeDamage.set(true);
+			ToggleAbilities.toggleShield.set(true);
+			ToggleAbilities.toggleBlockBreak.set(true);
+			ToggleAbilities.toggleExtraDrops.set(true);
 
-			Config.spec.save();
+			ToggleAbilities.ClientSpec.save();
 		}
 	}
 	@SubscribeEvent
@@ -187,13 +187,13 @@ public class ClientForgeHandler {
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
 
-			Config.toggleMagnet.set(false);
-			Config.toggleAoeDamage.set(false);
-			Config.toggleShield.set(false);
-			Config.toggleBlockBreak.set(false);
-			Config.toggleExtraDrops.set(false);
+			ToggleAbilities.toggleMagnet.set(false);
+			ToggleAbilities.toggleAoeDamage.set(false);
+			ToggleAbilities.toggleShield.set(false);
+			ToggleAbilities.toggleBlockBreak.set(false);
+			ToggleAbilities.toggleExtraDrops.set(false);
 
-			Config.spec.save();
+			ToggleAbilities.ClientSpec.save();
 		}
 	}
 	@SubscribeEvent
@@ -203,12 +203,12 @@ public class ClientForgeHandler {
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.showRingState.consumeClick() && player != null) {
 			if (toggleHudElements()){
-				Config.toggleHudElements.set(false);
-                Config.spec.save();
+				ToggleAbilities.toggleHudElements.set(false);
+                ToggleAbilities.ClientSpec.save();
 			}
 			else {
-                Config.toggleHudElements.set(true);
-                Config.spec.save();
+				ToggleAbilities.toggleHudElements.set(true);
+                ToggleAbilities.ClientSpec.save();
             }
 
 		}

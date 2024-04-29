@@ -13,9 +13,27 @@ mandatory=true #mandatory
 versionRange="${forge_version_range}" #mandatory
 ordering="NONE"
 side="BOTH"# Here's another dependency
+[[mixins]]
+config="mixins.divineartifacts.json"
+
 [[dependencies."${mod_id}"]]
 modId="curios"
 mandatory=true
-versionRange="[1.20,)"
+versionRange="[5.8,)"
 ordering="NONE"
 side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="attributeslib"
+mandatory=true
+versionRange="[1.3,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies."${mod_id}"]]
+modId="irons_spellbooks"
+mandatory=true
+versionRange="[1.20.1-3.1,)"
+ordering="NONE"
+side="BOTH"
+

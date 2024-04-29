@@ -23,7 +23,6 @@ import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.PacketDistributor;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.network.PacketHandler;
@@ -35,8 +34,8 @@ import java.util.List;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
-import static nk.divineartifacts.config.Config.ExtraDrops;
-import static nk.divineartifacts.config.Config.configDivineRing;
+import static nk.divineartifacts.config.ServerConfig.ExtraDrops;
+import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
@@ -254,11 +253,6 @@ public class DivineLuck {
 		if (ring != null && isHandEmptyOrNotTool(handItem)) {
 			event.setNewSpeed( divBreakSpeed );
 		}
-	}
-
-	@SubscribeEvent
-	public static void commonSetup(FMLCommonSetupEvent event) {
-		PacketHandler.register();
 	}
 }
 

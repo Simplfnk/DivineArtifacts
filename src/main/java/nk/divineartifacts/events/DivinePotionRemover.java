@@ -24,7 +24,7 @@ import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
-import static nk.divineartifacts.config.Config.configDivineRing;
+import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)

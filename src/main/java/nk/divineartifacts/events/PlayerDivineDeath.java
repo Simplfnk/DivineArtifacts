@@ -13,7 +13,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
-import static nk.divineartifacts.config.Config.configDivineRing;
+import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 
 public class PlayerDivineDeath {
 	@SubscribeEvent

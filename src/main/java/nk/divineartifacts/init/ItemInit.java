@@ -7,7 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
-import nk.divineartifacts.config.Config;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DiveGoldRing;
 import nk.divineartifacts.item.DivineCrystal;
 
@@ -29,14 +29,14 @@ public class ItemInit {
 			"div_crystal" , () -> new DivineCrystal(
 					new Item.Properties() ,
 					"" ,
-					Config.configDivineRing.get() ,
+					ServerConfig.configDivineRing.get() ,
 					GlintRenderTypes.PURPLE)
 	);
 	public static final RegistryObject< Item > diveGold = register(
 			"div_gold_ring" , () -> new DiveGoldRing(
 					new Item.Properties() ,
 					"" ,
-					Config.configDivineRing.get() ,
+					ServerConfig.configDivineRing.get() ,
 					GlintRenderTypes.ORANGE)
 	);
 

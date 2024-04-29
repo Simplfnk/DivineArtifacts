@@ -14,7 +14,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.UUID;
 
-import static nk.divineartifacts.config.Config.*;
+import static nk.divineartifacts.config.ServerConfig.*;
 
 public class ItemDivineOrb extends DivineOrbBase {
 

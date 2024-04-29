@@ -7,7 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
-import nk.divineartifacts.config.Config;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DivineOrbBase;
 import nk.divineartifacts.item.rings.ItemDivineOrb;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class ModItemOrb {
     public static RegistryObject<DivineOrbBase> divineOrb = register("orb_divine",() -> new ItemDivineOrb(
             new Item.Properties(),
             "",
-            Config.configOrbOfMagic.get(),
+            ServerConfig.configOrbOfMagic.get(),
             GlintRenderTypes.PURPLE));
 
     public static void init(IEventBus bus) {

@@ -8,7 +8,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
-import nk.divineartifacts.config.Config;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DivineRingBase;
 import nk.divineartifacts.item.rings.ItemRingGod;
 
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.config.Config.*;
+import static nk.divineartifacts.config.ServerConfig.*;
 
 public class ModItemGod {
 	public static List<DivineRingBase> GodRing = new ArrayList<>();
@@ -26,7 +26,7 @@ public class ModItemGod {
 	public static RegistryObject<DivineRingBase> ringDivine = register("ring_divine" , () -> new ItemRingGod(
 			new Item.Properties() ,
 			"" ,
-			Config.configDivineRing.get() ,
+			ServerConfig.configDivineRing.get() ,
 			MobEffects.REGENERATION ,
 			MobEffects.LUCK ,
 			MobEffects.FIRE_RESISTANCE ,

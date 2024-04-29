@@ -36,7 +36,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.Config.*;
+import static nk.divineartifacts.config.ServerConfig.*;
 
 public class DivineOrbBase extends Item implements ICurio {
 

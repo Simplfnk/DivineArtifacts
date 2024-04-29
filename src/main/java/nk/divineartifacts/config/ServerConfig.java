@@ -4,19 +4,14 @@ import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
-public class Config {
+public class ServerConfig {
 	public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-	private static final General GENERAL = new General(BUILDER);
-	public static final ForgeConfigSpec spec = BUILDER.build();
+	private static final serverConfig SERVER_CONFIG = new serverConfig(BUILDER);
+	public static final ForgeConfigSpec serverConfig = BUILDER.build();
 
 	public static BooleanValue configDivineRing;
 	public static BooleanValue configOrbOfMagic;
-	public static BooleanValue toggleMagnet;
-	public static BooleanValue toggleAoeDamage;
-	public static BooleanValue toggleShield;
-	public static BooleanValue toggleBlockBreak;
-	public static BooleanValue toggleExtraDrops;
-	public static BooleanValue toggleHudElements;
+
 
 	public static BooleanValue Tattack;
 	public static BooleanValue TArmor;
@@ -83,18 +78,12 @@ public class Config {
 	public static IntValue CAST_TIME_REDUCTION;
 
 
-	public static class General {
-		public General(final ForgeConfigSpec.Builder builder) {
+	public static class serverConfig {
+		public serverConfig(final ForgeConfigSpec.Builder builder) {
 			builder.push("Divine Artifacts");
 			builder.push("Enable/Disable Artifacts");
 			configDivineRing = builder.define("Items.Ring Of Divinity" , true);
 			configOrbOfMagic = builder.define("Items.Divine Orb" , true);
-			toggleMagnet = BUILDER.comment("On/Off Magnet state").define("State.MagnetState" , true);
-			toggleAoeDamage = BUILDER.comment("On/Off AOE Damage state").define("State.AOE State" , true);
-			toggleShield = BUILDER.comment("On/Off Shield state").define("State. Shield State" , true);
-			toggleBlockBreak = BUILDER.comment("On/Off Block Break state").define("State.Block Break State" , true);
-			toggleExtraDrops = BUILDER.comment("On/Off Extra Drops state").define("State.Extra Drops" , true);
-			toggleHudElements = BUILDER.comment("On/Off Toggle Hud elements state").define("State.Hud Elements" , true);
 			builder.pop();
 
 			//================================================================ Abilities
@@ -124,10 +113,10 @@ public class Config {
 			ARMOR_TOUGHNESS = BUILDER.comment("Armor Toughness").defineInRange("Ring Of Divinity.Attribute.Value.Armor Toughness" , 10 , 1 , 1000);
 
 			TKnockbackResistance = BUILDER.comment("Enable Knockback Resistance Attribute").define("Ring Of Divinity.Attribute.Toggle.Knockback Resistance" , true);
-			KNOCKBACK_RESISTANCE = BUILDER.comment("Knock back Resistance").defineInRange("Ring Of Divinity.Attribute.Value.Knock back Resistance" , 100 , 10 , 100);
+			KNOCKBACK_RESISTANCE = BUILDER.comment("Knock back Resistance").defineInRange("Ring Of Divinity.Attribute.Value.Knock back Resistance %" , 100 , 10 , 100);
 
 			TMAXHealth = BUILDER.comment("Enable Max Health Attribute").define("Ring Of Divinity.Attribute.Toggle.Max Health" , true);
-			MaxHeart = BUILDER.comment("Max Heart").defineInRange("Ring Of Divinity.Attribute.Value.Max Health" , 500 , 100 , 1000);
+			MaxHeart = BUILDER.comment("Max Heart").defineInRange("Ring Of Divinity.Attribute.Value.Max Health %" , 500 , 100 , 1000);
 
 			TStepHeight = BUILDER.comment("Enable Step Height Attribute").define("Ring Of Divinity.Attribute.Toggle.Step Height" , true);
 			STEP_HEIGHT = BUILDER.comment("Step Height").defineInRange("Ring Of Divinity.Attribute.Value.Step Height" , 1 , 1 , 4);
@@ -171,7 +160,7 @@ public class Config {
 			//================================================ Orb of Magic
 
 			TSPELL_RESIST = BUILDER.comment("Enable Spell Resist Attribute").define("Orb Of Magic.Attribute.Toggle.Spell Resist" , true);
-			SPELL_RESIST = BUILDER.comment("Spell Resist").defineInRange("Orb Of Magic.Attribute.Value.Spell Resist" , 200 , 100 , 1000);
+			SPELL_RESIST = BUILDER.comment("Spell Resist").defineInRange("Orb Of Magic.Attribute.Value.Spell Resist %" , 200 , 100 , 1000);
 
 			TSPELL_POWER = BUILDER.comment("Enable Spell Power Attribute").define("Orb Of Magic.Attribute.Toggle.Spell Power" , true);
 			SPELL_POWER = BUILDER.comment("Spell Power").defineInRange("Orb Of Magic.Attribute.Value.Spell Power %" , 200 , 100 , 1000);

@@ -1,24 +1,24 @@
 package nk.divineartifacts.client.handler;
 
-import nk.divineartifacts.config.Config;
+import nk.divineartifacts.config.ToggleAbilities;
 
 public class ToggleHelper {
 	public static boolean toggleMagnet() {
-		return Config.toggleMagnet.get();
+		return ToggleAbilities.toggleMagnet.get();
 	}
 	public static boolean toggleAoeDamage() {
-		return Config.toggleAoeDamage.get();
+		return ToggleAbilities.toggleAoeDamage.get();
 	}
 	public static boolean toggleShield() {
-		return Config.toggleShield.get();
+		return ToggleAbilities.toggleShield.get();
 	}
 	public static boolean toggleBlockBreak() {
-		return Config.toggleBlockBreak.get();
+		return ToggleAbilities.toggleBlockBreak.get();
 	}
 	public static boolean toggleExtraDrops() {
-		return Config.toggleExtraDrops.get();
+		return ToggleAbilities.toggleExtraDrops.get();
 	}
 	public static boolean toggleHudElements() {
-		return Config.toggleHudElements.get();
+		return ToggleAbilities.toggleHudElements.get();
 	}
 }

@@ -16,7 +16,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.client.handler.ClientForgeHandler;
-import nk.divineartifacts.config.Config;
+import nk.divineartifacts.config.ServerConfig;
+import nk.divineartifacts.config.ToggleAbilities;
 import nk.divineartifacts.events.*;
 import nk.divineartifacts.init.ItemInit;
 import nk.divineartifacts.init.ModItemGod;
@@ -51,7 +52,8 @@ public class DivineArtifacts {
 	public DivineArtifacts() {
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 		SoundRegistry.register( modEventBus );
-		ModLoadingContext.get().registerConfig( ModConfig.Type.COMMON , Config.spec );
+		ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, ToggleAbilities.ClientSpec , String.format("%s-client.toml", DivineArtifacts.MODID));
+		ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, ServerConfig.serverConfig , String.format("%s-server.toml", DivineArtifacts.MODID));
 		FMLJavaModLoadingContext.get().getModEventBus().addListener( this::doClientStuff );
 		FMLJavaModLoadingContext.get().getModEventBus().addListener( this::commonSetup );
 		ModItemGod.init( FMLJavaModLoadingContext.get().getModEventBus() );

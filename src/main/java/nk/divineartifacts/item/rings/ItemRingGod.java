@@ -27,7 +27,7 @@ import java.util.List;
 import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
-import static nk.divineartifacts.config.Config.*;
+import static nk.divineartifacts.config.ServerConfig.*;
 
 public class ItemRingGod extends DivineRingBase {
 	private static final UUID HEALTH_UUID = UUID.fromString("b29c34f3-1450-48ff-ab28-639647e11861");

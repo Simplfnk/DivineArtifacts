@@ -43,7 +43,7 @@ import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
-import static nk.divineartifacts.config.Config.*;
+import static nk.divineartifacts.config.ServerConfig.*;
 
 public class DivineRingBase extends Item implements ICurioItem {
 
