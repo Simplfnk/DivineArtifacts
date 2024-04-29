@@ -1,4 +1,4 @@
-<p style="text-align: center">
+<p style="text-align:center">
    <a href="https://www.curseforge.com/minecraft/mc-mods/noah-divine-artifact">
          <img src="https://media.forgecdn.net/attachments/description/1009148/description_53ac4bba-501a-4488-8d53-595e77c1c59d.png" alt="Sublime's custom image"/>
     </a>
