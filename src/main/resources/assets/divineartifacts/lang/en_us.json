@@ -81,5 +81,6 @@
   "tooltip.divineartifacts.max.mana": "Max Mana   ",
   "tooltip.divineartifacts.cooldown.reduction": "Cooldown Reduction  ",
   "tooltip.divineartifacts.cast.reduction": "Cast Time Reduction  ",
-  "advancements.divineartifacts.root": "Good Luck :)"
+  "advancements.divineartifacts.root": "Good Luck :)",
+  "key.categories.divineartifacts.tooltips": "Divine Artifacts Key Binds:"
 }

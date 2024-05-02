@@ -9,7 +9,7 @@ import nk.divineartifacts.DivineArtifacts;
 public final class Keybindings {
     public static final Keybindings INSTANCE = new Keybindings();
     private Keybindings(){}
-    public static final String CATEGORY = "key.categories." + DivineArtifacts.MODID;
+    public static final String CATEGORY = "key.categories." + DivineArtifacts.MODID+".tooltips";
     public  final KeyMapping magnetKey = new KeyMapping(
             "magnet." + DivineArtifacts.MODID + ".toggle.key",
             KeyConflictContext.IN_GAME,
