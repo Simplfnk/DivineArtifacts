@@ -38,11 +38,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 import static nk.divineartifacts.config.ServerConfig.*;
 
 public class DivineRingBase extends Item implements ICurioItem {
@@ -540,5 +536,19 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		return mutable;
 	}
+//	public void toggleMagnetNBT(ServerPlayer player) {
+//		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+//		if (ring != null) {
+//			activeMag(ring , !isMagActive(ring));
+//		}
+//	}
+//
+//	public boolean isMagActive(ItemStack stack) {
+//		return !stack.hasTag() || !stack.getOrCreateTag().contains("isActivated") || stack.getOrCreateTag().getBoolean("isActivated");
+//	}
+//
+//	public void activeMag(ItemStack stack , boolean active) {
+//		stack.getOrCreateTag().putBoolean("isActivated" , active);
+//	}
 
 }

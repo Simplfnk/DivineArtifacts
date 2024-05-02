@@ -3,5 +3,15 @@
     "sounds": [
       "divineartifacts:force_sh"
     ]
+  },
+  "tog_on": {
+    "sounds": [
+      "divineartifacts:tog_on"
+    ]
+  },
+  "tog_off": {
+    "sounds": [
+      "divineartifacts:tog_off"
+    ]
   }
 }

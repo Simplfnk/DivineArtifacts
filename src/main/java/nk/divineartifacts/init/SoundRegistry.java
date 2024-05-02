@@ -13,8 +13,12 @@ public class SoundRegistry {
     public static void register(IEventBus eventBus) {SOUND_EVENTS.register(eventBus);
     }
     public static RegistryObject<SoundEvent> FORCE_SH = registerSoundEvent("force_sh");
+    public static RegistryObject<SoundEvent> TOG_ON = registerSoundEvent("tog_on");
+    public static RegistryObject<SoundEvent> TOG_OFF = registerSoundEvent("tog_off");
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DivineArtifacts.MODID, name)));
+
     }
+
 }
 

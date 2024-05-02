@@ -29,6 +29,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
+import nk.divineartifacts.init.SoundRegistry;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.ISlotType;
 
@@ -319,4 +320,11 @@ public class DivineHelper {
 		}
 		return false; // The itemStack does not match any banned item IDs
 	}
+	public static void playTogOnSound(Player player){
+		player.level().playSound(player , player.getX() , player.getY() , player.getZ() , SoundRegistry.TOG_ON.get() , SoundSource.PLAYERS , 1.0F , 1.0F);
+	}
+	public static void playTogOffSound(Player player){
+		player.level().playSound(player , player.getX() , player.getY() , player.getZ() , SoundRegistry.TOG_OFF.get() , SoundSource.PLAYERS , 1.0F , 1.0F);
+	}
+
 }

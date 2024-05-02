@@ -7,6 +7,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -18,6 +19,8 @@ import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
+import static nk.divineartifacts.events.DivineHelper.playTogOffSound;
+import static nk.divineartifacts.events.DivineHelper.playTogOnSound;
 
 @Mod.EventBusSubscriber(modid = DivineArtifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 
@@ -39,16 +42,18 @@ public class ClientForgeHandler {
 		MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff));
-		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && minecraft.player != null) {
+		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && player != null) {
 			if (toggleMagnet()) {
 				ToggleAbilities.toggleMagnet.set(false);
 				ToggleAbilities.ClientSpec.save();
-				minecraft.player.displayClientMessage(magnet.append(off) , true);
+				player.displayClientMessage(magnet.append(off) , true);
+				playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleMagnet.set(true);
 				ToggleAbilities.ClientSpec.save();
-				minecraft.player.displayClientMessage(magnet.append(on) , true);
+				player.displayClientMessage(magnet.append(on) , true);
+				playTogOnSound(player);
 			}
 
 		}
@@ -73,11 +78,13 @@ public class ClientForgeHandler {
 				ToggleAbilities.toggleAoeDamage.set(false);
 				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(aio.append(off) , true);
+				playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleAoeDamage.set(true);
 				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(aio.append(on) , true);
+				playTogOnSound(player);
 			}
 
 		}
@@ -97,16 +104,18 @@ public class ClientForgeHandler {
 		MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff));
-		if (ring && Keybindings.INSTANCE.shieldKey.consumeClick() && minecraft.player != null) {
+		if (ring && Keybindings.INSTANCE.shieldKey.consumeClick() && player != null) {
 			if (toggleShield()) {
-				minecraft.player.displayClientMessage(shield.append(off) , true);
+				player.displayClientMessage(shield.append(off) , true);
 				ToggleAbilities.toggleShield.set(false);
+				playTogOffSound(player);
 				ToggleAbilities.ClientSpec.save();
 			}
 			else {
 				ToggleAbilities.toggleShield.set(true);
 				ToggleAbilities.ClientSpec.save();
-				minecraft.player.displayClientMessage(shield.append(on) , true);
+				playTogOnSound(player);
+				player.displayClientMessage(shield.append(on) , true);
 			}
 		}
 	}
@@ -124,16 +133,18 @@ public class ClientForgeHandler {
 		MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff));
-		if (ring && Keybindings.INSTANCE.blockBreakKey.consumeClick() && minecraft.player != null) {
+		if (ring && Keybindings.INSTANCE.blockBreakKey.consumeClick() && player != null) {
 			if (toggleBlockBreak()) {
-				minecraft.player.displayClientMessage(blockBreak.append(off) , true);
+				player.displayClientMessage(blockBreak.append(off) , true);
 				ToggleAbilities.toggleBlockBreak.set(false);
 				ToggleAbilities.ClientSpec.save();
+				playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleBlockBreak.set(true);
 				ToggleAbilities.ClientSpec.save();
-				minecraft.player.displayClientMessage(blockBreak.append(on) , true);
+				playTogOnSound(player);
+				player.displayClientMessage(blockBreak.append(on) , true);
 			}
 		}
 	}
@@ -151,16 +162,18 @@ public class ClientForgeHandler {
 		MutableComponent off = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff));
-		if (ring && Keybindings.INSTANCE.extraDropsKey.consumeClick() && minecraft.player != null) {
+		if (ring && Keybindings.INSTANCE.extraDropsKey.consumeClick() && player != null) {
 			if (toggleExtraDrops()) {
-				minecraft.player.displayClientMessage(extraDrops.append(off) , true);
+				player.displayClientMessage(extraDrops.append(off) , true);
 				ToggleAbilities.toggleExtraDrops.set(false);
+				playTogOffSound(player);
 				ToggleAbilities.ClientSpec.save();
 			}
 			else {
 				ToggleAbilities.toggleExtraDrops.set(true);
 				ToggleAbilities.ClientSpec.save();
-				minecraft.player.displayClientMessage(extraDrops.append(on) , true);
+				playTogOnSound(player);
+				player.displayClientMessage(extraDrops.append(on) , true);
 			}
 		}
 	}
@@ -176,7 +189,7 @@ public class ClientForgeHandler {
 			ToggleAbilities.toggleShield.set(true);
 			ToggleAbilities.toggleBlockBreak.set(true);
 			ToggleAbilities.toggleExtraDrops.set(true);
-
+			playTogOnSound(player);
 			ToggleAbilities.ClientSpec.save();
 		}
 	}
@@ -184,15 +197,15 @@ public class ClientForgeHandler {
 	public static void toggleAllAbilitiesOff(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
+		ItemStack stack = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
-
 			ToggleAbilities.toggleMagnet.set(false);
 			ToggleAbilities.toggleAoeDamage.set(false);
 			ToggleAbilities.toggleShield.set(false);
 			ToggleAbilities.toggleBlockBreak.set(false);
 			ToggleAbilities.toggleExtraDrops.set(false);
-
+			playTogOffSound(player);
 			ToggleAbilities.ClientSpec.save();
 		}
 	}
@@ -202,17 +215,30 @@ public class ClientForgeHandler {
 		Player player = minecraft.player;
 		boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
 		if (ring && Keybindings.INSTANCE.showRingState.consumeClick() && player != null) {
-			if (toggleHudElements()){
+			if (toggleHudElements()) {
 				ToggleAbilities.toggleHudElements.set(false);
-                ToggleAbilities.ClientSpec.save();
+				ToggleAbilities.ClientSpec.save();
+				playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleHudElements.set(true);
-                ToggleAbilities.ClientSpec.save();
-            }
+				playTogOnSound(player);
+				ToggleAbilities.ClientSpec.save();
+			}
 
 		}
 	}
+//	@SubscribeEvent
+//	public static void addNbtOnKeyPressed(TickEvent.ClientTickEvent event) {
+//		Minecraft minecraft = Minecraft.getInstance();
+//		Player player = minecraft.player;
+//		ItemStack stack = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+//		if (stack != null && Keybindings.INSTANCE.addNBT.consumeClick() && player != null) {
+//			if (stack.getItem() instanceof DivineRingBase rings) {
+//				PacketHandler.INSTANCE.sendToServer(new C2SToggle(rings));
+//			}
+//		}
+//	}
 	public static boolean isShiftPressed;
 
 	@SubscribeEvent
