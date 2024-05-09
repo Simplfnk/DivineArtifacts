@@ -18,6 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.ForgeMod;
 import nk.divineartifacts.client.GlintRenderTypes;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DivineRingBase;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -48,7 +49,7 @@ public class ItemRingGod extends DivineRingBase {
 	private static final UUID ARROW_VELOCITY_UUID = UUID.fromString("14378aa6-075b-4657-9137-da589a6dfe59");
 	private static final UUID ARROW_DAMAGE_UUID = UUID.fromString("14378aa9-089b-5698-5486-da637a6dfe59");
 	private static final UUID DRAW_SPEED_UUID = UUID.fromString("14378aa9-089b-5698-5486-da637a6dfe59");
-	private static final int RANGE = MagnetRange.get();
+	private static final int RANGE = ServerConfig.MagnetRange.get();
 	private final MobEffect effect1;
 	private final MobEffect effect2;
 	private final MobEffect effect3;

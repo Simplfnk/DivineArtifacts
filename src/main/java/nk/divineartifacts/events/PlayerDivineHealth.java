@@ -11,6 +11,7 @@ import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
@@ -24,7 +25,7 @@ public class PlayerDivineHealth {
 
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-		if (!configDivineRing.get()) return;
+		if (!ServerConfig.configDivineRing.get()) return;
 		Player player = event.getEntity();
 		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
 		if (ring != null) {

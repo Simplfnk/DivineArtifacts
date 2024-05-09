@@ -24,6 +24,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItemOrb;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -114,7 +115,7 @@ public class DivineOrbBase extends Item implements ICurio {
 				@NotNull
 				@Override
 				public SoundInfo getEquipSound(SlotContext slotContext) {
-					return new SoundInfo(SoundEvents.ARMOR_EQUIP_GOLD , 1.0f , 1.0f);
+					return new SoundInfo(SoundEvents.STONE_BREAK , 1.0f , 1.0f);
 				}
 
 				@Override
@@ -226,7 +227,7 @@ public class DivineOrbBase extends Item implements ICurio {
 			MutableComponent cooldownReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cooldown.reduction").withStyle(s -> s.withColor(Purple));
 			MutableComponent castTimeReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cast.reduction").withStyle(s -> s.withColor(Purple));
 
-			MutableComponent spellResistValue = Component.literal(Green + "+" + SPELL_RESIST.get() + "%");
+			MutableComponent spellResistValue = Component.literal(Green + "+" + ServerConfig.SPELL_RESIST.get() + "%");
 			MutableComponent spellPowerValue = Component.literal(Green + "+" + SPELL_POWER.get() + "%");
 			MutableComponent manaRegenValue = Component.literal(Green + "+" + MANA_REGEN.get() + "%");
 			MutableComponent maxManaValue = Component.literal(Green + "+" + MAX_MANA.get() + "%");

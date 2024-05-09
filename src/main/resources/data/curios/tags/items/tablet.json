@@ -1,0 +1,15 @@
+{
+  "replace": false,
+  "values": [
+    "divineartifacts:ender_tablet",
+    "divineartifacts:holy_tablet",
+    "divineartifacts:eldritch_tablet",
+    "divineartifacts:blood_tablet",
+    "divineartifacts:evocation_tablet",
+    "divineartifacts:fire_tablet",
+    "divineartifacts:ice_tablet",
+    "divineartifacts:lightning_tablet",
+    "divineartifacts:nature_tablet"
+
+  ]
+}

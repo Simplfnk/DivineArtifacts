@@ -38,7 +38,7 @@ public class ArtifactsLootModifiers  extends LootModifier {
 
 	public ArtifactsLootModifiers(LootItemCondition[] conditionsIn, List<String> lootTables, Item item) {
 		super(conditionsIn);
-		if(!(item instanceof DiveGoldRing || item instanceof DivineCrystal )) {
+		if(!(item instanceof DiveGoldRing || item instanceof DivineCrystal)) {
 			lootTables.clear();
 			throw new IllegalArgumentException("Provided item is not a item.");
 		}

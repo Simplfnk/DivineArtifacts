@@ -10,15 +10,15 @@ import net.minecraftforge.network.NetworkEvent;
 import java.util.function.Supplier;
 
 public record S2CPacketData(BlockPos pos , BlockState state) {
-	public static S2CPacketData decode(FriendlyByteBuf buffer) {
-		return new S2CPacketData(buffer.readBlockPos() , Block.stateById(buffer.readVarInt()));
-	}
 
 	public static void encode(S2CPacketData msg , FriendlyByteBuf buffer) {
 		buffer.writeBlockPos(msg.pos);
 		buffer.writeVarInt(Block.getId(msg.state));
 	}
 
+	public static S2CPacketData decode(FriendlyByteBuf buffer) {
+		return new S2CPacketData(buffer.readBlockPos() , Block.stateById(buffer.readVarInt()));
+	}
 	public void handle(Supplier<NetworkEvent.Context> contextSupplier) {
 		NetworkEvent.Context context = contextSupplier.get();
 		context.enqueueWork(() -> {

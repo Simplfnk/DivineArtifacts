@@ -8,6 +8,7 @@ import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.item.ItemStack;
 import nk.divineartifacts.client.GlintRenderTypes;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DivineOrbBase;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -21,7 +22,7 @@ public class ItemDivineOrb extends DivineOrbBase {
 	private static final UUID SPELL_RESIST_UUID = UUID.fromString("b29c34f3-1450-48ff-ab28-639647e11861");
 	private static final UUID SPELL_POWER_UUID = UUID.fromString("b29c34f3-1450-48ff-ab28-639647e11871");
 	private static final UUID MANA_REGEN_UUID = UUID.fromString("b29c34f3-1450-42ff-ab28-639647e11871");
-	private final UUID MAX_MANA_UUID = UUID.fromString("14378aa6-035b-4794-9137-da589a6dfe05");
+	private static final UUID MAX_MANA_UUID = UUID.fromString("14378aa6-035b-4794-9137-da589a6dfe05");
 	private static final UUID COOLDOWN_REDUCTION_UUID = UUID.fromString("320d847e-eecd-402f-b6cf-d339d2fa97af");
 	private static final UUID CAST_TIME_REDUCTION_UUID = UUID.fromString("14378aa6-035b-4794-9137-da589a6dfe06");
 
@@ -36,7 +37,7 @@ public class ItemDivineOrb extends DivineOrbBase {
 			SlotContext slotContext , UUID uuid , ItemStack stack) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TSPELL_RESIST.get() && configOrbOfMagic.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && ServerConfig.TSPELL_RESIST.get() && configOrbOfMagic.get()) {
 			modifiers.put(AttributeRegistry.SPELL_RESIST.get() ,
 					new AttributeModifier(SPELL_RESIST_UUID , "Spell Resistance" , (double) SPELL_RESIST.get() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));

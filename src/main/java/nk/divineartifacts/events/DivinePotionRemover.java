@@ -18,12 +18,13 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.client.handler.ToggleHelper;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
 
@@ -31,7 +32,7 @@ import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
 public class DivinePotionRemover {
 	@SubscribeEvent
 	public static void onPotionAttack(MobEffectEvent.Added event) {
-		if (!toggleShield()) return;
+		if (!ToggleHelper.toggleShield()) return;
 		if (event.getEntity() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
@@ -47,7 +48,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent
 	public static void CreeperAttack(LivingChangeTargetEvent event) {
-		if (!configDivineRing.get()) return;
+		if (!ServerConfig.configDivineRing.get()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			String vx1 = EntityType.getKey(event.getEntity().getType()).toString();

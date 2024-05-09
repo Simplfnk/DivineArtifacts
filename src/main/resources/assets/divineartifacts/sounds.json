@@ -13,5 +13,10 @@
     "sounds": [
       "divineartifacts:tog_off"
     ]
+  },
+  "tablet": {
+    "sounds": [
+      "divineartifacts:tablet"
+    ]
   }
 }

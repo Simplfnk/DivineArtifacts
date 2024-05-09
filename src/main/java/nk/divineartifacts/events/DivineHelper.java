@@ -29,7 +29,10 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
+import nk.divineartifacts.config.ServerConfig;
+import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.init.SoundRegistry;
+import nk.divineartifacts.utils.Utils;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.ISlotType;
 
@@ -42,9 +45,18 @@ public class DivineHelper {
 	public static final HashMap<UUID, Long> lastActionTimes = new HashMap<>();
 	public static final Set<Entity> processingEntities = Collections.newSetFromMap(new HashMap<>());
 	public static final List<String> Names = new ArrayList<>();
-	public static final List<ResourceKey<DamageType>> FIRE_DAMAGE_TYPES = Arrays.asList(DamageTypes.IN_FIRE , DamageTypes.ON_FIRE , DamageTypes.LAVA , DamageTypes.HOT_FLOOR , DamageTypes.CACTUS , DamageTypes.EXPLOSION);
+	public static final List<ResourceKey<DamageType>> ELEMENT_DAMAGE = new ArrayList<>();
 	public static final Set<TagKey<Item>> curioTags = Set.of(ItemTags.create(new ResourceLocation("artifacts" , "artifacts")));
 	public static final List<String> banItemList = new ArrayList<>();
+
+	static {
+		ELEMENT_DAMAGE.add(DamageTypes.IN_FIRE);
+		ELEMENT_DAMAGE.add(DamageTypes.ON_FIRE);
+		ELEMENT_DAMAGE.add(DamageTypes.LAVA);
+		ELEMENT_DAMAGE.add(DamageTypes.HOT_FLOOR);
+		ELEMENT_DAMAGE.add(DamageTypes.CACTUS);
+		ELEMENT_DAMAGE.add(DamageTypes.EXPLOSION);
+	}
 
 	static {
 		Names.add("summoned skeleton");
@@ -142,8 +154,8 @@ public class DivineHelper {
 
 	public static void applyKnockBackFromSource(DamageSource source , Entity target) {
 		if (target instanceof LivingEntity entity) {
+			if (source.getSourcePosition() == null) return;
 			Vec3 vecSource = source.getSourcePosition();
-			assert vecSource != null;
 			Vec3 vec = new Vec3(entity.getX() - vecSource.x , entity.getY() - vecSource.y , entity.getZ() - vecSource.z);
 			if (!(entity instanceof EnderDragon || entity instanceof WitherBoss)) {
 				entity.push(vec.x * 2 , vec.y * 2 , vec.z * 2);
@@ -153,7 +165,7 @@ public class DivineHelper {
 
 	public static void hitNearbyEntities(Player player , Entity target , float damage) {
 		if (!(toggleAoeDamage())) return;
-		if(!(configDivineRing.get())) return;
+		if (!(ServerConfig.configDivineRing.get())) return;
 		if (!(target instanceof LivingEntity LEntity)) return;
 		if (player.level().isClientSide || LEntity.level().isClientSide) return;
 		List<Entity> nearbyEntities = LEntity.level().getEntities(LEntity , new AABB(LEntity.blockPosition()).inflate(6) , entityCleverPredicate(player , LEntity));
@@ -190,7 +202,7 @@ public class DivineHelper {
 
 	public static void damageEntityNearArrow(Entity player , Projectile arrow , int damage) {
 		if (!(toggleAoeDamage())) return;
-		if(!(configDivineRing.get())) return;
+		if (!(configDivineRing.get())) return;
 		List<Entity> nearbyEntities = player.level().getEntities((Entity) null , arrow.getBoundingBox().inflate(6D) , entityPredicate(player , arrow));
 		for (Entity entity : nearbyEntities) {
 			if (entity instanceof LivingEntity mobs && mobs.isAlive()) {
@@ -239,7 +251,7 @@ public class DivineHelper {
 
 	public static void addExplosionEffect(Entity player , Entity target) {
 		if (!(toggleAoeDamage())) return;
-		if(!(configDivineRing.get())) return;
+		if (!(configDivineRing.get())) return;
 		if (player instanceof ServerPlayer serverPlayer) {
 			double bBox = target.getBoundingBox().getYsize();
 			double bBoxCenter = bBox / 2;
@@ -268,7 +280,7 @@ public class DivineHelper {
 
 	public static void addSmallExplosionEffect(Entity player , Entity target) {
 		if (!(toggleAoeDamage())) return;
-		if(!(configDivineRing.get())) return;
+		if (!(configDivineRing.get())) return;
 		if (player instanceof ServerPlayer serverPlayer) {
 			double bBox = target.getBoundingBox().getYsize();
 			double bBoxCenter = bBox / 2;
@@ -289,7 +301,7 @@ public class DivineHelper {
 		return curioTags.stream().anyMatch(item::is);
 	}
 
-	public static boolean IsCurioItem(ItemStack item, Player player) {
+	public static boolean IsCurioItem(ItemStack item , Player player) {
 		// Retrieve the slot types available to the player
 		Map<String, ISlotType> playerSlots = CuriosApi.getPlayerSlots(player);
 
@@ -320,11 +332,28 @@ public class DivineHelper {
 		}
 		return false; // The itemStack does not match any banned item IDs
 	}
-	public static void playTogOnSound(Player player){
+	public static void playTogOnSound(Player player) {
 		player.level().playSound(player , player.getX() , player.getY() , player.getZ() , SoundRegistry.TOG_ON.get() , SoundSource.PLAYERS , 1.0F , 1.0F);
 	}
-	public static void playTogOffSound(Player player){
+	public static void playTogOffSound(Player player) {
 		player.level().playSound(player , player.getX() , player.getY() , player.getZ() , SoundRegistry.TOG_OFF.get() , SoundSource.PLAYERS , 1.0F , 1.0F);
+	}
+	public static void playImpactSound(Player player) {
+		player.level().playSound(null , player.getX() , player.getY() , player.getZ() , SoundRegistry.FORCE_SH.get() , SoundSource.PLAYERS , 0.5F , 0.2f);
+	}
+	public static void toggleMagnetNBT(ServerPlayer player) {
+		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		if (ring != null) {
+			activeMag(ring , !isMagActive(ring));
+		}
+	}
+
+	public static boolean isMagActive(ItemStack stack) {
+		return !stack.hasTag() || !stack.getOrCreateTag().contains("isActivated") || stack.getOrCreateTag().getBoolean("isActivated");
+	}
+
+	public static void activeMag(ItemStack stack , boolean active) {
+		stack.getOrCreateTag().putBoolean("isActivated" , active);
 	}
 
 }

@@ -15,6 +15,7 @@ import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.Keybindings;
 import nk.divineartifacts.config.ToggleAbilities;
+import nk.divineartifacts.events.DivineHelper;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
@@ -47,7 +48,7 @@ public class ClientForgeHandler {
 				ToggleAbilities.toggleMagnet.set(false);
 				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(magnet.append(off) , true);
-				playTogOffSound(player);
+				DivineHelper.playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleMagnet.set(true);

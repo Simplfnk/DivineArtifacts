@@ -22,12 +22,12 @@ public class PacketHandler {
 				S2CPacketData::decode ,
 				S2CPacketData::handle
 		);
-//		INSTANCE.registerMessage(
-//				id++ ,
-//				C2SToggle.class ,
-//				C2SToggle::encode ,
-//				C2SToggle::new ,
-//				C2SToggle::apply
-//		);
+		INSTANCE.registerMessage(
+				id++ ,
+				C2SToggle.class ,
+				C2SToggle::encode ,
+				C2SToggle::new ,
+				C2SToggle::apply
+		);
 	}
 }

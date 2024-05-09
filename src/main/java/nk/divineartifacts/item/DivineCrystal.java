@@ -48,6 +48,10 @@ public class DivineCrystal extends Item {
 		tooltip.add(Component.literal(""));
 		tooltip.add(Component.literal(""));
 	}
+	@Override
+	public boolean isFoil(@NotNull ItemStack stack) {
+		return true;
+	}
 
 	@Override
 	public @NotNull Rarity getRarity(@NotNull ItemStack stack) {

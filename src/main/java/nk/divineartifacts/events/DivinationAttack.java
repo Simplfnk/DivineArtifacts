@@ -14,6 +14,7 @@ import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.utils.Utils;
 
@@ -29,7 +30,7 @@ public class DivinationAttack {
 	@SubscribeEvent(priority = EventPriority.HIGH)
 	public static void onPlayerAttack(LivingAttackEvent event) {
 		if (!(toggleAoeDamage())) return;
-		if(!(configDivineRing.get())) return;
+		if(!(ServerConfig.configDivineRing.get())) return;
 		Entity sourceEntity = event.getSource().getEntity();
 		if (sourceEntity instanceof Player player && !(player.level().isClientSide)) {
 			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);

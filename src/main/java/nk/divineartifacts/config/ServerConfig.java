@@ -77,6 +77,16 @@ public class ServerConfig {
 	public static IntValue COOLDOWN_REDUCTION;
 	public static IntValue CAST_TIME_REDUCTION;
 
+	//================================== Eldritch Tablet
+	public static BooleanValue TogEldritchTablet;
+
+	public static BooleanValue TogElSpellPower;
+	public static IntValue ElSpellPower;
+	public static BooleanValue TogElSPellResist;
+	public static IntValue ElSPellResist;
+	public static BooleanValue TogElMaxMana;
+	public static IntValue ElMaxMana;
+
 
 	public static class serverConfig {
 		public serverConfig(final ForgeConfigSpec.Builder builder) {
@@ -84,7 +94,17 @@ public class ServerConfig {
 			builder.push("Enable/Disable Artifacts");
 			configDivineRing = builder.define("Items.Ring Of Divinity" , true);
 			configOrbOfMagic = builder.define("Items.Divine Orb" , true);
-			builder.pop();
+
+
+			//================================== Eldritch Tablet
+			TogEldritchTablet = BUILDER.comment("Disable/Enable Eldritch Tablet").define("Items.Eldritch Tablet " , true);
+			TogElSpellPower = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Eldritch Tablet.Toggle Attribute.Eldritch Spells Power" , true);
+			TogElSPellResist = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Eldritch Tablet.Toggle Attribute.Spells Resistance" , true);
+			TogElMaxMana = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Eldritch Tablet.Toggle Attribute.Max Mana" , true);
+
+			ElSpellPower = BUILDER.comment("Attribute Value").defineInRange("Tablets.Eldritch Tablet.Value.Eldritch Spells Power %" , 33 , 1 , 1000);
+			ElSPellResist = BUILDER.comment("Attribute Value").defineInRange("Tablets.Eldritch Tablet.Value.Spells Resistance %" , 15 , 1 , 1000);
+			ElMaxMana = BUILDER.comment("Attribute Value").defineInRange("Tablets.Eldritch Tablet.Value.Max Mana Reduction %" , 33 , 1 , 1000);
 
 			//================================================================ Abilities
 
@@ -176,6 +196,7 @@ public class ServerConfig {
 
 			TCAST_TIME_REDUCTION = BUILDER.comment("Enable Cast-Time Reduction Attribute").define("Orb Of Magic.Attribute.Toggle.Cast-Time Reduction" , true);
 			CAST_TIME_REDUCTION = BUILDER.comment("Cast-Time Reduction").defineInRange("Orb Of Magic.Attribute.Value.Cast-Time Reduction %" , 200 , 100 , 1000);
+			builder.pop();
 
 		}
 	}

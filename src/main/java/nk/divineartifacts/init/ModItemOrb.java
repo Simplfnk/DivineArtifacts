@@ -10,6 +10,7 @@ import nk.divineartifacts.client.GlintRenderTypes;
 import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DivineOrbBase;
 import nk.divineartifacts.item.rings.ItemDivineOrb;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;

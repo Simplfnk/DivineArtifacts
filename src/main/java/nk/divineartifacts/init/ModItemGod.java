@@ -8,7 +8,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
-import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.DivineRingBase;
 import nk.divineartifacts.item.rings.ItemRingGod;
 
@@ -26,7 +25,7 @@ public class ModItemGod {
 	public static RegistryObject<DivineRingBase> ringDivine = register("ring_divine" , () -> new ItemRingGod(
 			new Item.Properties() ,
 			"" ,
-			ServerConfig.configDivineRing.get() ,
+			configDivineRing.get() ,
 			MobEffects.REGENERATION ,
 			MobEffects.LUCK ,
 			MobEffects.FIRE_RESISTANCE ,
@@ -39,7 +38,7 @@ public class ModItemGod {
 			WATER_BREATHING.get() ,
 			NIGHT_VISION.get() ,
 			SATURATION.get() ,
-			GlintRenderTypes.ORANGE
+			GlintRenderTypes.GOLD
 
 	));
 

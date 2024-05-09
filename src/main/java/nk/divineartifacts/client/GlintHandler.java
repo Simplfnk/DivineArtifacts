@@ -2,8 +2,7 @@ package nk.divineartifacts.client;
 
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.ItemStack;
-import nk.divineartifacts.item.DivineOrbBase;
-import nk.divineartifacts.item.DivineRingBase;
+import nk.divineartifacts.item.*;
 
 import java.util.HashMap;
 
@@ -48,12 +47,22 @@ public class GlintHandler {
     }
 
     private static GlintRenderTypes getColor(ItemStack stack) {
-        if(stack == null || !(stack.getItem() instanceof DivineRingBase item)) return null;
-        return item.glintType;
-    }
-    private static GlintRenderTypes getColor2(ItemStack stack) {
-        if(stack == null || !(stack.getItem() instanceof DivineOrbBase item)) return null;
-        return item.glintType;
+        if(stack != null  && stack.getItem() instanceof DivineRingBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof DivineOrbBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof DiveGoldRing item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof DivineCrystal item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof HolyTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof EnderTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof EldritchTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof BloodTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof FireTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof EvocationTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof IceTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof LightningTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof NatureTabletBase item) return item.glintType;
+        if(stack != null  && stack.getItem() instanceof DeadKingHeart item) return item.glintType;
+
+        else return null;
     }
 
 }

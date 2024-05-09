@@ -25,12 +25,12 @@ import net.minecraftforge.common.util.LazyOptional;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
 import nk.divineartifacts.client.Keybindings;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItemGod;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosCapability;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
-import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -41,7 +41,7 @@ import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPresse
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
 import static nk.divineartifacts.config.ServerConfig.*;
 
-public class DivineRingBase extends Item implements ICurioItem {
+public class DivineRingBase extends Item implements ICurio {
 
 	protected String tooltip;
 
@@ -77,7 +77,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 	}
 	public Multimap<Attribute, AttributeModifier> curioModifiers(
-			SlotContext slotContext, UUID uuid, ItemStack stack)  {
+			SlotContext slotContext , UUID uuid , ItemStack stack) {
 
 		return HashMultimap.create();
 	}
@@ -169,7 +169,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 						SlotContext slotContext , UUID uuid
 				) {
 
-					return curioModifiers(slotContext , uuid, stack);
+					return curioModifiers(slotContext , uuid , stack);
 				}
 
 				@Override
@@ -201,6 +201,10 @@ public class DivineRingBase extends Item implements ICurioItem {
 		};
 	}
 
+	@Override
+	public ItemStack getStack() {
+		return null;
+	}
 	public List<Component> getAttributesTooltip(List<Component> tt) {
 
 		return tt;
@@ -435,7 +439,7 @@ public class DivineRingBase extends Item implements ICurioItem {
 			MutableComponent arrowDamage = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.damage").withStyle(s -> s.withColor(Gold));
 			MutableComponent drawSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".draw.speed").withStyle(s -> s.withColor(Gold));
 
-			MutableComponent attackDamageValue = Component.literal(Green + "+" + ATTACK_DAMAGE.get());
+			MutableComponent attackDamageValue = Component.literal(Green + "+" + ServerConfig.ATTACK_DAMAGE.get());
 			MutableComponent armorValue = Component.literal(Green + "+" + ARMOR.get());
 			MutableComponent armorToughValue = Component.literal(Green + "+" + ARMOR_TOUGHNESS.get());
 			MutableComponent maxHeartValue = Component.literal(Green + "+" + MaxHeart.get() + "%");
@@ -536,19 +540,5 @@ public class DivineRingBase extends Item implements ICurioItem {
 
 		return mutable;
 	}
-//	public void toggleMagnetNBT(ServerPlayer player) {
-//		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
-//		if (ring != null) {
-//			activeMag(ring , !isMagActive(ring));
-//		}
-//	}
-//
-//	public boolean isMagActive(ItemStack stack) {
-//		return !stack.hasTag() || !stack.getOrCreateTag().contains("isActivated") || stack.getOrCreateTag().getBoolean("isActivated");
-//	}
-//
-//	public void activeMag(ItemStack stack , boolean active) {
-//		stack.getOrCreateTag().putBoolean("isActivated" , active);
-//	}
 
 }

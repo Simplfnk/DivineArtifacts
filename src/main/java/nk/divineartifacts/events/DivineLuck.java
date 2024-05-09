@@ -24,6 +24,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
+import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItemGod;
 import nk.divineartifacts.network.PacketHandler;
 import nk.divineartifacts.network.S2CPacketData;
@@ -42,7 +43,7 @@ import static nk.divineartifacts.events.DivineHelper.*;
 public class DivineLuck {
 	@SubscribeEvent(priority = EventPriority.LOW)
 	public static void handleExp(LivingExperienceDropEvent event) {
-		if (!configDivineRing.get()) return;
+		if (!ServerConfig.configDivineRing.get()) return;
 		if (!toggleExtraDrops()) return;
 		if (event.getAttackingPlayer() instanceof ServerPlayer player) {
 			if (!player.level().isClientSide) {
