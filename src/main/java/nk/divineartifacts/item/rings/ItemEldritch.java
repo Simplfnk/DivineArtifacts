@@ -56,7 +56,7 @@ public class ItemEldritch extends EldritchTabletBase {
 		}
 		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && isEnabled && TogElMaxMana.get()) {
 			modifiers.put(AttributeRegistry.MAX_MANA.get() ,
-					new AttributeModifier(MAX_MANA_UUID , "" , (-0.33) ,
+					new AttributeModifier(MAX_MANA_UUID , "" , -0.33 ,
 							AttributeModifier.Operation.MULTIPLY_BASE));
 		}
 		return modifiers;
