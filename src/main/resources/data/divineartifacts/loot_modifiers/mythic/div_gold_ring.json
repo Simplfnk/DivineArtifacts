@@ -3,11 +3,11 @@
   "conditions": [
     {
       "condition": "random_chance",
-      "chance": 0.02
+      "chance": 1
     }
   ],
   "loot_tables": [
     "minecraft:chests/woodland_mansion"
   ],
-  "ring": "divineartifacts:div_gold_ring"
+  "item": "divineartifacts:div_gold_ring"
 }

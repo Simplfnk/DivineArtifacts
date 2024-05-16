@@ -15,13 +15,13 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.config.ServerConfig;
-import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
 import static nk.divineartifacts.config.ServerConfig.AoeDamage;
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.events.DivineHelper.*;
+import static nk.divineartifacts.utils.DivineHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DivinationAttack {
@@ -33,7 +33,7 @@ public class DivinationAttack {
 		if(!(ServerConfig.configDivineRing.get())) return;
 		Entity sourceEntity = event.getSource().getEntity();
 		if (sourceEntity instanceof Player player && !(player.level().isClientSide)) {
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			Entity target = event.getEntity();
 			DamageSource source = event.getSource();
 			boolean isThrowable = source.is(DamageTypes.THROWN);
@@ -69,7 +69,7 @@ public class DivinationAttack {
 			Projectile arrow = event.getProjectile();
 			if (arrow.getTags().stream().anyMatch(tag -> tag.equals(MARKER))) return;
 			if (player.level().isClientSide && arrow.level().isClientSide) return;
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			if (ring != null) {
 				if (event.getRayTraceResult() instanceof BlockHitResult) {
 					if (!(arrow instanceof ThrowableItemProjectile)) {

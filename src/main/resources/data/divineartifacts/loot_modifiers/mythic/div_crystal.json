@@ -3,11 +3,11 @@
   "conditions": [
     {
       "condition": "random_chance",
-      "chance": 0.02
+      "chance": 1
     }
   ],
   "loot_tables": [
     "minecraft:chests/end_city_treasure"
   ],
-  "ring": "divineartifacts:div_crystal"
+  "item": "divineartifacts:div_crystal"
 }

@@ -25,7 +25,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.network.PacketDistributor;
 import nk.divineartifacts.config.ServerConfig;
-import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.network.PacketHandler;
 import nk.divineartifacts.network.S2CPacketData;
 import nk.divineartifacts.utils.Utils;
@@ -37,7 +37,7 @@ import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
 import static nk.divineartifacts.config.ServerConfig.ExtraDrops;
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.events.DivineHelper.*;
+import static nk.divineartifacts.utils.DivineHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DivineLuck {
@@ -47,7 +47,7 @@ public class DivineLuck {
 		if (!toggleExtraDrops()) return;
 		if (event.getAttackingPlayer() instanceof ServerPlayer player) {
 			if (!player.level().isClientSide) {
-				ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+				ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 				if (ring != null) {
 					int x = event.getDroppedExperience();
 					event.setDroppedExperience(x * 20);
@@ -61,7 +61,7 @@ public class DivineLuck {
 		if (!toggleExtraDrops()) return;
 		if (!configDivineRing.get()) return;
 		if (!(event.getSource().getEntity() instanceof ServerPlayer player) || player.level().isClientSide()) return;
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null) {
 			LivingEntity target = event.getEntity();
 			double bBox = target.getBoundingBox().getYsize();
@@ -101,7 +101,7 @@ public class DivineLuck {
 		if (!event.getLevel().isClientSide()) {
 			if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 			if (player.isCreative() || player.isSpectator()) return;
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			boolean handEmpty = player.getMainHandItem().isEmpty();
 			boolean container = event.getLevel().getBlockState(event.getPos()) instanceof Container;
 			BlockPos pos = event.getPos();
@@ -143,7 +143,7 @@ public class DivineLuck {
 		if (!(event.getLevel().isClientSide())) {
 			if (!(event.getPlayer() instanceof ServerPlayer player)) return;
 			if (player.isCreative() || player.isSpectator()) return;
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			ItemStack handItem = player.getMainHandItem();
 			boolean container = event.getLevel().getBlockState(event.getPos()) instanceof Container;
 			boolean blockEntity = event.getLevel().getBlockState(event.getPos()).hasBlockEntity();
@@ -188,7 +188,7 @@ public class DivineLuck {
 			if (player.isCreative() || player.isSpectator()) return;
 			long currentTime = System.currentTimeMillis();
 			long lastActionTime = lastActionTimes.getOrDefault(player.getUUID() , 0L);
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			ItemStack handItem = player.getMainHandItem();
 			BlockPos pos = event.getPos();
 			ServerLevel serverLevel = (ServerLevel) event.getLevel();
@@ -221,7 +221,7 @@ public class DivineLuck {
 			if (!(event.getEntity() instanceof Player)) return;
 			Player player = event.getEntity();
 			if (player.isCreative() || player.isSpectator()) return;
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			ItemStack handItem = player.getMainHandItem();
 			if (ring != null && isHandEmptyOrNotTool(handItem)) {
 				event.setCanceled(true);
@@ -237,7 +237,7 @@ public class DivineLuck {
 			Player player = event.getEntity();
 			if (player.isCreative() || player.isSpectator()) return;
 			ItemStack handItem = player.getMainHandItem();
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			if (ring != null && isHandEmptyOrNotTool(handItem)) {
 				event.setCanHarvest(true);
 			}
@@ -250,7 +250,7 @@ public class DivineLuck {
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
 		ItemStack handItem = player.getMainHandItem();
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null && isHandEmptyOrNotTool(handItem)) {
 			event.setNewSpeed( divBreakSpeed );
 		}

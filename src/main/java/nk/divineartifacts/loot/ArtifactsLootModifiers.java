@@ -13,43 +13,44 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.DivineArtifacts;
-import nk.divineartifacts.item.DiveGoldRing;
-import nk.divineartifacts.item.DivineCrystal;
+import nk.divineartifacts.item.ItemBaseClass;
+import nk.divineartifacts.item.old.DiveGoldRing;
+import nk.divineartifacts.item.old.DivineCrystal;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class ArtifactsLootModifiers  extends LootModifier {
+public class ArtifactsLootModifiers extends LootModifier {
 
 	public static final DeferredRegister<Codec<? extends IGlobalLootModifier>> REGISTER = DeferredRegister.create(ForgeRegistries.Keys.GLOBAL_LOOT_MODIFIER_SERIALIZERS , DivineArtifacts.MODID);
-	public static final RegistryObject<Codec< ArtifactsLootModifiers >> CODEC = REGISTER.register("add_item", () ->
+	public static final RegistryObject<Codec<ArtifactsLootModifiers>> CODEC = REGISTER.register("add_item" , () ->
 			RecordCodecBuilder.create(
 					inst -> LootModifier.codecStart(inst).and(
 							inst.group(
-									Codec.list(Codec.STRING).fieldOf("loot_tables").forGetter(m -> m.lootTables),
-									ForgeRegistries.ITEMS.getCodec().fieldOf("ring").forGetter(m -> m.item)
+									Codec.list(Codec.STRING).fieldOf("loot_tables").forGetter(m -> m.lootTables) ,
+									ForgeRegistries.ITEMS.getCodec().fieldOf("item").forGetter(m -> m.item)
 							)
-					).apply(inst, ArtifactsLootModifiers::new)
+					).apply(inst , ArtifactsLootModifiers::new)
 			)
 	);
 
 	public final List<String> lootTables;
-	public final Item item;
+	public final ItemBaseClass item;
 
-	public ArtifactsLootModifiers(LootItemCondition[] conditionsIn, List<String> lootTables, Item item) {
+	public ArtifactsLootModifiers(LootItemCondition[] conditionsIn , List<String> lootTables , Item item ) {
 		super(conditionsIn);
-		if(!(item instanceof DiveGoldRing || item instanceof DivineCrystal)) {
+		if (!(item instanceof DiveGoldRing || item instanceof DivineCrystal)) {
 			lootTables.clear();
 			throw new IllegalArgumentException("Provided item is not a item.");
 		}
 
 		this.lootTables = lootTables;
-		this.item =  item;
+		this.item = (ItemBaseClass) item;
 	}
 
 	@Override
-	protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot, LootContext context) {
-		if( lootTables.contains(context.getQueriedLootTableId().toString())) {
+	protected @NotNull ObjectArrayList<ItemStack> doApply(ObjectArrayList<ItemStack> generatedLoot , LootContext context) {
+		if (item.isEnabled.get() && lootTables.contains(context.getQueriedLootTableId().toString())) {
 			generatedLoot.add(new ItemStack(item));
 		}
 

@@ -18,5 +18,10 @@
     "sounds": [
       "divineartifacts:tablet"
     ]
+  },
+  "item_equip": {
+    "sounds": [
+      "divineartifacts:item_equip"
+    ]
   }
 }

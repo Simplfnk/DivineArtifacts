@@ -12,14 +12,14 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import nk.divineartifacts.config.ServerConfig;
-import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.events.DivineHelper.getAllCurioItems;
+import static nk.divineartifacts.utils.DivineHelper.getAllCurioItems;
 
 public class PlayerDivineHealth {
 
@@ -27,7 +27,7 @@ public class PlayerDivineHealth {
 	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
 		if (!ServerConfig.configDivineRing.get()) return;
 		Player player = event.getEntity();
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null) {
 			player.removeAllEffects();
 		}
@@ -38,7 +38,7 @@ public class PlayerDivineHealth {
 		if (!configDivineRing.get()) return;
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.isCreative() || player.isSpectator()) return;
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null) {
 			int baseX = player.getBlockX();
 			int baseY = player.getBlockY();

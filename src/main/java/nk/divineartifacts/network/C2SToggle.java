@@ -7,11 +7,11 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import nk.divineartifacts.item.DivineRingBase;
+import nk.divineartifacts.item.old.DivineRingBase;
 
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.events.DivineHelper.toggleMagnetNBT;
+import static nk.divineartifacts.utils.DivineHelper.toggleMagnetNBT;
 
 public class C2SToggle {
 	private final DivineRingBase item;

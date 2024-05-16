@@ -4,7 +4,7 @@ import nk.divineartifacts.config.ToggleAbilities;
 
 public class ToggleHelper {
 	public static boolean toggleMagnet() {
-		return ToggleAbilities.toggleMagnet.get();
+		return ToggleAbilities.toggleAttractorMagnet.get();
 	}
 	public static boolean toggleAoeDamage() {
 		return ToggleAbilities.toggleAoeDamage.get();

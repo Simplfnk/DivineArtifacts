@@ -20,13 +20,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.client.handler.ToggleHelper;
 import nk.divineartifacts.config.ServerConfig;
-import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.events.DivineHelper.applyKnockBack;
+import static nk.divineartifacts.utils.DivineHelper.applyKnockBack;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DivinePotionRemover {
@@ -35,7 +35,7 @@ public class DivinePotionRemover {
 		if (!ToggleHelper.toggleShield()) return;
 		if (event.getEntity() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			Entity attacker = event.getEffectSource();
 			MobEffectCategory effect = event.getEffectInstance().getEffect().getCategory();
 			if (ring != null && attacker instanceof LivingEntity && effect == MobEffectCategory.HARMFUL && !(attacker instanceof Player || attacker instanceof Warden || attacker instanceof ElderGuardian)) {
@@ -52,7 +52,7 @@ public class DivinePotionRemover {
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			String vx1 = EntityType.getKey(event.getEntity().getType()).toString();
-			if (Utils.isRingEquipped(ModItemGod.ringDivine.get() , player) && event.getEntity() instanceof Creeper || vx1.equals("alexsmobs:crimson_mosquito") || event.getEntity() instanceof Piglin) {
+			if (Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player) && event.getEntity() instanceof Creeper || vx1.equals("alexsmobs:crimson_mosquito") || event.getEntity() instanceof Piglin) {
 				event.setCanceled(true);
 			}
 		}
@@ -63,7 +63,7 @@ public class DivinePotionRemover {
 		if (!configDivineRing.get()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
-			boolean ring = Utils.isRingEquipped(ModItemGod.ringDivine.get() , player);
+			boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
 			if (ring && event.getEntity() instanceof Phantom phantom) {
 				phantom.kill();
 				event.setCanceled(true);
@@ -77,7 +77,7 @@ public class DivinePotionRemover {
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null && !player.onGround()) {
 			event.setNewSpeed(Math.max(event.getNewSpeed() , event.getOriginalSpeed() * 5.0F));
 		}
@@ -89,7 +89,7 @@ public class DivinePotionRemover {
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null && player.isInFluidType() && !(player.onGround())) {
 			event.setNewSpeed(Math.max(event.getNewSpeed() , event.getOriginalSpeed() * 20.0F));
 		}

@@ -11,7 +11,7 @@ import net.minecraft.world.item.Items;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import nk.divineartifacts.config.ServerConfig;
-import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 public class PlayerDivineDeath {
@@ -20,7 +20,7 @@ public class PlayerDivineDeath {
 		if ( ! ServerConfig.configDivineRing.get() ) return;
 		if ( ! ( event.getEntity( ) instanceof ServerPlayer player ) ) return;
 		if ( player.isCreative( ) || player.isSpectator( ) ) return;
-		ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get( ) , player );
+		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get( ) , player );
 		if ( ring != null ) {
 			event.setCanceled( true );
 			player.awardStat( Stats.ITEM_USED.get( Items.TOTEM_OF_UNDYING ) );

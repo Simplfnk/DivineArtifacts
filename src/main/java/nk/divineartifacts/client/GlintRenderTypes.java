@@ -9,7 +9,9 @@ public enum GlintRenderTypes {
     GREEN("green"),
     RED("red"),
     WHITE("white"),
-	DARK("dark");
+	DARK("dark"),
+	LORE("lore"),
+	ATTRACTOR("attractor");
 
 	public final String name;
 

@@ -11,11 +11,11 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.config.ServerConfig;
-import nk.divineartifacts.init.ModItemGod;
+import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
-import static nk.divineartifacts.events.DivineHelper.*;
+import static nk.divineartifacts.utils.DivineHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerDivineUno {
@@ -25,7 +25,7 @@ public class PlayerDivineUno {
 		if (!toggleShield()) return;
 		if (event.getEntity() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
-			ItemStack ring = Utils.getFirstCurio(ModItemGod.ringDivine.get() , player);
+			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 			DamageSource damageSource = event.getSource();
 			String entName1 = event.getSource().getEntity() != null ? event.getSource().getEntity().getDisplayName().getString() : "";
 			String entName2 = event.getSource().getDirectEntity() != null ? event.getSource().getDirectEntity().getDisplayName().getString() : "";
