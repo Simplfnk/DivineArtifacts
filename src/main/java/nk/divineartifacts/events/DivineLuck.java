@@ -37,7 +37,7 @@ import static nk.divineartifacts.client.handler.ToggleHelper.toggleBlockBreak;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleExtraDrops;
 import static nk.divineartifacts.config.ServerConfig.ExtraDrops;
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.utils.DivineHelper.*;
+import static nk.divineartifacts.utils.UtilsHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DivineLuck {

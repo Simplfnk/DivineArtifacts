@@ -11,7 +11,7 @@ import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
 import static nk.divineartifacts.config.ServerConfig.*;
-import static nk.divineartifacts.utils.DivineHelper.lastActionTimes;
+import static nk.divineartifacts.utils.UtilsHelper.lastActionTimes;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class GreatAttractorEvent {

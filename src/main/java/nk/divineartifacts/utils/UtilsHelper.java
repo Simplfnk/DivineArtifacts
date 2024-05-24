@@ -42,7 +42,7 @@ import java.util.*;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 
-public class DivineHelper {
+public class UtilsHelper {
 	public static final HashMap<UUID, Long> lastActionTimes = new HashMap<>();
 	public static final Set<Entity> processingEntities = Collections.newSetFromMap(new HashMap<>());
 	public static final List<String> Names = new ArrayList<>();

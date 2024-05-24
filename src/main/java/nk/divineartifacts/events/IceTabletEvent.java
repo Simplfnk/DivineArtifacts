@@ -30,7 +30,7 @@ import java.util.UUID;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleHudElements;
 import static nk.divineartifacts.config.ServerConfig.*;
-import static nk.divineartifacts.utils.DivineHelper.*;
+import static nk.divineartifacts.utils.UtilsHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class IceTabletEvent {

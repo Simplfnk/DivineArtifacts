@@ -11,7 +11,7 @@ import nk.divineartifacts.item.old.DivineRingBase;
 
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.utils.DivineHelper.toggleMagnetNBT;
+import static nk.divineartifacts.utils.UtilsHelper.toggleMagnetNBT;
 
 public class C2SToggle {
 	private final DivineRingBase item;

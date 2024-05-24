@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.utils.DivineHelper.getAllCurioItems;
+import static nk.divineartifacts.utils.UtilsHelper.getAllCurioItems;
 
 public class PlayerDivineHealth {
 

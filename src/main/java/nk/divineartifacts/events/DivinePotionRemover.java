@@ -26,7 +26,7 @@ import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
 import static nk.divineartifacts.config.ServerConfig.configDivineRing;
-import static nk.divineartifacts.utils.DivineHelper.applyKnockBack;
+import static nk.divineartifacts.utils.UtilsHelper.applyKnockBack;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class DivinePotionRemover {

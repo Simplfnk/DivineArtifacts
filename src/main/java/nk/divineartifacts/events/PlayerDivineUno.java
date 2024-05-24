@@ -15,7 +15,7 @@ import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
-import static nk.divineartifacts.utils.DivineHelper.*;
+import static nk.divineartifacts.utils.UtilsHelper.*;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class PlayerDivineUno {

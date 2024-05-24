@@ -16,14 +16,14 @@ import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.Keybindings;
 import nk.divineartifacts.config.ToggleAbilities;
 import nk.divineartifacts.init.ModItems;
-import nk.divineartifacts.utils.DivineHelper;
+import nk.divineartifacts.utils.UtilsHelper;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
 import static nk.divineartifacts.config.ToggleAbilities.TogSunShield;
 import static nk.divineartifacts.config.ToggleAbilities.togGaiaBlessing;
-import static nk.divineartifacts.utils.DivineHelper.playTogOffSound;
-import static nk.divineartifacts.utils.DivineHelper.playTogOnSound;
+import static nk.divineartifacts.utils.UtilsHelper.playTogOffSound;
+import static nk.divineartifacts.utils.UtilsHelper.playTogOnSound;
 
 @Mod.EventBusSubscriber(modid = DivineArtifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
 
@@ -67,7 +67,7 @@ public class ClientForgeHandler {
 				ToggleAbilities.toggleAttractorMagnet.set(false);
 				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(magnet.append(off) , true);
-				DivineHelper.playTogOffSound(player);
+				UtilsHelper.playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleAttractorMagnet.set(true);
@@ -82,7 +82,7 @@ public class ClientForgeHandler {
 				ToggleAbilities.toggleAttractorMagnet.set(false);
 				ToggleAbilities.ClientSpec.save();
 				player.displayClientMessage(magnet2.append(off2) , true);
-				DivineHelper.playTogOffSound(player);
+				UtilsHelper.playTogOffSound(player);
 			}
 			else {
 				ToggleAbilities.toggleAttractorMagnet.set(true);
