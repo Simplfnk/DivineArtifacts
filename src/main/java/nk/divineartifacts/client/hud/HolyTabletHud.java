@@ -27,7 +27,7 @@ public class HolyTabletHud {
 		RenderSystem.setShaderTexture(0 , sunOn);
 		RenderSystem.setShaderTexture(0 , sunOff);
 		Player player = Minecraft.getInstance().player;
-		boolean item = Utils.isRingEquipped(ModItems.HOLY_TABLET.get() , player);
+		boolean item = Utils.isItemEquipped(ModItems.HOLY_TABLET.get() , player);
 		int size = 16;
 		int xCord = 4;
 		int yCord = height / 2 - size * 4;

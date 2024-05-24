@@ -11,7 +11,7 @@ import java.util.Optional;
 
 public class Utils {
 
-    public static boolean isRingEquipped(ItemBaseClass ring, LivingEntity player) {
+    public static boolean isItemEquipped(ItemBaseClass ring, LivingEntity player) {
         return getFirstCurio( ring , player) != null;
     }
 

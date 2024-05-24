@@ -14,7 +14,7 @@ versionRange="${forge_version_range}" #mandatory
 ordering="NONE"
 side="BOTH"# Here's another dependency
 [[mixins]]
-config="mixins.divineartifacts.json"
+config="divineartifacts.mixins.json"
 
 [[dependencies."${mod_id}"]]
 modId="curios"

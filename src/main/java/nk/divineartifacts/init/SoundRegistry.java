@@ -17,6 +17,8 @@ public class SoundRegistry {
     public static RegistryObject<SoundEvent> TOG_OFF = registerSoundEvent("tog_off");
     public static RegistryObject<SoundEvent> TABLET = registerSoundEvent("tablet");
     public static RegistryObject<SoundEvent> ITEM_EQUIP = registerSoundEvent("item_equip");
+    public static RegistryObject<SoundEvent> HOLY_START = registerSoundEvent("holy_start");
+    public static RegistryObject<SoundEvent> HOLY_ATTACK = registerSoundEvent("holy_attack");
     private static RegistryObject<SoundEvent> registerSoundEvent(String name) {
         return SOUND_EVENTS.register(name, () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(DivineArtifacts.MODID, name)));
 

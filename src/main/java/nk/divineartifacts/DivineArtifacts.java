@@ -36,9 +36,9 @@ public class DivineArtifacts {
 					.title(Component.translatable("itemGroup" + DivineArtifacts.MODID))
 					.icon(() -> new ItemStack(ModItems.DIVINE_RING.get()))
 					.displayItems((params , output) -> {
-						for (Item entOne : ModItems.AllITEMS) {
-							if (entOne instanceof ItemBaseClass i && i.isEnabled.get()) {
-								output.accept(entOne);
+						for (Item item : ModItems.AllITEMS) {
+							if (item instanceof ItemBaseClass i && i.isEnabled.get()) {
+								output.accept(item);
 							}
 						}
 					})
@@ -65,6 +65,9 @@ public class DivineArtifacts {
 		MinecraftForge.EVENT_BUS.register(new DeadKingHeartEvent());
 		MinecraftForge.EVENT_BUS.register(new GreatAttractorEvent());
 		MinecraftForge.EVENT_BUS.register(new HeartOfKnowledgeEvent());
+		MinecraftForge.EVENT_BUS.register(new HolyTabletEvent());
+		MinecraftForge.EVENT_BUS.register(new FireTabletEvent());
+		MinecraftForge.EVENT_BUS.register(new IceTabletEvent());
 		MinecraftForge.EVENT_BUS.register(this);
 
 	}

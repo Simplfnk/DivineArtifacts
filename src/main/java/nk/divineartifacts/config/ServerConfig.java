@@ -166,6 +166,45 @@ public class ServerConfig {
 	public static IntValue ValNatureGrowthCost;
 	public static IntValue ValNatureGrowthTickDelay;
 	public static IntValue ValNatureGrowthRang;
+	public static IntValue TogNaturePoisonImmunityCost;
+
+	//================================== Fire Tablet
+
+	public static BooleanValue TogFireTablet;
+	public static BooleanValue TogFirTabFireMagicResist;
+	public static BooleanValue TogFirTabFireSpellPower;
+	public static BooleanValue TogFirTabCoolDonReduction;
+	public static BooleanValue TogFirTabIceMagicResist;
+	public static BooleanValue TogFirTabFireImmunity;
+	public static BooleanValue TogFirTabLavaSpeed;
+	public static BooleanValue TogFirTabMiningSpeed;
+	public static BooleanValue TogFirTabLavaVision;
+	public static BooleanValue TogFirTabExtraFirePowerSpell;
+
+
+	public static IntValue ValFirTabFireMagicResist;
+	public static IntValue ValFirTabFireSpellPower;
+	public static IntValue ValFirTabCoolDonReduction;
+	public static IntValue valFirTabIceMagicResist;
+	public static IntValue valFirTabExtraFirePowerSpell;
+
+	//================================== Ice Tablet
+	public static BooleanValue TogIceTablet;
+	public static BooleanValue TogIceTabICE_MAGIC_RESIST;
+	public static BooleanValue TogIceTabICE_SPELL_POWER;
+	public static BooleanValue TogIceTabMAX_MANA;
+	public static BooleanValue TogIceTabNATURE_MAGIC_RESIST;
+	public static BooleanValue TogIceTabExtraIceSpellPower;
+	public static BooleanValue TogIceTabFreezingImmunity;
+	public static BooleanValue TogIceTabWaterVision;
+	public static BooleanValue TogIceTabIceSpeed;
+	public static BooleanValue TogIceTabIceMiningSpeed;
+
+	public static IntValue valIceTabICE_MAGIC_RESIST;
+	public static IntValue valIceTabICE_SPELL_POWER;
+	public static IntValue valIceTabMAX_MANA;
+	public static IntValue valIceTabNATURE_MAGIC_RESIST;
+	public static IntValue valIceTabExtraIceSpellPower;
 
 	public static class serverConfig {
 		public serverConfig(final ForgeConfigSpec.Builder builder) {
@@ -175,19 +214,56 @@ public class ServerConfig {
 			togCrystal = BUILDER.comment("Disable/Enable crystal").define("Miscellaneous.Crystal.Crystal " , true);
 
 			//================================== Nature Tablet
+			TogIceTablet = BUILDER.worldRestart().comment("Disable/Enable Ice Tablet").define("Tablets.Ice Tablet.Nature Tablet " , true);
+			TogIceTabICE_MAGIC_RESIST = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Ice Tablet.Toggle Attribute.\u00A7a Ice Magic Resistance" , true);
+			TogIceTabICE_SPELL_POWER = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Ice Tablet.Toggle Attribute.\u00A7a Ice Spell Power" , true);
+			TogIceTabMAX_MANA= BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Ice Tablet.Toggle Attribute.\u00A7a Max Mana" , true);
+			TogIceTabNATURE_MAGIC_RESIST= BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Ice Tablet.Toggle Attribute.\u00A7c Nature Magic Resistance" , true);
+			TogIceTabExtraIceSpellPower= BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Ice Tablet.Toggle Abilities.\u00A7a Extra Ice Spell Power" , true);
+			TogIceTabFreezingImmunity= BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Ice Tablet.Toggle Abilities.\u00A7a Freezing Immunity" , true);
+			TogIceTabWaterVision= BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Ice Tablet.Toggle Abilities.\u00A7a Water Vision" , true);
+			TogIceTabIceSpeed= BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Ice Tablet.Toggle Abilities.\u00A7a SPeed Move Movement in water" , true);
+			TogIceTabIceMiningSpeed= BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Ice Tablet.Toggle Abilities.\u00A7a Mining Speed In Water and Cold Biomes" , true);
+
+			valIceTabICE_MAGIC_RESIST= BUILDER.comment("Attribute Value").defineInRange("Tablets.Ice Tablet.Value.\u00A7a Ice Magic Resistance %" , 15 , 1 , 1000);
+			valIceTabICE_SPELL_POWER = BUILDER.comment("Attribute Value").defineInRange("Tablets.Ice Tablet.Value.\u00A7a Ice Spell Power %" , 30 , 1 , 1000);
+			valIceTabMAX_MANA= BUILDER.comment("Attribute Value").defineInRange("Tablets.Ice Tablet.Value.\u00A7a Max Mana Points" , 8 , 1 , 1000);
+			valIceTabNATURE_MAGIC_RESIST= BUILDER.comment("Attribute Value").defineInRange("Tablets.Ice Tablet.Value.\u00A7c Nature Magic Resistance %" , 70 , 1 , 1000);
+			valIceTabExtraIceSpellPower= BUILDER.comment("Attribute Value").defineInRange("Tablets.Ice Tablet.Value.\u00A7a Extra Ice Spell Power In Cold Biomes %" , 20 , 1 , 1000);
+
+			//================================== Nature Tablet
+			TogFireTablet = BUILDER.worldRestart().comment("Disable/Enable Nature Tablet").define("Tablets.Fire Tablet.Nature Tablet " , true);
+			TogFirTabFireMagicResist = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Fire Tablet.Toggle Attribute.\u00A7a Fire Magic Resistance" , true);
+			TogFirTabFireSpellPower = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Fire Tablet.Toggle Attribute.\u00A7a Fire Spell Power" , true);
+			TogFirTabCoolDonReduction = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Fire Tablet.Toggle Attribute.\u00A7a CoolDown Reduction" , true);
+			TogFirTabIceMagicResist = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Fire Tablet.Toggle Attribute.\u00A7c Ice Magic Resistance" , true);
+			TogFirTabFireImmunity = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Fire Tablet.Toggle Abilities.\u00A7a Fire immunity" , true);
+			TogFirTabLavaSpeed = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Fire Tablet.Toggle Abilities.\u00A7a Fast Movement In Lava" , true);
+			TogFirTabMiningSpeed = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Fire Tablet.Toggle Abilities.\u00A7a Fast Mining In Lava" , true);
+			TogFirTabLavaVision = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Fire Tablet.Toggle Abilities.\u00A7a Lava Vision" , true);
+			TogFirTabExtraFirePowerSpell = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Fire Tablet.Toggle Abilities.\u00A7a Extra Fire Spell Power In Lava" , true);
+
+			ValFirTabFireMagicResist = BUILDER.comment("Attribute Value").defineInRange("Tablets.Fire Tablet.Value.\u00A7a Fire Magic Resistance %" , 15 , 1 , 1000);
+			ValFirTabFireSpellPower = BUILDER.comment("Attribute Value").defineInRange("Tablets.Fire Tablet.Value.\u00A7a Fire Spell Power %" , 30 , 1 , 1000);
+			ValFirTabCoolDonReduction = BUILDER.comment("Attribute Value").defineInRange("Tablets.Fire Tablet.Value.\u00A7a CoolDown Reduction %" , 8 , 1 , 1000);
+			valFirTabIceMagicResist = BUILDER.comment("Attribute Value").defineInRange("Tablets.Fire Tablet.Value.\u00A7c Ice Magic Resistance %" , 70 , 1 , 1000);
+			valFirTabExtraFirePowerSpell = BUILDER.comment("Attribute Value").defineInRange("Tablets.Fire Tablet.Value.\u00A7a Extra Fire Spell Power In Lava %" , 20 , 1 , 1000);
+
+			//================================== Nature Tablet
 			TogNatureTablet = BUILDER.worldRestart().comment("Disable/Enable Nature Tablet").define("Tablets.Nature Tablet.Nature Tablet " , true);
 			TogNatureMagicResist = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Nature Tablet.Toggle Attribute.\u00A7a Nature Magic Resistance" , true);
-			TogNatureSpellPower = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Nature Tablet.Toggle Attribute.\u00A7a Nature Magic Resistance" , true);
+			TogNatureSpellPower = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Nature Tablet.Toggle Attribute.\u00A7a Nature Spell Power" , true);
 			TogNatureFireResist = BUILDER.comment("Toggle On/Off Attribute").define("Tablets.Nature Tablet.Toggle Attribute.\u00A7c Fire Magic Resistance" , true);
 			TogNaturePoisonImmunity = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Nature Tablet.Toggle Abilities.\u00A7a Poison Immunity" , true);
 			TogNaturePlantGrowth = BUILDER.comment("Toggle On/Off Abilities").define("Tablets.Nature Tablet.Toggle Abilities.\u00A7a Gaia Blessing" , true);
 
 			ValNatureMagicResist = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Nature Magic Resistance %" , 15 , 1 , 1000);
-			ValNatureSpellPower = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Nature Magic Resistance %" , 30 , 1 , 1000);
+			ValNatureSpellPower = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Nature Spell Power %" , 30 , 1 , 1000);
 			ValNatureFireResist = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7c Fire Magic Resist Reduction %" , 60 , 1 , 1000);
-			ValNatureGrowthCost = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Mana Cost" , 1 , 1 , 100);
-			ValNatureGrowthTickDelay = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Delay" , 6 , 1 , 1000);
-			ValNatureGrowthRang = BUILDER.comment("Attribute Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Range" , 6 , 1 , 100);
+			ValNatureGrowthCost = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Mana Cost" , 1 , 1 , 100);
+			ValNatureGrowthTickDelay = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Delay" , 6 , 1 , 1000);
+			ValNatureGrowthRang = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Range" , 6 , 1 , 100);
+			TogNaturePoisonImmunityCost = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7c Poison Immunity Cost" , 5 , 1 , 1000);
 			//================================== Ender Tablet
 
 			TogEnderTablet = BUILDER.worldRestart().comment("Disable/Enable Ender Tablet").define("Tablets.Ender Tablet.Ender Tablet " , true);
@@ -223,8 +299,8 @@ public class ServerConfig {
 			ValHlyTabEvocationMagicResist = BUILDER.comment("Attribute Value").defineInRange("Tablets.Holy Tablet.Value.\u00A7cEvocation Magic Resist Reduction %" , 80 , 1 , 1000);
 
 			ValHlyTabFireDuration = BUILDER.comment("Duration of the mob being on fire in second").defineInRange("Tablets.Holy Tablet.Value.\u00A7a The Fire duration" , 10 , 1 , 1000);
-			ValHlyTabSunFireRange = BUILDER.comment("Range in which the mob will be set on fire").defineInRange("Tablets.Holy Tablet.Value.\u00A7a The range of setting mobs on fire %" , 6 , 1 , 1000);
-			ValHlyTabSunKnockRange = BUILDER.comment("Range in which the mob will be knocked back").defineInRange("Tablets.Holy Tablet.Value.\u00A7a The range of Knocking back mobs %" , 6 , 1 , 1000);
+			ValHlyTabSunFireRange = BUILDER.comment("Range in which the mob will be set on fire").defineInRange("Tablets.Holy Tablet.Value.\u00A7a The range of setting mobs on fire %" , 10 , 1 , 1000);
+			ValHlyTabSunKnockRange = BUILDER.comment("Range in which the mob will be knocked back").defineInRange("Tablets.Holy Tablet.Value.\u00A7a The range of Knocking back mobs %" , 10 , 1 , 1000);
 			ValHlyTabSunKnockChance = BUILDER.comment("Chance of the knock-back effect").defineInRange("Tablets.Holy Tablet.Value.\u00A7a Chance of the knock-back %" , 5 , 1 , 1000);
 			ValHlyTabSunKnockCost = BUILDER.comment("Cost of the knock-back for every mob in Mana").defineInRange("Tablets.Holy Tablet.Value.\u00A7c Cost of the knock-back %" , 5 , 1 , 1000);
 			ValHlyTabSunFireCost = BUILDER.comment("Cost of the fire for every mob in Mana\"").defineInRange("Tablets.Holy Tablet.Value.\u00A7c Cost of setting mobs on fire %" , 5 , 1 , 1000);

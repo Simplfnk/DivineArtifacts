@@ -1,7 +1,6 @@
 package nk.divineartifacts.utils;
 
 import com.google.common.base.Predicate;
-import io.redspace.ironsspellbooks.api.magic.MagicData;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceKey;
@@ -23,13 +22,12 @@ import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
 import net.minecraft.world.entity.monster.Enemy;
-import net.minecraft.world.entity.monster.Phantom;
-import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.entity.npc.AbstractVillager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.biome.Biome;
+import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -42,15 +40,30 @@ import top.theillusivec4.curios.api.type.ISlotType;
 import java.util.*;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.config.ServerConfig.configDivineRing;
 
 public class DivineHelper {
 	public static final HashMap<UUID, Long> lastActionTimes = new HashMap<>();
 	public static final Set<Entity> processingEntities = Collections.newSetFromMap(new HashMap<>());
 	public static final List<String> Names = new ArrayList<>();
 	public static final List<ResourceKey<DamageType>> ELEMENT_DAMAGE = new ArrayList<>();
+	public static final List<ResourceKey<DamageType>> FIRE_DAMAGE_TYPE = new ArrayList<>();
+	public static final List<ResourceKey<DamageType>> ICE_DAMAGE_TYPE = new ArrayList<>();
+	public static final Set<ResourceKey<Biome>> Biomes_To_Check = new HashSet<>();
 	public static final Set<TagKey<Item>> curioTags = Set.of(ItemTags.create(new ResourceLocation("artifacts" , "artifacts")));
 	public static final List<String> banItemList = new ArrayList<>();
+	static {
+		Biomes_To_Check.add(Biomes.DEEP_FROZEN_OCEAN);
+		Biomes_To_Check.add(Biomes.FROZEN_OCEAN);
+		Biomes_To_Check.add(Biomes.FROZEN_RIVER);
+		Biomes_To_Check.add(Biomes.FROZEN_PEAKS);
+		Biomes_To_Check.add(Biomes.SNOWY_TAIGA);
+		Biomes_To_Check.add(Biomes.SNOWY_BEACH);
+		Biomes_To_Check.add(Biomes.SNOWY_PLAINS);
+		Biomes_To_Check.add(Biomes.SNOWY_SLOPES);
+		Biomes_To_Check.add(Biomes.JAGGED_PEAKS);
+		Biomes_To_Check.add(Biomes.ICE_SPIKES);
+	}
 
 	static {
 		ELEMENT_DAMAGE.add(DamageTypes.IN_FIRE);
@@ -59,6 +72,15 @@ public class DivineHelper {
 		ELEMENT_DAMAGE.add(DamageTypes.HOT_FLOOR);
 		ELEMENT_DAMAGE.add(DamageTypes.CACTUS);
 		ELEMENT_DAMAGE.add(DamageTypes.EXPLOSION);
+	}
+	static {
+		FIRE_DAMAGE_TYPE.add(DamageTypes.IN_FIRE);
+		FIRE_DAMAGE_TYPE.add(DamageTypes.ON_FIRE);
+		FIRE_DAMAGE_TYPE.add(DamageTypes.LAVA);
+		FIRE_DAMAGE_TYPE.add(DamageTypes.HOT_FLOOR);
+	}
+	static {
+		ICE_DAMAGE_TYPE.add(DamageTypes.FREEZE);
 	}
 
 	static {
@@ -363,40 +385,6 @@ public class DivineHelper {
 			float distToPlayer = entity.distanceTo(player);
 			Vec3 vec = new Vec3(entity.getX() - player.getX() , entity.getY() - player.getY() , entity.getZ() - player.getZ());
 			entity.push(vec.x * 2 / distToPlayer , vec.y * 2 / distToPlayer , vec.z * 2 / distToPlayer);
-		}
-	}
-	public static void getEntityNearPlayer(Player player) {
-		float mana = MagicData.getPlayerMagicData(player).getMana();
-		Random random = new Random();
-		int chance = random.nextInt(99) + 1;
-		int NockBackChance = ValHlyTabSunKnockChance.get();
-		int fireRange = ValHlyTabSunFireRange.get();
-		int KnockBackRange = ValHlyTabSunKnockRange.get();
-		int FireManaCost = ValHlyTabSunFireCost.get();
-		int KnockBackManaCost = ValHlyTabSunKnockCost.get();
-		int FireDuration = ValHlyTabFireDuration.get();
-		List<Entity> nearbyEntities = player.level().getEntities(null , player.getBoundingBox().inflate(fireRange));
-		for (Entity entity : nearbyEntities) {
-			if (mana >= 1 && entity instanceof LivingEntity mobs && (mobs instanceof Zombie || mobs instanceof Skeleton || mobs instanceof Phantom)) {
-				if (processingEntities.contains(entity)) {
-					return;
-				}
-				try {
-					processingEntities.add(mobs);
-					if (!mobs.isOnFire() && mana >= FireManaCost) {
-						mobs.setSecondsOnFire(FireDuration);
-						MagicData.getPlayerMagicData(player).setMana(mana - FireManaCost);
-						mobs.addEffect(new MobEffectInstance(MobEffects.GLOWING , (FireDuration * 20) , 1 , false , false));
-					}
-					if (mobs.distanceTo(player) <= KnockBackRange && chance <= NockBackChance && mana >= KnockBackManaCost) {
-						HolyTabApplyKnockBack(player , mobs);
-						MagicData.getPlayerMagicData(player).setMana(mana - KnockBackManaCost);
-					}
-				} finally {
-					processingEntities.remove(mobs);
-				}
-			}
-
 		}
 	}
 

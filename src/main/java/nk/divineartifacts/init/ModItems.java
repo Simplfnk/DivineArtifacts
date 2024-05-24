@@ -114,18 +114,18 @@ public class ModItems {
 			)
 	);
 	public static final RegistryObject<ItemBaseClass> FIRE_TABLET = register(
-			"fire_tablet" , () -> new FireTabletBase(
+			"fire_tablet" , () -> new FireTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> true ,
+					() -> TogFireTablet.get() ,
 					GlintRenderTypes.ORANGE
 			)
 	);
 	public static final RegistryObject<ItemBaseClass> ICE_TABLET = register(
-			"ice_tablet" , () -> new IceTabletBase(
+			"ice_tablet" , () -> new IceTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> true ,
+					() -> TogIceTablet.get() ,
 					GlintRenderTypes.AQUA
 			)
 	);
@@ -173,7 +173,7 @@ public class ModItems {
 			"heart_of_knowledge" , () -> new HeartOfKnowledge(
 					new Item.Properties() ,
 					"" ,
-					() -> TogGreatAttractor.get() ,
+					() -> true ,
 					GlintRenderTypes.LORE
 			)
 	);

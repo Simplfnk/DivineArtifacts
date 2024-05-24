@@ -15,8 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.Keybindings;
 import nk.divineartifacts.config.ToggleAbilities;
-import nk.divineartifacts.utils.DivineHelper;
 import nk.divineartifacts.init.ModItems;
+import nk.divineartifacts.utils.DivineHelper;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
@@ -41,8 +41,8 @@ public class ClientForgeHandler {
 	public static void setToggleMagnet(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
-		boolean attractor = Utils.isRingEquipped(ModItems.GREAT_ATTRACTOR.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean attractor = Utils.isItemEquipped(ModItems.GREAT_ATTRACTOR.get() , player);
 		MutableComponent magnet = Component.translatable("tooltip." + DivineArtifacts.MODID + ".magnet")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
@@ -98,8 +98,8 @@ public class ClientForgeHandler {
 	public static void setToggleExplodeKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
-		boolean nature = Utils.isRingEquipped(ModItems.NATURE_TABLET.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean nature = Utils.isItemEquipped(ModItems.NATURE_TABLET.get() , player);
 		MutableComponent aio = Component.translatable("tooltip." + DivineArtifacts.MODID + ".explode")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
@@ -119,7 +119,7 @@ public class ClientForgeHandler {
 		MutableComponent off2 = Component.translatable("off." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff3));
-		if (ring || nature && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
+		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			if (toggleAoeDamage()) {
 				ToggleAbilities.toggleAoeDamage.set(false);
 				ToggleAbilities.ClientSpec.save();
@@ -132,6 +132,8 @@ public class ClientForgeHandler {
 				player.displayClientMessage(aio.append(on) , true);
 				playTogOnSound(player);
 			}
+		}
+		if (nature && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			if (togGaiaBlessing.get()) {
 				ToggleAbilities.togGaiaBlessing.set(false);
 				ToggleAbilities.ClientSpec.save();
@@ -151,7 +153,7 @@ public class ClientForgeHandler {
 	public static void toggleGaiaBlessing(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean nature = Utils.isRingEquipped(ModItems.NATURE_TABLET.get() , player);
+		boolean nature = Utils.isItemEquipped(ModItems.NATURE_TABLET.get() , player);
 		MutableComponent gaia = Component.translatable("gaia.blessing." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor3));
@@ -182,7 +184,7 @@ public class ClientForgeHandler {
 	public static void setToggleShieldKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		MutableComponent shield = Component.translatable("tooltip." + DivineArtifacts.MODID + ".shield")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
@@ -211,7 +213,7 @@ public class ClientForgeHandler {
 	public static void onToggleShield(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean tablet = Utils.isRingEquipped(ModItems.HOLY_TABLET.get() , player);
+		boolean tablet = Utils.isItemEquipped(ModItems.HOLY_TABLET.get() , player);
 		TextColor title = TextColor.fromRgb(0xFFD700);
 		TextColor con = TextColor.fromRgb(0xFDE7A4);
 		TextColor cof = TextColor.fromRgb(0xFF6B6B);
@@ -243,7 +245,7 @@ public class ClientForgeHandler {
 	public static void setToggleBlockBreakKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		MutableComponent blockBreak = Component.translatable("tooltip." + DivineArtifacts.MODID + ".blockbreak")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
@@ -272,7 +274,7 @@ public class ClientForgeHandler {
 	public static void setToggleExtraLootKey(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		MutableComponent extraDrops = Component.translatable("tooltip." + DivineArtifacts.MODID + ".drops")
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(magnetColor));
@@ -302,7 +304,7 @@ public class ClientForgeHandler {
 	public static void toggleAllAbilitiesOn(TickEvent.ClientTickEvent event) {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOn.consumeClick() && player != null) {
 			ToggleAbilities.toggleAttractorMagnet.set(true);
 			ToggleAbilities.toggleAoeDamage.set(true);
@@ -318,7 +320,7 @@ public class ClientForgeHandler {
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		ItemStack stack = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
+		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
 			ToggleAbilities.toggleAttractorMagnet.set(false);
 			ToggleAbilities.toggleAoeDamage.set(false);
@@ -329,25 +331,7 @@ public class ClientForgeHandler {
 			ToggleAbilities.ClientSpec.save();
 		}
 	}
-	@SubscribeEvent
-	public static void showAbilitiesState(TickEvent.ClientTickEvent event) {
-		Minecraft minecraft = Minecraft.getInstance();
-		Player player = minecraft.player;
-		boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
-		if (ring && Keybindings.INSTANCE.showRingState.consumeClick() && player != null) {
-			if (toggleHudElements()) {
-				ToggleAbilities.toggleHudElements.set(false);
-				ToggleAbilities.ClientSpec.save();
-				playTogOffSound(player);
-			}
-			else {
-				ToggleAbilities.toggleHudElements.set(true);
-				playTogOnSound(player);
-				ToggleAbilities.ClientSpec.save();
-			}
 
-		}
-	}
 	//	@SubscribeEvent
 //	public static void addNbtOnKeyPressed(TickEvent.ClientTickEvent event) {
 //		Minecraft minecraft = Minecraft.getInstance();

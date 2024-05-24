@@ -26,7 +26,7 @@ public class GaiaBlessingAbilities {
 		RenderSystem.setShaderTexture(0 , growthOn);
 		RenderSystem.setShaderTexture(0 , growthOff);
 		Player player = Minecraft.getInstance().player;
-		boolean natureTablet = Utils.isRingEquipped(ModItems.NATURE_TABLET.get() , player);
+		boolean natureTablet = Utils.isItemEquipped(ModItems.NATURE_TABLET.get() , player);
 		int size = 16;
 		int xCord = 4;
 		int yCord = height / 2 - size * 4;

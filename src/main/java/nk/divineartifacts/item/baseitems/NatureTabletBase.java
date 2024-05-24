@@ -289,7 +289,8 @@ public class NatureTabletBase extends ItemBaseClass {
 		MutableComponent valMR = Component.literal("  + " + ValNatureMagicResist.get() + "% ").withStyle(s -> s.withColor(Value));
 		MutableComponent valSP = Component.literal("  + " + ValNatureSpellPower.get() + "% ").withStyle(s -> s.withColor(Value));
 		MutableComponent valFR = Component.literal("  - " + ValNatureFireResist.get() + "% ").withStyle(s -> s.withColor(negValue));
-
+		MutableComponent ValPoCost = Component.literal(TogNaturePoisonImmunityCost.get().toString()).withStyle(s -> s.withColor(neg2));
+		MutableComponent mana = Component.translatable("fire.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 		MutableComponent Abi1 = Component.translatable("nature.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
 		MutableComponent Range = Component.translatable("nature.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent Block = Component.translatable("nature.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
@@ -310,7 +311,7 @@ public class NatureTabletBase extends ItemBaseClass {
 				tooltip.add(Component.literal(""));
 			}
 			if (TogNaturePoisonImmunity.get()) {
-				tooltip.add(Abi2);
+				tooltip.add(Abi2.append(spacer).append(Cost.append(ValPoCost).append(mana)));
 				tooltip.add(Component.literal(""));
 			}
 		}

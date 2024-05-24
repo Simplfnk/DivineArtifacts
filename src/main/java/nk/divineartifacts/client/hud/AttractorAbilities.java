@@ -27,7 +27,7 @@ public class AttractorAbilities {
 		RenderSystem.setShaderTexture(0 , magOn);
 		RenderSystem.setShaderTexture(0 , magOff);
 		Player player = Minecraft.getInstance().player;
-		boolean attractor = Utils.isRingEquipped(ModItems.GREAT_ATTRACTOR.get() , player);
+		boolean attractor = Utils.isItemEquipped(ModItems.GREAT_ATTRACTOR.get() , player);
 		int size = 16;
 		int xCord = 4;
 		int yCord = height / 2 - size * 4;

@@ -23,5 +23,15 @@
     "sounds": [
       "divineartifacts:item_equip"
     ]
+  },
+  "holy_attack": {
+    "sounds": [
+      "divineartifacts:holy_attack"
+    ]
+  },
+  "holy_start": {
+    "sounds": [
+      "divineartifacts:holy_start"
+    ]
   }
 }

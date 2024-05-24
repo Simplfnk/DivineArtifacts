@@ -207,8 +207,8 @@ public class IceTabletBase extends ItemBaseClass {
 		if (this.tooltip == null) return;
 		//================================================================ Colors
 		TextColor color = TextColor.fromRgb(0x16B96B);
-		TextColor color2 = TextColor.fromRgb(0x7ACEA5);
-		TextColor loreColor = TextColor.fromRgb(0x33CAA2);
+		TextColor color2 = TextColor.fromRgb(0x33CAA2);
+		TextColor loreColor = TextColor.fromRgb(0x7ACEA5);
 		TextColor Value = TextColor.fromRgb(0x81E3B3);
 		TextColor negValue = TextColor.fromRgb(0xD53F3F);
 		MutableComponent press = Component.translatable("press." + DivineArtifacts.MODID + ".tooltip")

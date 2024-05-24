@@ -36,6 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
+import static nk.divineartifacts.config.ServerConfig.*;
 
 public class FireTabletBase extends ItemBaseClass {
 
@@ -208,11 +209,12 @@ public class FireTabletBase extends ItemBaseClass {
 		super.appendHoverText(stack , worldIn , tooltip , flagIn);
 		if (this.tooltip == null) return;
 		//================================================================ Colors
-		TextColor color = TextColor.fromRgb(0x16B96B);
-		TextColor color2 = TextColor.fromRgb(0x7ACEA5);
-		TextColor loreColor = TextColor.fromRgb(0x33CAA2);
-		TextColor Value = TextColor.fromRgb(0x81E3B3);
+		TextColor color = TextColor.fromRgb(0xEC6629);
+		TextColor color2 = TextColor.fromRgb(0xFB8559);
+		TextColor loreColor = TextColor.fromRgb(0xFBD5C4);
+		TextColor Value = TextColor.fromRgb(0xFFA378);
 		TextColor negValue = TextColor.fromRgb(0xD53F3F);
+		TextColor neg2 = TextColor.fromRgb(0xE45D5D);
 		MutableComponent press = Component.translatable("press." + DivineArtifacts.MODID + ".tooltip")
 				.withStyle(s -> s.withColor(TextColor.fromRgb(0xD4D4D4)));
 		MutableComponent info = Component.translatable("info." + DivineArtifacts.MODID + ".tooltip")
@@ -224,7 +226,7 @@ public class FireTabletBase extends ItemBaseClass {
 		MutableComponent slot = Component.translatable("slot." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent tablet = Component.translatable("tablet." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
 		MutableComponent school = Component.translatable("school." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
-		MutableComponent eldritch = Component.translatable("school." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(color2));
+		MutableComponent fire = Component.translatable("school." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(color2));
 
 		//================ Lore by Amadhe, Magician of the Wiggle
 
@@ -244,57 +246,101 @@ public class FireTabletBase extends ItemBaseClass {
 		MutableComponent lore14 = Component.translatable("lore14." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(loreColor));
 		MutableComponent lore15 = Component.translatable("lore15." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(loreColor));
 		MutableComponent lore16 = Component.translatable("lore16." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(loreColor));
+		MutableComponent lore17 = Component.translatable("lore17." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(loreColor));
+		MutableComponent lore18 = Component.translatable("lore18." + DivineArtifacts.MODID + ".fire").withStyle(s -> s.withColor(loreColor));
 		tooltip.add(Component.literal(""));
 		tooltip.add(slot.append(tablet));
 		tooltip.add(Component.literal(""));
 		tooltip.add(Component.literal(""));
-		tooltip.add(school.append(eldritch));
+		tooltip.add(school.append(fire));
 		tooltip.add(Component.literal(""));
 		if (!isShiftPressed) {
 
 			tooltip.add(lore);
 			tooltip.add(lore2);
-			tooltip.add(lore3);
 			tooltip.add(Component.literal(""));
 			tooltip.add(press.append(shift.append(info)));
 
 		}
 		if (isShiftPressed) {
 			tooltip.add(lore);
-			tooltip.add(lore2);
 			tooltip.add(lore3);
-			tooltip.add(Component.literal(""));
 			tooltip.add(lore4);
+			tooltip.add(Component.literal(""));
 			tooltip.add(lore5);
 			tooltip.add(lore6);
 			tooltip.add(lore7);
+			tooltip.add(Component.literal(""));
 			tooltip.add(lore8);
 			tooltip.add(lore9);
 			tooltip.add(lore10);
 			tooltip.add(lore11);
-			tooltip.add(Component.literal(""));
 			tooltip.add(lore12);
+			tooltip.add(Component.literal(""));
 			tooltip.add(lore13);
 			tooltip.add(lore14);
 			tooltip.add(lore15);
+			tooltip.add(Component.literal(""));
 			tooltip.add(lore16);
+			tooltip.add(lore17);
+			tooltip.add(lore18);
 		}
 
 		tooltip.add(Component.literal(""));
-		MutableComponent atr = Component.literal(" Attributes:").withStyle(s -> s.withColor(color));
+		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
+		MutableComponent abi = Component.translatable("abi." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
+		MutableComponent valFMR = Component.literal("  + " + ValFirTabFireMagicResist.get() + "% ").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valExFMR = Component.literal("+ " + valFirTabExtraFirePowerSpell.get() + "%").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valFSP = Component.literal("  + " + ValFirTabFireSpellPower.get() + "% ").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valCDR = Component.literal("  + " + ValFirTabCoolDonReduction.get() + "% ").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valIMR = Component.literal("  - " + valFirTabIceMagicResist.get() + "% ").withStyle(s -> s.withColor(neg2));
+
+		MutableComponent Abi1 = Component.translatable("fire.a1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+		MutableComponent Abi2 = Component.translatable("fire.a2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+		MutableComponent Abi3 = Component.translatable("fire.a3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+		MutableComponent Abi4 = Component.translatable("fire.a4." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+		MutableComponent Abi5 = Component.translatable("fire.a6." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+		MutableComponent dot = Component.translatable("fire.a5." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
+
+		MutableComponent fMR = Component.translatable("fire.4." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
+		MutableComponent fSP = Component.translatable("fire.5." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
+		MutableComponent cDR = Component.translatable("fire.6." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
+		MutableComponent iMR = Component.translatable("fire.7." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
+
+		if (TogFirTabFireImmunity.get() || TogFirTabLavaSpeed.get() || TogFirTabMiningSpeed.get() || TogFirTabLavaVision.get() || TogFirTabExtraFirePowerSpell.get()) {
+			tooltip.add(abi);
+			tooltip.add(Component.literal(""));
+			if (TogFirTabFireImmunity.get()) {
+				tooltip.add(Abi1);
+				tooltip.add(Component.literal(""));
+			}
+			if (TogFirTabLavaSpeed.get()) {
+				tooltip.add(Abi2);
+				tooltip.add(Component.literal(""));
+			}
+			if (TogFirTabMiningSpeed.get()) {
+				tooltip.add(Abi3);
+				tooltip.add(Component.literal(""));
+			}
+			if (TogFirTabLavaVision.get()) {
+				tooltip.add(Abi4);
+				tooltip.add(Component.literal(""));
+			}
+			if (TogFirTabExtraFirePowerSpell.get()) {
+				tooltip.add(dot.append(valExFMR.append(Abi5)));
+				tooltip.add(Component.literal(""));
+			}
+
+		}
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
-		MutableComponent v1 = Component.literal("  + 33% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v2 = Component.literal("  + 15% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v3 = Component.literal("  - 33% ").withStyle(s -> s.withColor(negValue));
-		MutableComponent a1 = Component.literal("Eldritch Spell Power").withStyle(s -> s.withColor(color2));
-		MutableComponent a2 = Component.literal("Spell Resistance").withStyle(s -> s.withColor(color2));
-		MutableComponent a3 = Component.literal("Max Mana").withStyle(s -> s.withColor(negValue));
-		tooltip.add(v1.append(a1));
+		tooltip.add(valFMR.append(fMR));
 		tooltip.add(Component.literal(""));
-		tooltip.add(v2.append(a2));
+		tooltip.add(valFSP.append(fSP));
 		tooltip.add(Component.literal(""));
-		tooltip.add(v3.append(a3));
+		tooltip.add(valCDR.append(cDR));
+		tooltip.add(Component.literal(""));
+		tooltip.add(valIMR.append(iMR));
 		tooltip.add(Component.literal(""));
 		tooltip.add(Component.literal(""));
 

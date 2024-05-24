@@ -52,7 +52,7 @@ public class DivinePotionRemover {
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			String vx1 = EntityType.getKey(event.getEntity().getType()).toString();
-			if (Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player) && event.getEntity() instanceof Creeper || vx1.equals("alexsmobs:crimson_mosquito") || event.getEntity() instanceof Piglin) {
+			if (Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player) && event.getEntity() instanceof Creeper || vx1.equals("alexsmobs:crimson_mosquito") || event.getEntity() instanceof Piglin) {
 				event.setCanceled(true);
 			}
 		}
@@ -63,7 +63,7 @@ public class DivinePotionRemover {
 		if (!configDivineRing.get()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
-			boolean ring = Utils.isRingEquipped(ModItems.DIVINE_RING.get() , player);
+			boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 			if (ring && event.getEntity() instanceof Phantom phantom) {
 				phantom.kill();
 				event.setCanceled(true);

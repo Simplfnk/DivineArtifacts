@@ -6,7 +6,6 @@ import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import nk.divineartifacts.client.GlintRenderTypes;
 import nk.divineartifacts.item.baseitems.HolyTabletBase;
@@ -17,8 +16,6 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.config.ServerConfig.*;
-import static nk.divineartifacts.config.ToggleAbilities.TogSunShield;
-import static nk.divineartifacts.utils.DivineHelper.getEntityNearPlayer;
 
 public class HolyTablet extends HolyTabletBase {
 	private static final UUID HOLY_MAGIC_RISIST_UUID = UUID.fromString("553fbe54-0ef4-11ef-9b1c-325096b39f47");
@@ -32,10 +29,7 @@ public class HolyTablet extends HolyTabletBase {
 	}
 	public void tickCurio(String identifier , int index , LivingEntity livingEntity) {
 		if (!this.isEnabled.get()) return;
-		Player player = (Player) livingEntity;
-		if(TogSunShield.get()) {
-			getEntityNearPlayer(player);
-		}
+
 	}
 	@Override
 	public Multimap<Attribute, AttributeModifier> curioModifiers(
