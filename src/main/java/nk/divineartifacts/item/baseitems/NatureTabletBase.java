@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class NatureTabletBase extends ItemBaseClass {
 
@@ -284,12 +284,12 @@ public class NatureTabletBase extends ItemBaseClass {
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent abi = Component.translatable("abi." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent spacer = Component.literal(" | ").withStyle(s -> s.withColor(color2));
-		MutableComponent valRange = Component.literal(ValNatureGrowthRang.get().toString()).withStyle(s -> s.withColor(Value));
-		MutableComponent valCost = Component.literal(ValNatureGrowthCost.get().toString()).withStyle(s -> s.withColor(neg2));
-		MutableComponent valMR = Component.literal("  + " + ValNatureMagicResist.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent valSP = Component.literal("  + " + ValNatureSpellPower.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent valFR = Component.literal("  - " + ValNatureFireResist.get() + "% ").withStyle(s -> s.withColor(negValue));
-		MutableComponent ValPoCost = Component.literal(TogNaturePoisonImmunityCost.get().toString()).withStyle(s -> s.withColor(neg2));
+		MutableComponent valRange = Component.literal(getNatureGrowthRange()+"").withStyle(s -> s.withColor(Value));
+		MutableComponent valCost = Component.literal(getNatureGrowthCost()+"").withStyle(s -> s.withColor(neg2));
+		MutableComponent valMR = Component.literal("  + " + getNatureMagicResist() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent valSP = Component.literal("  + " + getNatureSpellPower() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent valFR = Component.literal("  - " + getNatureFireResist() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent ValPoCost = Component.literal(getNaturePoisonImmunityCost()+"").withStyle(s -> s.withColor(neg2));
 		MutableComponent mana = Component.translatable("fire.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 		MutableComponent Abi1 = Component.translatable("nature.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
 		MutableComponent Range = Component.translatable("nature.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
@@ -301,16 +301,16 @@ public class NatureTabletBase extends ItemBaseClass {
 		MutableComponent a6 = Component.translatable("nature.8." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a7 = Component.translatable("nature.9." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 
-		if (TogNaturePoisonImmunity.get() || TogNaturePlantGrowth.get()) {
+		if (toggleNaturePoisonImmunity() || toggleNaturePlantGrowth()) {
 			tooltip.add(abi);
 			tooltip.add(Component.literal(""));
-			if (TogNaturePlantGrowth.get()) {
+			if (toggleNaturePlantGrowth()) {
 				tooltip.add(Abi1);
 				tooltip.add(Component.literal(""));
 				tooltip.add(Range.append(valRange).append(Block).append(spacer).append(Cost).append(valCost).append(Stage));
 				tooltip.add(Component.literal(""));
 			}
-			if (TogNaturePoisonImmunity.get()) {
+			if (toggleNaturePoisonImmunity()) {
 				tooltip.add(Abi2.append(spacer).append(Cost.append(ValPoCost).append(mana)));
 				tooltip.add(Component.literal(""));
 			}
@@ -319,15 +319,15 @@ public class NatureTabletBase extends ItemBaseClass {
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
 
-		if (TogNatureMagicResist.get()) {
+		if (toggleNatureMagicResist()) {
 			tooltip.add(valMR.append(a5));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogNatureSpellPower.get()) {
+		if (toggleNatureSpellPower()) {
 			tooltip.add(valSP.append(a6));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogNatureFireResist.get()) {
+		if (toggleNatureFireResist()) {
 			tooltip.add(valFR.append(a7));
 			tooltip.add(Component.literal(""));
 		}

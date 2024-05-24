@@ -23,7 +23,6 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
-import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.ItemBaseClass;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -37,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class DivineOrbBase extends ItemBaseClass {
 
@@ -220,29 +219,29 @@ public class DivineOrbBase extends ItemBaseClass {
 			MutableComponent cooldownReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cooldown.reduction").withStyle(s -> s.withColor(Purple));
 			MutableComponent castTimeReduction = Component.translatable("tooltip." + DivineArtifacts.MODID + ".cast.reduction").withStyle(s -> s.withColor(Purple));
 
-			MutableComponent spellResistValue = Component.literal(Green + "+" + ServerConfig.SPELL_RESIST.get() + "%");
-			MutableComponent spellPowerValue = Component.literal(Green + "+" + SPELL_POWER.get() + "%");
-			MutableComponent manaRegenValue = Component.literal(Green + "+" + MANA_REGEN.get() + "%");
-			MutableComponent maxManaValue = Component.literal(Green + "+" + MAX_MANA.get() + "%");
-			MutableComponent CoolDawnValue = Component.literal(Green + "+" + COOLDOWN_REDUCTION.get() + "%");
-			MutableComponent castTimeValue = Component.literal(Green + "+" + CAST_TIME_REDUCTION.get() + "%");
+			MutableComponent spellResistValue = Component.literal(Green + "+" + toggleSpellResist() + "%");
+			MutableComponent spellPowerValue = Component.literal(Green + "+" + toggleSpellPower() + "%");
+			MutableComponent manaRegenValue = Component.literal(Green + "+" + toggleManaRegen() + "%");
+			MutableComponent maxManaValue = Component.literal(Green + "+" + toggleMaxMana() + "%");
+			MutableComponent CoolDawnValue = Component.literal(Green + "+" + toggleCooldownReduction() + "%");
+			MutableComponent castTimeValue = Component.literal(Green + "+" + toggleCastTimeReduction() + "%");
 
-			if (TSPELL_RESIST.get()) {
+			if (toggleSpellResist()) {
 				tooltip.add(spellResist.append(spellResistValue));
 			}
-			if (TSPELL_POWER.get()) {
+			if (toggleSpellPower()) {
 				tooltip.add(spellPower.append(spellPowerValue));
 			}
-			if (TMANA_REGEN.get()) {
+			if (toggleManaRegen()) {
 				tooltip.add(manaRegen.append(manaRegenValue));
 			}
-			if (TMAX_MANA.get()) {
+			if (toggleMaxMana()) {
 				tooltip.add(maxMana.append(maxManaValue));
 			}
-			if (TCOOLDOWN_REDUCTION.get()) {
+			if (toggleCooldownReduction()) {
 				tooltip.add(cooldownReduction.append(CoolDawnValue));
 			}
-			if (TCAST_TIME_REDUCTION.get()) {
+			if (toggleCastTimeReduction()) {
 				tooltip.add(castTimeReduction.append(castTimeValue));
 			}
 

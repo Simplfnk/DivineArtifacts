@@ -7,21 +7,21 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.entity.projectile.Arrow;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import nk.divineartifacts.config.ServerConfig;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleDivineRing;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleShield;
 import static nk.divineartifacts.utils.UtilsHelper.*;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class PlayerDivineUno {
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent
 	public void onLivingAttack(LivingAttackEvent event) {
-		if (!ServerConfig.configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (!toggleShield()) return;
 		if (event.getEntity() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;

@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class FireTabletBase extends ItemBaseClass {
 
@@ -289,11 +289,11 @@ public class FireTabletBase extends ItemBaseClass {
 		tooltip.add(Component.literal(""));
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent abi = Component.translatable("abi." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
-		MutableComponent valFMR = Component.literal("  + " + ValFirTabFireMagicResist.get() + "% ").withStyle(s -> s.withColor(loreColor));
-		MutableComponent valExFMR = Component.literal("+ " + valFirTabExtraFirePowerSpell.get() + "%").withStyle(s -> s.withColor(loreColor));
-		MutableComponent valFSP = Component.literal("  + " + ValFirTabFireSpellPower.get() + "% ").withStyle(s -> s.withColor(loreColor));
-		MutableComponent valCDR = Component.literal("  + " + ValFirTabCoolDonReduction.get() + "% ").withStyle(s -> s.withColor(loreColor));
-		MutableComponent valIMR = Component.literal("  - " + valFirTabIceMagicResist.get() + "% ").withStyle(s -> s.withColor(neg2));
+		MutableComponent valFMR = Component.literal("  + " + getFirTabFireMagicResist() + "% ").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valExFMR = Component.literal("+ " + getFirTabExtraFirePowerSpell() + "%").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valFSP = Component.literal("  + " + getFirTabFireSpellPower() + "% ").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valCDR = Component.literal("  + " + getFirTabCoolDonReduction() + "% ").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valIMR = Component.literal("  - " + getFirTabIceMagicResist() + "% ").withStyle(s -> s.withColor(neg2));
 
 		MutableComponent Abi1 = Component.translatable("fire.a1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
 		MutableComponent Abi2 = Component.translatable("fire.a2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color2));
@@ -307,26 +307,26 @@ public class FireTabletBase extends ItemBaseClass {
 		MutableComponent cDR = Component.translatable("fire.6." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent iMR = Component.translatable("fire.7." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 
-		if (TogFirTabFireImmunity.get() || TogFirTabLavaSpeed.get() || TogFirTabMiningSpeed.get() || TogFirTabLavaVision.get() || TogFirTabExtraFirePowerSpell.get()) {
+		if (toggleFirTabFireImmunity() || toggleFirTabLavaSpeed() || !toggleFirTabMiningSpeed() || toggleFirTabLavaVision() || toggleFirTabExtraFirePowerSpell()) {
 			tooltip.add(abi);
 			tooltip.add(Component.literal(""));
-			if (TogFirTabFireImmunity.get()) {
+			if (toggleFirTabFireImmunity()) {
 				tooltip.add(Abi1);
 				tooltip.add(Component.literal(""));
 			}
-			if (TogFirTabLavaSpeed.get()) {
+			if (toggleFirTabLavaSpeed()) {
 				tooltip.add(Abi2);
 				tooltip.add(Component.literal(""));
 			}
-			if (TogFirTabMiningSpeed.get()) {
+			if (toggleFirTabMiningSpeed()) {
 				tooltip.add(Abi3);
 				tooltip.add(Component.literal(""));
 			}
-			if (TogFirTabLavaVision.get()) {
+			if (toggleFirTabLavaVision()) {
 				tooltip.add(Abi4);
 				tooltip.add(Component.literal(""));
 			}
-			if (TogFirTabExtraFirePowerSpell.get()) {
+			if (toggleFirTabExtraFirePowerSpell()) {
 				tooltip.add(dot.append(valExFMR.append(Abi5)));
 				tooltip.add(Component.literal(""));
 			}

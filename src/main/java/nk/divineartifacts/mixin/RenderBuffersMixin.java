@@ -30,5 +30,4 @@ public class RenderBuffersMixin {
                 map.put(translucent, new BufferBuilder(translucent.bufferSize()));
         }
     }
-
 }

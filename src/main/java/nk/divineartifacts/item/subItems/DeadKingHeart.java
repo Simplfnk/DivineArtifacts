@@ -15,7 +15,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class DeadKingHeart extends nk.divineartifacts.item.baseitems.DeadKingHeart {
 	private static final UUID MAX_HEALTH_UUID = UUID.fromString("51283180-0e3f-11ef-81f8-325096b39f47");
@@ -37,24 +37,24 @@ public class DeadKingHeart extends nk.divineartifacts.item.baseitems.DeadKingHea
 			SlotContext slotContext , UUID uuid , ItemStack stack) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogMaxHearts.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleMaxHearts() && this.isEnabled.get()) {
 			modifiers.put(Attributes.MAX_HEALTH ,
-					new AttributeModifier(MAX_HEALTH_UUID , "" , ValKingHeartMaxHearts.get() * 2 ,
+					new AttributeModifier(MAX_HEALTH_UUID , "" , getKingHeartMaxHearts() * 2 ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogBloodSpell.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleBloodSpell() && this.isEnabled.get()) {
 			modifiers.put(AttributeRegistry.BLOOD_SPELL_POWER.get() ,
-					new AttributeModifier(BLOOD_SPELL_UUID , "" , ValKingHeartBloodSpell.get() / 100.0 ,
+					new AttributeModifier(BLOOD_SPELL_UUID , "" , getKingHeartBloodSpell() / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogHolySpells.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleHolySpells() && this.isEnabled.get()) {
 			modifiers.put(AttributeRegistry.HOLY_SPELL_POWER.get() ,
-					new AttributeModifier(HOLY_SPELL_POWER_UUID , "" , -ValKingHeartHolySpells.get() / 100.0 ,
+					new AttributeModifier(HOLY_SPELL_POWER_UUID , "" , -getKingHeartHolySpells() / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogHolyMagic.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleHolyMagic() && this.isEnabled.get()) {
 			modifiers.put(AttributeRegistry.HOLY_MAGIC_RESIST.get() ,
-					new AttributeModifier(HOLY_MAGIC_RESIST_UUID , "" , -ValKingHeartHolyMagic.get() / 100.0 ,
+					new AttributeModifier(HOLY_MAGIC_RESIST_UUID , "" , -getKingHeartHolyMagic() / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 

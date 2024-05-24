@@ -18,7 +18,7 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class EldritchTablet extends EldritchTabletBase {
 	private static final UUID SPELL_RESIST_UUID = UUID.fromString("94e911da-0d8d-11ef-ac36-968596b39f47");
@@ -46,19 +46,19 @@ public class EldritchTablet extends EldritchTabletBase {
 			SlotContext slotContext , UUID uuid , ItemStack stack) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get() && TogElSpellPower.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get() && toggleElSpellPower()) {
 			modifiers.put(AttributeRegistry.ELDRITCH_SPELL_POWER.get() ,
-					new AttributeModifier(ELDRITCH_SPEL_UUID , "" , ElSpellPower.get() / 100.0 ,
+					new AttributeModifier(ELDRITCH_SPEL_UUID , "" , getElSpellPower() / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get() && TogElSPellResist.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get() && toggleElSpellResist()) {
 			modifiers.put(AttributeRegistry.SPELL_RESIST.get() ,
-					new AttributeModifier(SPELL_RESIST_UUID , "" , ElSPellResist.get() / 100.0 ,
+					new AttributeModifier(SPELL_RESIST_UUID , "" , getElSpellResist() / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get() && TogElMaxMana.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get() && toggleElMaxMana()) {
 			modifiers.put(AttributeRegistry.MAX_MANA.get() ,
-					new AttributeModifier(MAX_MANA_UUID , "" , -0.33 ,
+					new AttributeModifier(MAX_MANA_UUID , "" , -getElMaxMana() / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		return modifiers;

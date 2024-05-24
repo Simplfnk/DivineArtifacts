@@ -8,24 +8,20 @@ import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.Keybindings;
-import nk.divineartifacts.config.ToggleAbilities;
 import nk.divineartifacts.init.ModItems;
-import nk.divineartifacts.utils.UtilsHelper;
 import nk.divineartifacts.utils.Utils;
+import nk.divineartifacts.utils.UtilsHelper;
 
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
-import static nk.divineartifacts.config.ToggleAbilities.TogSunShield;
-import static nk.divineartifacts.config.ToggleAbilities.togGaiaBlessing;
 import static nk.divineartifacts.utils.UtilsHelper.playTogOffSound;
 import static nk.divineartifacts.utils.UtilsHelper.playTogOnSound;
 
-@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 
 public class ClientForgeHandler {
 	private static final TextColor magnetColor = TextColor.fromRgb(0xFFD21A);
@@ -39,6 +35,7 @@ public class ClientForgeHandler {
 	private static final TextColor clOff3 = TextColor.fromRgb(0xD53F3F);
 	@SubscribeEvent
 	public static void setToggleMagnet(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
@@ -64,14 +61,12 @@ public class ClientForgeHandler {
 				.withStyle(s -> s.withColor(clOff2));
 		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && player != null) {
 			if (toggleMagnet()) {
-				ToggleAbilities.toggleAttractorMagnet.set(false);
-				ToggleAbilities.ClientSpec.save();
+				setToggleAttractorMagnet(false);
 				player.displayClientMessage(magnet.append(off) , true);
 				UtilsHelper.playTogOffSound(player);
 			}
 			else {
-				ToggleAbilities.toggleAttractorMagnet.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setToggleAttractorMagnet(true);
 				player.displayClientMessage(magnet.append(on) , true);
 				playTogOnSound(player);
 			}
@@ -79,14 +74,12 @@ public class ClientForgeHandler {
 		}
 		if (attractor && Keybindings.INSTANCE.magnetKey.consumeClick() && player != null) {
 			if (toggleMagnet()) {
-				ToggleAbilities.toggleAttractorMagnet.set(false);
-				ToggleAbilities.ClientSpec.save();
+				setToggleAttractorMagnet(false);
 				player.displayClientMessage(magnet2.append(off2) , true);
 				UtilsHelper.playTogOffSound(player);
 			}
 			else {
-				ToggleAbilities.toggleAttractorMagnet.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setToggleAttractorMagnet(true);
 				player.displayClientMessage(magnet2.append(on2) , true);
 				playTogOnSound(player);
 			}
@@ -96,6 +89,7 @@ public class ClientForgeHandler {
 
 	@SubscribeEvent
 	public static void setToggleExplodeKey(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
@@ -121,32 +115,15 @@ public class ClientForgeHandler {
 				.withStyle(s -> s.withColor(clOff3));
 		if (ring && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
 			if (toggleAoeDamage()) {
-				ToggleAbilities.toggleAoeDamage.set(false);
-				ToggleAbilities.ClientSpec.save();
+				setToggleAoeDamage(false);
 				player.displayClientMessage(aio.append(off) , true);
 				playTogOffSound(player);
 			}
 			else {
-				ToggleAbilities.toggleAoeDamage.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setToggleAoeDamage(true);
 				player.displayClientMessage(aio.append(on) , true);
 				playTogOnSound(player);
 			}
-		}
-		if (nature && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
-			if (togGaiaBlessing.get()) {
-				ToggleAbilities.togGaiaBlessing.set(false);
-				ToggleAbilities.ClientSpec.save();
-				player.displayClientMessage(gaia.append(off2) , true);
-				playTogOffSound(player);
-			}
-			else {
-				ToggleAbilities.togGaiaBlessing.set(true);
-				ToggleAbilities.ClientSpec.save();
-				player.displayClientMessage(gaia.append(on2) , true);
-				playTogOnSound(player);
-			}
-
 		}
 	}
 	@SubscribeEvent
@@ -164,15 +141,13 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(clOff3));
 		if (nature && Keybindings.INSTANCE.explodedKey.consumeClick() && player != null) {
-			if (togGaiaBlessing.get()) {
-				ToggleAbilities.togGaiaBlessing.set(false);
-				ToggleAbilities.ClientSpec.save();
+			if (togGaiaBlessing()) {
+				setTogGaiaBlessing(false);
 				player.displayClientMessage(gaia.append(off2) , true);
 				playTogOffSound(player);
 			}
 			else {
-				ToggleAbilities.togGaiaBlessing.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setTogGaiaBlessing(true);
 				player.displayClientMessage(gaia.append(on2) , true);
 				playTogOnSound(player);
 			}
@@ -196,14 +171,12 @@ public class ClientForgeHandler {
 				.withStyle(s -> s.withColor(clOff));
 		if (ring && Keybindings.INSTANCE.shieldKey.consumeClick() && player != null) {
 			if (toggleShield()) {
-				player.displayClientMessage(shield.append(off) , true);
-				ToggleAbilities.toggleShield.set(false);
+				setToggleShield(false);
 				playTogOffSound(player);
-				ToggleAbilities.ClientSpec.save();
+				player.displayClientMessage(shield.append(off) , true);
 			}
 			else {
-				ToggleAbilities.toggleShield.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setToggleShield(true);
 				playTogOnSound(player);
 				player.displayClientMessage(shield.append(on) , true);
 			}
@@ -211,6 +184,7 @@ public class ClientForgeHandler {
 	}
 	@SubscribeEvent
 	public static void onToggleShield(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean tablet = Utils.isItemEquipped(ModItems.HOLY_TABLET.get() , player);
@@ -227,15 +201,13 @@ public class ClientForgeHandler {
 				.withStyle(ChatFormatting.BOLD)
 				.withStyle(s -> s.withColor(cof));
 		if (tablet && Keybindings.INSTANCE.shieldKey.consumeClick() && player != null) {
-			if (TogSunShield.get()) {
+			if (TogSunShield()) {
 				player.displayClientMessage(shield.append(off) , true);
-				ToggleAbilities.TogSunShield.set(false);
+				setTogSunShield(false);
 				playTogOffSound(player);
-				ToggleAbilities.ClientSpec.save();
 			}
 			else {
-				ToggleAbilities.TogSunShield.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setTogSunShield(true);
 				playTogOnSound(player);
 				player.displayClientMessage(shield.append(on) , true);
 			}
@@ -243,6 +215,7 @@ public class ClientForgeHandler {
 	}
 	@SubscribeEvent
 	public static void setToggleBlockBreakKey(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
@@ -258,13 +231,11 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.blockBreakKey.consumeClick() && player != null) {
 			if (toggleBlockBreak()) {
 				player.displayClientMessage(blockBreak.append(off) , true);
-				ToggleAbilities.toggleBlockBreak.set(false);
-				ToggleAbilities.ClientSpec.save();
+				setToggleBlockBreak(false);
 				playTogOffSound(player);
 			}
 			else {
-				ToggleAbilities.toggleBlockBreak.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setToggleBlockBreak(true);
 				playTogOnSound(player);
 				player.displayClientMessage(blockBreak.append(on) , true);
 			}
@@ -272,6 +243,7 @@ public class ClientForgeHandler {
 	}
 	@SubscribeEvent
 	public static void setToggleExtraLootKey(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
@@ -287,13 +259,11 @@ public class ClientForgeHandler {
 		if (ring && Keybindings.INSTANCE.extraDropsKey.consumeClick() && player != null) {
 			if (toggleExtraDrops()) {
 				player.displayClientMessage(extraDrops.append(off) , true);
-				ToggleAbilities.toggleExtraDrops.set(false);
+				setToggleExtraDrops(false);
 				playTogOffSound(player);
-				ToggleAbilities.ClientSpec.save();
 			}
 			else {
-				ToggleAbilities.toggleExtraDrops.set(true);
-				ToggleAbilities.ClientSpec.save();
+				setToggleExtraDrops(true);
 				playTogOnSound(player);
 				player.displayClientMessage(extraDrops.append(on) , true);
 			}
@@ -302,33 +272,33 @@ public class ClientForgeHandler {
 
 	@SubscribeEvent
 	public static void toggleAllAbilitiesOn(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOn.consumeClick() && player != null) {
-			ToggleAbilities.toggleAttractorMagnet.set(true);
-			ToggleAbilities.toggleAoeDamage.set(true);
-			ToggleAbilities.toggleShield.set(true);
-			ToggleAbilities.toggleBlockBreak.set(true);
-			ToggleAbilities.toggleExtraDrops.set(true);
+			setToggleAttractorMagnet(true);
+			setToggleAoeDamage(true);
+			setToggleShield(true);
+			setToggleBlockBreak(true);
+			setToggleExtraDrops(true);
 			playTogOnSound(player);
-			ToggleAbilities.ClientSpec.save();
 		}
 	}
 	@SubscribeEvent
 	public static void toggleAllAbilitiesOff(TickEvent.ClientTickEvent event) {
+
 		Minecraft minecraft = Minecraft.getInstance();
 		Player player = minecraft.player;
 		ItemStack stack = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
 		if (ring && Keybindings.INSTANCE.ToggleAllOff.consumeClick() && player != null) {
-			ToggleAbilities.toggleAttractorMagnet.set(false);
-			ToggleAbilities.toggleAoeDamage.set(false);
-			ToggleAbilities.toggleShield.set(false);
-			ToggleAbilities.toggleBlockBreak.set(false);
-			ToggleAbilities.toggleExtraDrops.set(false);
+			setToggleAttractorMagnet(false);
+			setToggleAoeDamage(false);
+			setToggleShield(false);
+			setToggleBlockBreak(false);
+			setToggleExtraDrops(false);
 			playTogOffSound(player);
-			ToggleAbilities.ClientSpec.save();
 		}
 	}
 

@@ -166,7 +166,7 @@ public class ServerConfig {
 	public static IntValue ValNatureGrowthCost;
 	public static IntValue ValNatureGrowthTickDelay;
 	public static IntValue ValNatureGrowthRang;
-	public static IntValue TogNaturePoisonImmunityCost;
+	public static IntValue ValNaturePoisonImmunityCost;
 
 	//================================== Fire Tablet
 
@@ -263,7 +263,7 @@ public class ServerConfig {
 			ValNatureGrowthCost = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Mana Cost" , 1 , 1 , 100);
 			ValNatureGrowthTickDelay = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Delay" , 6 , 1 , 1000);
 			ValNatureGrowthRang = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7a Gaia Blessing Range" , 6 , 1 , 100);
-			TogNaturePoisonImmunityCost = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7c Poison Immunity Cost" , 5 , 1 , 1000);
+			ValNaturePoisonImmunityCost = BUILDER.comment("Abilities Value").defineInRange("Tablets.Nature Tablet.Value.\u00A7c Poison Immunity Cost" , 5 , 1 , 1000);
 			//================================== Ender Tablet
 
 			TogEnderTablet = BUILDER.worldRestart().comment("Disable/Enable Ender Tablet").define("Tablets.Ender Tablet.Ender Tablet " , true);

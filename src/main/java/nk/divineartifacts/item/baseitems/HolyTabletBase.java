@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class HolyTabletBase extends ItemBaseClass {
 	public HolyTabletBase(Properties properties , String tooltip , Supplier<Boolean> enabled , GlintRenderTypes glintType) {
@@ -286,27 +286,27 @@ public class HolyTabletBase extends ItemBaseClass {
 		MutableComponent abiDesc = Component.translatable("holy.6." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 
 		MutableComponent burnRange = Component.translatable("holy.7." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
-		MutableComponent valBurnRange = Component.literal("" + ValHlyTabSunFireRange.get()).withStyle(s -> s.withColor(loreColor));
+		MutableComponent valBurnRange = Component.literal("" + getHlyTabSunFireRange()).withStyle(s -> s.withColor(loreColor));
 
 		MutableComponent burnDuration = Component.translatable("holy.11." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
-		MutableComponent valBurnDuration = Component.literal("" + ValHlyTabFireDuration.get()).withStyle(s -> s.withColor(loreColor));
+		MutableComponent valBurnDuration = Component.literal("" + getHlyTabFireDuration()).withStyle(s -> s.withColor(loreColor));
 
 		MutableComponent brunCost = Component.translatable("holy.8." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
-		MutableComponent valBrunCost = Component.literal("" + ValHlyTabSunFireCost.get()).withStyle(s -> s.withColor(negValue));
+		MutableComponent valBrunCost = Component.literal("" + getHlyTabSunFireCost()).withStyle(s -> s.withColor(negValue));
 
 		MutableComponent nockRange = Component.translatable("holy.9." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
-		MutableComponent valNockRange = Component.literal("" + ValHlyTabSunKnockRange.get()).withStyle(s -> s.withColor(loreColor));
+		MutableComponent valNockRange = Component.literal("" + getHlyTabSunKnockRange()).withStyle(s -> s.withColor(loreColor));
 
 		MutableComponent chance = Component.translatable("holy.10." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
-		MutableComponent valChance = Component.literal( + ValHlyTabSunKnockChance.get()+"%").withStyle(s -> s.withColor(loreColor));
+		MutableComponent valChance = Component.literal( + getHlyTabSunKnockChance()+"%").withStyle(s -> s.withColor(loreColor));
 
 		MutableComponent knockCost = Component.translatable("holy.8." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
-		MutableComponent valKnockCost = Component.literal("" + ValHlyTabSunKnockCost.get()).withStyle(s -> s.withColor(negValue));
+		MutableComponent valKnockCost = Component.literal("" + getHlyTabSunKnockCost()).withStyle(s -> s.withColor(negValue));
 
 		MutableComponent spacer = Component.literal(" | ").withStyle(s -> s.withColor(color));
 
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
-		if(TogSunShieldAbilities.get()){
+		if(toggleSunShieldAbilities()){
 			tooltip.add(abi);
 			tooltip.add(Component.literal(""));
 			tooltip.add(abiName.append(abiDesc));
@@ -318,29 +318,29 @@ public class HolyTabletBase extends ItemBaseClass {
 		}
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
-		MutableComponent v1 = Component.literal("  + " + ValHlyTabHollyMagicResist.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v2 = Component.literal("  + " + ValHlyTabHollyMagicSpellPower.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v3 = Component.literal("  + " + ValHlyTabManaRegen.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v4 = Component.literal("  - " + ValHlyTabEvocationMagicResist.get() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent v1 = Component.literal("  + " + getHlyTabHollyMagicResist() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v2 = Component.literal("  + " + getHlyTabHollyMagicSpellPower() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v3 = Component.literal("  + " + getHlyTabManaRegen() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v4 = Component.literal("  - " + getHlyTabEvocationMagicResist() + "% ").withStyle(s -> s.withColor(negValue));
 
 		MutableComponent a1 = Component.translatable("holy.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a2 = Component.translatable("holy.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a3 = Component.translatable("holy.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a4 = Component.translatable("holy.4." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 
-		if (TogHlyTabHollyMagicResist.get()) {
+		if (toggleHlyTabHollyMagicResist()) {
 			tooltip.add(v1.append(a1));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogHlyTabHollyMagicSpellPower.get()) {
+		if (toggleHlyTabHollyMagicSpellPower()) {
 			tooltip.add(v2.append(a2));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogHlyTabManaRegen.get()) {
+		if (toggleHlyTabManaRegen()) {
 			tooltip.add(v3.append(a3));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogHlyTabEvocationMagicResist.get()) {
+		if (toggleHlyTabEvocationMagicResist()) {
 			tooltip.add(v4.append(a4));
 			tooltip.add(Component.literal(""));
 		}

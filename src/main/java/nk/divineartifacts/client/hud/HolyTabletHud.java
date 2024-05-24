@@ -10,8 +10,8 @@ import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
+import static nk.divineartifacts.client.handler.ToggleHelper.TogSunShield;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleHudElements;
-import static nk.divineartifacts.config.ToggleAbilities.TogSunShield;
 
 public class HolyTabletHud {
 	private static final ResourceLocation sunOn = new ResourceLocation(DivineArtifacts.MODID ,
@@ -39,7 +39,7 @@ public class HolyTabletHud {
 		int yCord4 = yCord3 + spacing;
 		if (item && toggleHudElements()) {
 
-			if (TogSunShield.get()) {
+			if (TogSunShield()) {
 				poseStack.blit(sunOn , xCord , yCord2 , 0 , 0 , size , size , size , size);
 			}
 			else {

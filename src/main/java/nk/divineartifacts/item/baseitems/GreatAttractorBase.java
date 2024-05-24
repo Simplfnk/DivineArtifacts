@@ -36,8 +36,8 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.ValGreatAttractorManaCost;
-import static nk.divineartifacts.config.ServerConfig.ValGreatAttractorRang;
+import static nk.divineartifacts.client.handler.ToggleHelper.getGreatAttractorManaCost;
+import static nk.divineartifacts.client.handler.ToggleHelper.getGreatAttractorRange;
 
 public class GreatAttractorBase extends ItemBaseClass {
 
@@ -245,11 +245,11 @@ public class GreatAttractorBase extends ItemBaseClass {
 			tooltip.add(lore2);
 			tooltip.add(Component.literal(""));
 		}
-		int cul = ValGreatAttractorRang.get() / 20 * ValGreatAttractorManaCost.get();
+		int cul = getGreatAttractorRange() / 20 * getGreatAttractorManaCost();
 		tooltip.add(Component.literal(""));
 		MutableComponent abi = Component.translatable("abi." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent abi_disc = Component.translatable("abi.attractor." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
-		MutableComponent Range = Component.literal(ValGreatAttractorRang.get() + " ").withStyle(s -> s.withColor(Value));
+		MutableComponent Range = Component.literal(getGreatAttractorRange() + " ").withStyle(s -> s.withColor(Value));
 		MutableComponent Cost = Component.literal(cul + " ").withStyle(s -> s.withColor(negValue));
 		MutableComponent spacer = Component.literal(" | ").withStyle(s -> s.withColor(color2));
 		MutableComponent a1 = Component.translatable("attractor.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));

@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class DeadKingHeart extends ItemBaseClass {
 	public DeadKingHeart(Properties properties , String tooltip , Supplier<Boolean> enabled , GlintRenderTypes glintType) {
@@ -250,10 +250,10 @@ public class DeadKingHeart extends ItemBaseClass {
 		tooltip.add(Component.literal(""));
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent eff = Component.translatable("eff." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
-		MutableComponent v1 = Component.literal("  + " + ValKingHeartMaxHearts.get() + " ").withStyle(s -> s.withColor(Value));
-		MutableComponent v3 = Component.literal("  + " + ValKingHeartBloodSpell.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v4 = Component.literal("  - " + ValKingHeartHolyMagic.get() + "% ").withStyle(s -> s.withColor(negValue));
-		MutableComponent v5 = Component.literal("  - " + ValKingHeartHolySpells.get() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent v1 = Component.literal("  + " + getKingHeartMaxHearts() + " ").withStyle(s -> s.withColor(Value));
+		MutableComponent v3 = Component.literal("  + " + getKingHeartBloodSpell() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v4 = Component.literal("  - " + getKingHeartHolyMagic() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent v5 = Component.literal("  - " + getKingHeartHolySpells() + "% ").withStyle(s -> s.withColor(negValue));
 
 		MutableComponent a1 = Component.translatable("heart.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a2 = Component.translatable("heart.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
@@ -261,10 +261,10 @@ public class DeadKingHeart extends ItemBaseClass {
 		MutableComponent a4 = Component.translatable("heart.4." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 		MutableComponent a5 = Component.translatable("heart.5." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 
-		if (TogRegeneration.get()) {
+		if (TogRegeneration()) {
 			tooltip.add(eff);
 			tooltip.add(Component.literal(""));
-			if (TogRegeneration.get()) {
+			if (TogRegeneration()) {
 				tooltip.add(a2);
 				tooltip.add(Component.literal(""));
 			}
@@ -273,19 +273,19 @@ public class DeadKingHeart extends ItemBaseClass {
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
 
-		if (TogMaxHearts.get()) {
+		if (toggleMaxHearts()) {
 			tooltip.add(v1.append(a1));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogBloodSpell.get()) {
+		if (toggleBloodSpell()) {
 			tooltip.add(v3.append(a3));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogHolySpells.get()) {
+		if (toggleHolySpells()) {
 			tooltip.add(v4.append(a4));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogHolyMagic.get()) {
+		if (toggleHolyMagic()) {
 			tooltip.add(v5.append(a5));
 		}
 

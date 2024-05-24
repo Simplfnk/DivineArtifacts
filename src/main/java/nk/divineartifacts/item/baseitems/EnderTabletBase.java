@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class EnderTabletBase extends ItemBaseClass {
 
@@ -264,18 +264,18 @@ public class EnderTabletBase extends ItemBaseClass {
 		MutableComponent atr = Component.translatable("attr." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 		MutableComponent abi = Component.translatable("abi." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(color));
 
-		MutableComponent v2 = Component.literal("  + " + ValEndTabEnderMagicResist.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v3 = Component.literal("  + " + ValEndTabEnderMagicSpellPower.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v4 = Component.literal("  - " + ValEndTabSpellResist.get() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent v2 = Component.literal("  + " + getEndTabEnderMagicResist() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v3 = Component.literal("  + " + getEndTabEnderMagicSpellPower() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v4 = Component.literal("  - " + getEndTabSpellResist() + "% ").withStyle(s -> s.withColor(negValue));
 
 		MutableComponent a1 = Component.translatable("ender.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a2 = Component.translatable("ender.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a3 = Component.translatable("ender.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a4 = Component.translatable("ender.4." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
-		if (TogEndTabEnderManNoAgro.get()) {
+		if (toggleEndTabEnderManNoAgro()) {
 			tooltip.add(abi);
 			tooltip.add(Component.literal(""));
-			if (TogEndTabEnderManNoAgro.get()) {
+			if (toggleEndTabEnderManNoAgro()) {
 				tooltip.add(a1);
 				tooltip.add(Component.literal(""));
 			}
@@ -284,15 +284,15 @@ public class EnderTabletBase extends ItemBaseClass {
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
 
-		if (TogEndTabEnderMagicResist.get()) {
+		if (toggleEndTabEnderMagicResist()) {
 			tooltip.add(v2.append(a2));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogEndTabEnderMagicSpellPower.get()) {
+		if (toggleEndTabEnderMagicSpellPower()) {
 			tooltip.add(v3.append(a3));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogEndTabSpellResist.get()) {
+		if (toggleEndTabSpellResist()) {
 			tooltip.add(v4.append(a4));
 			tooltip.add(Component.literal(""));
 		}

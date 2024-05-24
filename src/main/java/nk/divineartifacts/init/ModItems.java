@@ -8,20 +8,21 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
+import nk.divineartifacts.client.handler.ToggleHelper;
 import nk.divineartifacts.item.ItemBaseClass;
-import nk.divineartifacts.item.baseitems.*;
+import nk.divineartifacts.item.baseitems.EvocationTabletBase;
+import nk.divineartifacts.item.baseitems.LightningTabletBase;
 import nk.divineartifacts.item.old.DiveGoldRing;
 import nk.divineartifacts.item.old.DivineCrystal;
 import nk.divineartifacts.item.old.DivineOrb;
 import nk.divineartifacts.item.old.RingGod;
-import nk.divineartifacts.item.subItems.DeadKingHeart;
 import nk.divineartifacts.item.subItems.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class ModItems {
 	public static List<ItemBaseClass> AllITEMS = new ArrayList<>();
@@ -32,19 +33,19 @@ public class ModItems {
 			"ring_divine" , () -> new RingGod(
 					new Item.Properties() ,
 					"" ,
-					() -> configDivineRing.get() ,
+					ToggleHelper::toggleDivineRing ,
 					MobEffects.REGENERATION ,
 					MobEffects.LUCK ,
 					MobEffects.FIRE_RESISTANCE ,
 					MobEffects.WATER_BREATHING ,
 					MobEffects.NIGHT_VISION ,
 					MobEffects.SATURATION ,
-					RegenerateHealth.get() ,
-					Luck.get() ,
-					FireResistance.get() ,
-					WATER_BREATHING.get() ,
-					NIGHT_VISION.get() ,
-					SATURATION.get() ,
+					getRegenerateHealth() ,
+					getLuck() ,
+					getFireResistance() ,
+					getWaterBreathing() ,
+					getNightVision() ,
+					getSaturation() ,
 					GlintRenderTypes.GOLD
 
 			)
@@ -53,7 +54,7 @@ public class ModItems {
 			"orb_divine" , () -> new DivineOrb(
 					new Item.Properties() ,
 					"" ,
-					() -> configOrbOfMagic.get() ,
+					ToggleHelper::toggleOrbOfMagic ,
 					GlintRenderTypes.PURPLE
 			)
 	);
@@ -61,7 +62,7 @@ public class ModItems {
 			"div_crystal" , () -> new DivineCrystal(
 					new Item.Properties() ,
 					"" ,
-					() -> togCrystal.get() ,
+					ToggleHelper::toggleCrystal ,
 					GlintRenderTypes.PURPLE
 			)
 	);
@@ -69,7 +70,7 @@ public class ModItems {
 			"div_gold_ring" , () -> new DiveGoldRing(
 					new Item.Properties() ,
 					"" ,
-					() -> configDivineRing.get() ,
+					() -> true ,
 					GlintRenderTypes.ORANGE
 			)
 	);
@@ -77,7 +78,7 @@ public class ModItems {
 			"holy_tablet" , () -> new HolyTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogHolyTablet.get() ,
+					ToggleHelper::toggleHolyTablet ,
 					GlintRenderTypes.GOLD
 			)
 	);
@@ -85,7 +86,7 @@ public class ModItems {
 			"ender_tablet" , () -> new EnderTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogEnderTablet.get() ,
+					ToggleHelper::toggleEnderTablet ,
 					GlintRenderTypes.PURPLE
 			)
 	);
@@ -93,7 +94,7 @@ public class ModItems {
 			"eldritch_tablet" , () -> new EldritchTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogEldritchTablet.get() ,
+					ToggleHelper::toggleEldritchTablet ,
 					GlintRenderTypes.DARK
 			)
 	);
@@ -101,7 +102,7 @@ public class ModItems {
 			"blood_tablet" , () -> new BloodTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogBloodTablet.get() ,
+					ToggleHelper::toggleBloodTablet ,
 					GlintRenderTypes.RED
 			)
 	);
@@ -117,7 +118,7 @@ public class ModItems {
 			"fire_tablet" , () -> new FireTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogFireTablet.get() ,
+					ToggleHelper::toggleFireTablet ,
 					GlintRenderTypes.ORANGE
 			)
 	);
@@ -125,7 +126,7 @@ public class ModItems {
 			"ice_tablet" , () -> new IceTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogIceTablet.get() ,
+					ToggleHelper::toggleIceTablet ,
 					GlintRenderTypes.AQUA
 			)
 	);
@@ -141,7 +142,7 @@ public class ModItems {
 			"nature_tablet" , () -> new NatureTablet(
 					new Item.Properties() ,
 					"" ,
-					() -> TogNatureTablet.get() ,
+					ToggleHelper::toggleNatureTablet ,
 					GlintRenderTypes.GREEN
 			)
 	);
@@ -149,7 +150,7 @@ public class ModItems {
 			"dead_king_heart" , () -> new DeadKingHeart(
 					new Item.Properties() ,
 					"" ,
-					() -> TogDeadKingHeart.get() ,
+					ToggleHelper::toggleDeadKingHeart ,
 					GlintRenderTypes.RED
 			)
 	);
@@ -165,7 +166,7 @@ public class ModItems {
 			"great_attractor" , () -> new GreatAttractor(
 					new Item.Properties() ,
 					"" ,
-					() -> TogGreatAttractor.get() ,
+					ToggleHelper::toggleGreatAttractor ,
 					GlintRenderTypes.ATTRACTOR
 			)
 	);

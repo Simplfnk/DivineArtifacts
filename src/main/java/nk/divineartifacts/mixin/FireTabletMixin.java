@@ -9,8 +9,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static nk.divineartifacts.config.ServerConfig.TogFirTabLavaVision;
-import static nk.divineartifacts.config.ServerConfig.TogFireTablet;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFirTabLavaVision;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFireTablet;
 
 @Mixin(FogRenderer.class)
 public class FireTabletMixin {
@@ -24,7 +24,7 @@ public class FireTabletMixin {
 		Player player = (Player) entity;
 		boolean firTablet = Utils.isItemEquipped(ModItems.FIRE_TABLET.get() , player);
 
-		if (player.isCreative() || firTablet && TogFirTabLavaVision.get() && TogFireTablet.get()) {
+		if (player.isCreative() || firTablet && toggleFirTabLavaVision() && toggleFireTablet()) {
 			return true;
 		}
 

@@ -17,22 +17,19 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import nk.divineartifacts.client.Keybindings;
-import nk.divineartifacts.config.ToggleAbilities;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
 import java.util.UUID;
 
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleHudElements;
-import static nk.divineartifacts.config.ServerConfig.*;
-import static nk.divineartifacts.utils.UtilsHelper.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
+import static nk.divineartifacts.utils.UtilsHelper.Biomes_To_Check;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class IceTabletEvent {
 //	@SubscribeEvent()
 //	public void fireDamage(LivingAttackEvent event) {
@@ -49,10 +46,11 @@ public class IceTabletEvent {
 //			}
 //		}
 //	}
-	@SubscribeEvent()
+	@SubscribeEvent
 	public void onEffect(TickEvent.PlayerTickEvent event) {
-		if (!TogIceTablet.get()) return;
-		if (!TogIceTabWaterVision.get()) return;
+
+		if (toggleIceTablet()) return;
+		if (!toggleIceTabWaterVision()) return;
 		Player player = event.player;
 		if (player.isCreative() || player.isSpectator()) return;
 		boolean iceTablet = Utils.isItemEquipped(ModItems.ICE_TABLET.get() , player);
@@ -65,7 +63,7 @@ public class IceTabletEvent {
 
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		if (!TogIceTablet.get()) return;
+		if (toggleIceTablet()) return;
 		if (event.phase == TickEvent.Phase.END) {
 			Player player = event.player;
 			if (player.isCreative() || player.isSpectator()) return;
@@ -73,7 +71,7 @@ public class IceTabletEvent {
 			ResourceKey<Biome> biomes = player.level().getBiome(player.getOnPos()).unwrapKey().orElse(null);
 			boolean isColdBiomes = Biomes_To_Check.contains(biomes);
 			Block block = player.level().getBlockState(player.getOnPos()).getBlock();
-			if (iceTablet && TogIceTabIceSpeed.get() && isColdBiomes || player.isInPowderSnow || block instanceof PowderSnowBlock) {
+			if (iceTablet && toggleIceTabIceSpeed() && isColdBiomes || player.isInPowderSnow || block instanceof PowderSnowBlock) {
 				player.setNoGravity(true);
 				player.setSpeed(0.1f);
 				Minecraft minecraft = Minecraft.getInstance();
@@ -153,10 +151,10 @@ public class IceTabletEvent {
 		BlockPos posAbove = new BlockPos(X , Y - 1 , Z);
 		return world.getBlockState(posAbove).getBlock() == Blocks.WATER || world.getBlockState(posAbove).getBlock() == Blocks.AIR;
 	}
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent
 	public static void lavaMiningSpeedOnGround(PlayerEvent.BreakSpeed event) {
-		if (!TogIceTablet.get()) return;
-		if (!TogIceTabIceMiningSpeed.get()) return;
+		if (toggleIceTablet()) return;
+		if (toggleIceTabIceMiningSpeed()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
@@ -166,10 +164,10 @@ public class IceTabletEvent {
 		}
 	}
 
-	@SubscribeEvent()
+	@SubscribeEvent
 	public static void lavaMiningSpeed(PlayerEvent.BreakSpeed event) {
-		if (!TogIceTablet.get()) return;
-		if (!TogIceTabIceMiningSpeed.get()) return;
+		if (toggleIceTablet()) return;
+		if (toggleIceTabIceMiningSpeed()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
@@ -181,39 +179,19 @@ public class IceTabletEvent {
 	private static final UUID ICE_SPELL_POWER_UUID = UUID.fromString("ed79f0de-15c2-11ef-94b3-325096b39f47");
 	@SubscribeEvent
 	public static void lavaPower(TickEvent.PlayerTickEvent event) {
-		if (!TogIceTablet.get()) return;
+		if (toggleIceTablet()) return;
 		Player player = event.player;
 		ResourceKey<Biome> biomes = player.level().getBiome(player.getOnPos()).unwrapKey().orElse(null);
 		boolean isColdBiomes = Biomes_To_Check.contains(biomes);
 		if (player.isCreative() || player.isSpectator()) return;
 		boolean IceTablet = Utils.isItemEquipped(ModItems.ICE_TABLET.get() , player);
-		if (IceTablet && isColdBiomes && TogIceTabExtraIceSpellPower.get()) {
+		if (IceTablet && isColdBiomes && toggleIceTabExtraIceSpellPower()) {
 			player.getAttribute(AttributeRegistry.ICE_SPELL_POWER.get()).removeModifier(ICE_SPELL_POWER_UUID);
-			player.getAttribute(AttributeRegistry.ICE_SPELL_POWER.get()).addPermanentModifier(new AttributeModifier(ICE_SPELL_POWER_UUID , "" , valIceTabExtraIceSpellPower.get() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
+			player.getAttribute(AttributeRegistry.ICE_SPELL_POWER.get()).addPermanentModifier(new AttributeModifier(ICE_SPELL_POWER_UUID , "" , getIceTabExtraIceSpellPower() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		else {
 
 			player.getAttribute(AttributeRegistry.ICE_SPELL_POWER.get()).removeModifier(ICE_SPELL_POWER_UUID);
-
-		}
-
-	}
-	@SubscribeEvent
-	public static void showAbilitiesState(TickEvent.ClientTickEvent event) {
-		Minecraft minecraft = Minecraft.getInstance();
-		Player player = minecraft.player;
-		boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
-		if (ring && Keybindings.INSTANCE.magnetKey.consumeClick() && player != null) {
-			if (toggleHudElements()) {
-				ToggleAbilities.toggleHudElements.set(false);
-				ToggleAbilities.ClientSpec.save();
-				playTogOffSound(player);
-			}
-			else {
-				ToggleAbilities.toggleHudElements.set(true);
-				playTogOnSound(player);
-				ToggleAbilities.ClientSpec.save();
-			}
 
 		}
 

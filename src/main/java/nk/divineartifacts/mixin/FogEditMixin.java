@@ -11,8 +11,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static nk.divineartifacts.config.ServerConfig.TogFirTabLavaVision;
-import static nk.divineartifacts.config.ServerConfig.TogFireTablet;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFirTabLavaVision;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFireTablet;
 
 @Mixin(FogRenderer.class)
 public class FogEditMixin {
@@ -21,8 +21,8 @@ public class FogEditMixin {
 	private static net.minecraft.world.level.material.FogType lessFogRendering(Camera instance) {
 		LocalPlayer player = Minecraft.getInstance().player;
 		boolean iceTablet = Utils.isItemEquipped(ModItems.ICE_TABLET.get() , player);
-		if (!TogFireTablet.get()) return null;
-		if (!TogFirTabLavaVision.get()) return null;
+		if (!toggleFireTablet()) return null;
+		if (!toggleFirTabLavaVision()) return null;
 		if (iceTablet && player.isInPowderSnow) {
 			return FogType.NONE;
 		}

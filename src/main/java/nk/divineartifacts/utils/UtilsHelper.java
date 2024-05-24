@@ -39,8 +39,7 @@ import top.theillusivec4.curios.api.type.ISlotType;
 
 import java.util.*;
 
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
-import static nk.divineartifacts.config.ServerConfig.configDivineRing;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class UtilsHelper {
 	public static final HashMap<UUID, Long> lastActionTimes = new HashMap<>();
@@ -227,7 +226,7 @@ public class UtilsHelper {
 
 	public static void damageEntityNearArrow(Entity player , Projectile arrow , int damage) {
 		if (!(toggleAoeDamage())) return;
-		if (!(configDivineRing.get())) return;
+		if (!(toggleDivineRing())) return;
 		List<Entity> nearbyEntities = player.level().getEntities((Entity) null , arrow.getBoundingBox().inflate(6D) , entityPredicate(player , arrow));
 		for (Entity entity : nearbyEntities) {
 			if (entity instanceof LivingEntity mobs && mobs.isAlive()) {
@@ -276,7 +275,7 @@ public class UtilsHelper {
 
 	public static void addExplosionEffect(Entity player , Entity target) {
 		if (!(toggleAoeDamage())) return;
-		if (!(configDivineRing.get())) return;
+		if (!(toggleDivineRing())) return;
 		if (player instanceof ServerPlayer serverPlayer) {
 			double bBox = target.getBoundingBox().getYsize();
 			double bBoxCenter = bBox / 2;
@@ -305,7 +304,7 @@ public class UtilsHelper {
 
 	public static void addSmallExplosionEffect(Entity player , Entity target) {
 		if (!(toggleAoeDamage())) return;
-		if (!(configDivineRing.get())) return;
+		if (!(toggleDivineRing())) return;
 		if (player instanceof ServerPlayer serverPlayer) {
 			double bBox = target.getBoundingBox().getYsize();
 			double bBoxCenter = bBox / 2;

@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import static nk.divineartifacts.config.ServerConfig.TogFirTabLavaVision;
-import static nk.divineartifacts.config.ServerConfig.TogFireTablet;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFirTabLavaVision;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFireTablet;
 
 @Mixin(LivingEntity.class)
 public class canFreezeMixin {
@@ -18,8 +18,8 @@ public class canFreezeMixin {
 	private boolean lessFogRendering(LivingEntity instance) {
 		Player player = (Player) instance;
 		boolean iceTablet = Utils.isItemEquipped(ModItems.ICE_TABLET.get() , player);
-		if (!TogFireTablet.get()) return false;
-		if (!TogFirTabLavaVision.get()) return false;
+		if (!toggleFireTablet()) return false;
+		if (!toggleFirTabLavaVision()) return false;
 		if (iceTablet) {
 			return true;
 		}

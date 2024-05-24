@@ -26,8 +26,7 @@ import java.util.Random;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.config.ServerConfig.*;
-import static nk.divineartifacts.config.ToggleAbilities.togGaiaBlessing;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class NatureTablet extends NatureTabletBase {
 
@@ -35,7 +34,7 @@ public class NatureTablet extends NatureTabletBase {
 	private static final UUID NATURE_SPELL_UUID = UUID.fromString("594053b4-0ee1-11ef-8f73-325096b39f47");
 	private static final UUID CAST_TIME_UUID = UUID.fromString("5940542c-0ee1-11ef-9360-325096b39f47");
 	private static final UUID FIRE_MAGIC_RESIST_UUID = UUID.fromString("5940547c-0ee1-11ef-90d8-325096b39f47");
-	private int delay = ValNatureGrowthTickDelay.get();
+	private int delay = getNatureGrowthTickDelay();
 	public NatureTablet(Properties properties , String tooltip , Supplier<Boolean> enabled , GlintRenderTypes glintType) {
 		super(properties , tooltip , enabled , glintType);
 	}
@@ -46,18 +45,18 @@ public class NatureTablet extends NatureTabletBase {
 		if (!(livingEntity instanceof Player player)) return;
 		int mana = (int) MagicData.getPlayerMagicData(player).getMana();
 
-		if (player.hasEffect(MobEffects.POISON) && TogNaturePoisonImmunity.get()) {
+		if (player.hasEffect(MobEffects.POISON) && toggleNaturePoisonImmunity()) {
 			player.removeEffect(MobEffects.POISON);
-			MagicData.getPlayerMagicData(player).setMana(mana - TogNaturePoisonImmunityCost.get());
+			MagicData.getPlayerMagicData(player).setMana(mana - getNaturePoisonImmunityCost());
 
 		}
 
-		if (TogNaturePlantGrowth.get() && togGaiaBlessing.get()) {
+		if (toggleNaturePlantGrowth() && togGaiaBlessing()) {
 			if (delay <= 0) {
-				delay = ValNatureGrowthTickDelay.get();
+				delay = getNatureGrowthTickDelay();
 
 				BlockPos entityPos = new BlockPos(livingEntity.getBlockX() , livingEntity.getBlockY() , livingEntity.getBlockZ());
-				int range = ValNatureGrowthRang.get();
+				int range = getNatureGrowthRange();
 				int limit = 0;
 
 				List<BlockPos> blocks = new ArrayList<>();
@@ -72,7 +71,7 @@ public class NatureTablet extends NatureTabletBase {
 				if (blocks.size() >= 1) {
 					Random random = new Random();
 
-					while (blocks.size() >= 1 && limit < 3 && mana >= ((blocks.size() * ValNatureGrowthCost.get()))) {
+					while (blocks.size() >= 1 && limit < 3 && mana >= ((blocks.size() * getNatureGrowthCost()))) {
 						BlockPos pos = blocks.remove(random.nextInt(blocks.size()));
 						BlockState state = livingEntity.level().getBlockState(pos);
 
@@ -80,7 +79,7 @@ public class NatureTablet extends NatureTabletBase {
 							if (state != livingEntity.level().getBlockState(pos)) {
 								limit++;
 								livingEntity.level().levelEvent(2005 , pos , 0);
-								MagicData.getPlayerMagicData(player).setMana(mana - (blocks.size() * ValNatureGrowthCost.get()));
+								MagicData.getPlayerMagicData(player).setMana(mana - (blocks.size() * getNatureGrowthCost()));
 							}
 
 						}
@@ -96,14 +95,14 @@ public class NatureTablet extends NatureTabletBase {
 	public Multimap<Attribute, AttributeModifier> curioModifiers(SlotContext slotContext , UUID uuid , ItemStack stack) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogNatureMagicResist.get() && this.isEnabled.get()) {
-			modifiers.put(AttributeRegistry.NATURE_MAGIC_RESIST.get() , new AttributeModifier(NATURE_MAGIC_RESIS_UUID , "" , ValNatureMagicResist.get() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleNatureMagicResist() && this.isEnabled.get()) {
+			modifiers.put(AttributeRegistry.NATURE_MAGIC_RESIST.get() , new AttributeModifier(NATURE_MAGIC_RESIS_UUID , "" , getNatureMagicResist() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogNatureSpellPower.get() && this.isEnabled.get()) {
-			modifiers.put(AttributeRegistry.NATURE_SPELL_POWER.get() , new AttributeModifier(NATURE_SPELL_UUID , "" , ValNatureSpellPower.get() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleNatureSpellPower() && this.isEnabled.get()) {
+			modifiers.put(AttributeRegistry.NATURE_SPELL_POWER.get() , new AttributeModifier(NATURE_SPELL_UUID , "" , getNatureSpellPower() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && TogNatureFireResist.get() && this.isEnabled.get()) {
-			modifiers.put(AttributeRegistry.FIRE_MAGIC_RESIST.get() , new AttributeModifier(FIRE_MAGIC_RESIST_UUID , "" , -ValNatureFireResist.get() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && toggleNatureFireResist() && this.isEnabled.get()) {
+			modifiers.put(AttributeRegistry.FIRE_MAGIC_RESIST.get() , new AttributeModifier(FIRE_MAGIC_RESIST_UUID , "" , -getNatureFireResist() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 
 		return modifiers;

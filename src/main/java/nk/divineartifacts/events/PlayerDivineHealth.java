@@ -9,23 +9,23 @@ import net.minecraft.world.level.block.WebBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import nk.divineartifacts.config.ServerConfig;
+import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static nk.divineartifacts.config.ServerConfig.configDivineRing;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleDivineRing;
 import static nk.divineartifacts.utils.UtilsHelper.getAllCurioItems;
-
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class PlayerDivineHealth {
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent
 	public void onPlayerJoin(PlayerEvent.PlayerLoggedInEvent event) {
-		if (!ServerConfig.configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		Player player = event.getEntity();
 		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
 		if (ring != null) {
@@ -35,7 +35,7 @@ public class PlayerDivineHealth {
 
 	@SubscribeEvent
 	public void onPlayerUpdate(LivingEvent.LivingTickEvent event) {
-		if (!configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (!(event.getEntity() instanceof Player player)) return;
 		if (player.isCreative() || player.isSpectator()) return;
 		ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);

@@ -5,17 +5,17 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerXpEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
 import static nk.divineartifacts.item.subItems.HeartOfKnowledge.HEART_OF_KNOWLEDGE_MAX_MANA_UUID;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class HeartOfKnowledgeEvent {
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent
 	public void ExpChangEvent(PlayerXpEvent.LevelChange event) {
 		Player player = event.getEntity();
 		if(player.isCreative() || player.isSpectator())return;

@@ -16,8 +16,6 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.config.ServerConfig.Tattack;
-
 public class HeartOfKnowledge extends HeartOfKnowledgeBase {
 	public static final UUID HEART_OF_KNOWLEDGE_MAX_MANA_UUID = UUID.fromString("5a11bdf6-1151-11ef-9078-325096b39f47");
 	public HeartOfKnowledge(
@@ -27,15 +25,15 @@ public class HeartOfKnowledge extends HeartOfKnowledgeBase {
 	}
 
 	@Override
-	public  Multimap<Attribute, AttributeModifier> curioModifiers(SlotContext slotContext, UUID uuid, ItemStack stack)  {
+	public Multimap<Attribute, AttributeModifier> curioModifiers(SlotContext slotContext , UUID uuid , ItemStack stack) {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
 
 		Player player = (Player) slotContext.entity();
-		if(player == null) return modifiers;
-		if(player.isCreative() || player.isSpectator()) return modifiers;
+		if (player == null) return modifiers;
+		if (player.isCreative() || player.isSpectator()) return modifiers;
 		int xpLevel = player.experienceLevel;
 
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && Tattack.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack , slotContext.entity()).containsKey(slotContext.identifier()) && this.isEnabled.get()) {
 			modifiers.put(AttributeRegistry.MAX_MANA.get() ,
 					new AttributeModifier(HEART_OF_KNOWLEDGE_MAX_MANA_UUID , "" , xpLevel / 100.0 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));

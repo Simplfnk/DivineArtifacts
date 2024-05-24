@@ -1,0 +1,21 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "nk.divineartifacts.mixin",
+  "refmap": "divineartifacts.refmap.json",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "canFreezeMixin",
+    "PlayerEntityMixin"
+  ],
+  "client": [
+    "FireTabletCLearLava",
+    "FireTabletMixin",
+    "FogEditMixin",
+    "ItemRendererMixin",
+    "RenderBuffersMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

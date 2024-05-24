@@ -16,6 +16,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import nk.divineartifacts.client.handler.ClientForgeHandler;
+import nk.divineartifacts.client.handler.ClientModHandler;
 import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.config.ToggleAbilities;
 import nk.divineartifacts.events.*;
@@ -68,6 +69,7 @@ public class DivineArtifacts {
 		MinecraftForge.EVENT_BUS.register(new HolyTabletEvent());
 		MinecraftForge.EVENT_BUS.register(new FireTabletEvent());
 		MinecraftForge.EVENT_BUS.register(new IceTabletEvent());
+		MinecraftForge.EVENT_BUS.register(new ClientModHandler());
 		MinecraftForge.EVENT_BUS.register(this);
 
 	}

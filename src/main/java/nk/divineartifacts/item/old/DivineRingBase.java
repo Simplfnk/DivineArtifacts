@@ -24,7 +24,6 @@ import net.minecraftforge.common.util.LazyOptional;
 import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.GlintRenderTypes;
 import nk.divineartifacts.client.Keybindings;
-import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.item.ItemBaseClass;
 import org.jetbrains.annotations.NotNull;
 import top.theillusivec4.curios.api.CuriosCapability;
@@ -39,7 +38,7 @@ import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
 import static nk.divineartifacts.client.handler.ToggleHelper.*;
-import static nk.divineartifacts.config.ServerConfig.*;
+
 
 public class DivineRingBase extends ItemBaseClass {
 
@@ -429,77 +428,77 @@ public class DivineRingBase extends ItemBaseClass {
 			MutableComponent arrowDamage = Component.translatable("tooltip." + DivineArtifacts.MODID + ".arrow.damage").withStyle(s -> s.withColor(Gold));
 			MutableComponent drawSpeed = Component.translatable("tooltip." + DivineArtifacts.MODID + ".draw.speed").withStyle(s -> s.withColor(Gold));
 
-			MutableComponent attackDamageValue = Component.literal(Green + "+" + ServerConfig.ATTACK_DAMAGE.get());
-			MutableComponent armorValue = Component.literal(Green + "+" + ARMOR.get());
-			MutableComponent armorToughValue = Component.literal(Green + "+" + ARMOR_TOUGHNESS.get());
-			MutableComponent maxHeartValue = Component.literal(Green + "+" + MaxHeart.get() + "%");
-			MutableComponent knockValue = Component.literal(Green + "+" + KNOCKBACK_RESISTANCE.get() + "%");
-			MutableComponent stepHeightValue = Component.literal(Green + "+" + STEP_HEIGHT.get());
-			MutableComponent blockReachValue = Component.literal(Green + "+" + BLOCK_REACH.get());
-			MutableComponent entityReachValue = Component.literal(Green + "+" + ENTITY_REACH.get());
-			MutableComponent moveSpeedValue = Component.literal(Green + "+" + MOVEMENT_SPEED.get() + "%");
-			MutableComponent swimSpeedValue = Component.literal(Green + "+" + SWIM_SPEED.get() + "%");
-			MutableComponent flaySpeedValue = Component.literal(Green + "+" + FLYING_SPEED.get() + "%");
-			MutableComponent luckValue = Component.literal(Green + "+" + LUCK.get());
-			MutableComponent critChanceValue = Component.literal(Green + "+" + CRIT_CHANCE.get() + "%");
-			MutableComponent armorPiercingV = Component.literal(Green + "+" + ARMOR_PIERCE.get() + "%");
-			MutableComponent armorShreddingV = Component.literal(Green + "+" + ARMOR_SHRED.get() + "%");
-			MutableComponent arrowVelocityValue = Component.literal(Green + "+" + ARROW_VELOCITY.get() + "%");
-			MutableComponent arrowDamageValue = Component.literal(Green + "+" + ARROW_DAMAGE.get() + "%");
-			MutableComponent drawSpeedValue = Component.literal(Green + "+" + DRAW_SPEED.get() + "%");
+			MutableComponent attackDamageValue = Component.literal(Green + "+" + getAttackDamage());
+			MutableComponent armorValue = Component.literal(Green + "+" + getArmor());
+			MutableComponent armorToughValue = Component.literal(Green + "+" + getArmorToughness());
+			MutableComponent maxHeartValue = Component.literal(Green + "+" + getMaxHeart() + "%");
+			MutableComponent knockValue = Component.literal(Green + "+" + getKnockbackResistance() + "%");
+			MutableComponent stepHeightValue = Component.literal(Green + "+" + getStepHeight());
+			MutableComponent blockReachValue = Component.literal(Green + "+" + getBlockReach());
+			MutableComponent entityReachValue = Component.literal(Green + "+" + getEntityReach());
+			MutableComponent moveSpeedValue = Component.literal(Green + "+" + getMovementSpeed() + "%");
+			MutableComponent swimSpeedValue = Component.literal(Green + "+" + getSwimSpeed() + "%");
+			MutableComponent flaySpeedValue = Component.literal(Green + "+" + getFlyingSpeed() + "%");
+			MutableComponent luckValue = Component.literal(Green + "+" + getLuck());
+			MutableComponent critChanceValue = Component.literal(Green + "+" + getCritChance() + "%");
+			MutableComponent armorPiercingV = Component.literal(Green + "+" + getArmorPierce() + "%");
+			MutableComponent armorShreddingV = Component.literal(Green + "+" + getArmorShred() + "%");
+			MutableComponent arrowVelocityValue = Component.literal(Green + "+" + getArrowVelocity() + "%");
+			MutableComponent arrowDamageValue = Component.literal(Green + "+" + getArrowDamage() + "%");
+			MutableComponent drawSpeedValue = Component.literal(Green + "+" + getDrawSpeed() + "%");
 
-			if (Tattack.get()) {
+			if (toggleTattack()) {
 				tooltip.add(attack.append(attackDamageValue));
 			}
-			if (TArmor.get()) {
+			if (toggleTArmor()) {
 				tooltip.add(armor.append(armorValue));
 			}
-			if (TArmorToughness.get()) {
+			if (toggleTArmorToughness()) {
 				tooltip.add(toughness.append(armorToughValue));
 			}
-			if (TMAXHealth.get()) {
+			if (toggleTMAXHealth()) {
 				tooltip.add(health.append(maxHeartValue));
 			}
-			if (TKnockbackResistance.get()) {
+			if (toggleTKnockbackResistance()) {
 				tooltip.add(knockResist.append(knockValue));
 			}
-			if (TStepHeight.get()) {
+			if (toggleTStepHeight()) {
 				tooltip.add(step.append(stepHeightValue));
 			}
-			if (TBlockReach.get()) {
+			if (toggleTBlockReach()) {
 				tooltip.add(blockReach.append(blockReachValue));
 			}
-			if (TEntityReach.get()) {
+			if (toggleTEntityReach()) {
 				tooltip.add(entityReach.append(entityReachValue));
 			}
-			if (TMovementSpeed.get()) {
+			if (toggleTMovementSpeed()) {
 				tooltip.add(movementSpeed.append(moveSpeedValue));
 			}
-			if (TSwimSpeed.get()) {
+			if (toggleTSwimSpeed()) {
 				tooltip.add(swimSpeed.append(swimSpeedValue));
 			}
-			if (TFlyingSpeed.get()) {
+			if (toggleTFlyingSpeed()) {
 				tooltip.add(flyingSpeed.append(flaySpeedValue));
 			}
-			if (TLuck.get()) {
+			if (toggleTLuck()) {
 				tooltip.add(luck.append(luckValue));
 			}
-			if (TCritChance.get()) {
+			if (toggleTCritChance()) {
 				tooltip.add(critChance.append(critChanceValue));
 			}
-			if (TArmorPierce.get()) {
+			if (toggleTArmorPierce()) {
 				tooltip.add(armorPiercing.append(armorPiercingV));
 			}
-			if (TArmorShred.get()) {
+			if (toggleTArmorShred()) {
 				tooltip.add(armorShredding.append(armorShreddingV));
 			}
-			if (TArrowVelocity.get()) {
+			if (toggleTArrowVelocity()) {
 				tooltip.add(arrowVelocity.append(arrowVelocityValue));
 			}
-			if (TArrowDamage.get()) {
+			if (toggleTArrowDamage()) {
 				tooltip.add(arrowDamage.append(arrowDamageValue));
 			}
-			if (TDrawSpeed.get()) {
+			if (toggleTDrawSpeed()) {
 				tooltip.add(drawSpeed.append(drawSpeedValue));
 			}
 

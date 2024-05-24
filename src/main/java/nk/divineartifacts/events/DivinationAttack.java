@@ -11,26 +11,23 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.event.entity.ProjectileImpactEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import nk.divineartifacts.config.ServerConfig;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleAoeDamage;
-import static nk.divineartifacts.config.ServerConfig.AoeDamage;
-import static nk.divineartifacts.config.ServerConfig.configDivineRing;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 import static nk.divineartifacts.utils.UtilsHelper.*;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class DivinationAttack {
 	private static final String MARKER = "depleted.arrow";
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent
 	public static void onPlayerAttack(LivingAttackEvent event) {
 		if (!(toggleAoeDamage())) return;
-		if(!(ServerConfig.configDivineRing.get())) return;
+		if(!(toggleDivineRing())) return;
 		Entity sourceEntity = event.getSource().getEntity();
 		if (sourceEntity instanceof Player player && !(player.level().isClientSide)) {
 			ItemStack ring = Utils.getFirstCurio(ModItems.DIVINE_RING.get() , player);
@@ -45,7 +42,7 @@ public class DivinationAttack {
 					try {
 						processingEntities.add(target); // Mark this entity as being processed
 						target.setSecondsOnFire(10);
-						hitNearbyEntities(player , target , AoeDamage.get());
+						hitNearbyEntities(player , target , getAoeDamage());
 						addExplosionEffect(player , target);
 						if (event.getSource().getDirectEntity() != player) {
 							applyKnockBackFromSource(source , target);
@@ -61,10 +58,10 @@ public class DivinationAttack {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent
 	public static void onProjImpact(ProjectileImpactEvent event) {
 		if (!toggleAoeDamage()) return;
-		if (!configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (event.getProjectile().getOwner() instanceof Player player) {
 			Projectile arrow = event.getProjectile();
 			if (arrow.getTags().stream().anyMatch(tag -> tag.equals(MARKER))) return;
@@ -74,7 +71,7 @@ public class DivinationAttack {
 				if (event.getRayTraceResult() instanceof BlockHitResult) {
 					if (!(arrow instanceof ThrowableItemProjectile)) {
 						addExplosionEffect(player , arrow);
-						damageEntityNearArrow(player , arrow , AoeDamage.get());
+						damageEntityNearArrow(player , arrow , getAoeDamage());
 						if (arrow instanceof AbstractArrow) {
 							arrow.addTag(MARKER);
 						}

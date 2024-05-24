@@ -3,52 +3,56 @@ package nk.divineartifacts.events;
 import io.redspace.ironsspellbooks.api.registry.AttributeRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
 import java.util.UUID;
 
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
+import static nk.divineartifacts.utils.UtilsHelper.FIRE_DAMAGE_TYPE;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class FireTabletEvent {
-//	@SubscribeEvent()
-//	public void fireDamage(LivingAttackEvent event) {
-//		if (!TogFireTablet.get()) return;
-//		if (!TogFirTabFireImmunity.get()) return;
-//		if (event.getEntity() instanceof Player player) {
-//			if (player.isCreative() || player.isSpectator()) return;
-//			ItemStack fireTablet = Utils.getFirstCurio(ModItems.FIRE_TABLET.get() , player);
-//			DamageSource damageSource = event.getSource();
-//			boolean isFireDamage = FIRE_DAMAGE_TYPE.stream().anyMatch(damageSource::is);
-//			if (fireTablet != null && isFireDamage) {
-//				player.clearFire();
-//				player.setRemainingFireTicks(0);
-//				event.setCanceled(true);
-//			}
-//		}
-//	}
+	@SubscribeEvent()
+	public void fireDamage(LivingAttackEvent event) {
+		if (!toggleFireTablet()) return;
+		if (!toggleFirTabFireImmunity()) return;
+		if (event.getEntity() instanceof Player player) {
+			if (player.isCreative() || player.isSpectator()) return;
+			ItemStack fireTablet = Utils.getFirstCurio(ModItems.FIRE_TABLET.get() , player);
+			DamageSource damageSource = event.getSource();
+			boolean isFireDamage = FIRE_DAMAGE_TYPE.stream().anyMatch(damageSource::is);
+			if (fireTablet != null && isFireDamage) {
+				player.clearFire();
+				player.setRemainingFireTicks(0);
+				event.setCanceled(true);
+			}
+		}
+	}
 
 	@SubscribeEvent
 	public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
-		if (!TogFireTablet.get()) return;
+		if (toggleFireTablet()) return;
 		if (event.phase == TickEvent.Phase.END) {
 			Player player = event.player;
 			if (player.isCreative() || player.isSpectator()) return;
 			boolean fireTablet = Utils.isItemEquipped(ModItems.FIRE_TABLET.get() , player);
-			if (fireTablet && TogFirTabLavaSpeed.get() && player.isInLava()) {
+			if (fireTablet && toggleFirTabLavaSpeed() && player.isInLava()) {
 				player.setNoGravity(true);
 				player.setSpeed(0.1f);
 				Minecraft minecraft = Minecraft.getInstance();
@@ -130,12 +134,12 @@ public class FireTabletEvent {
 	}
 	@SubscribeEvent
 	public static void onPlayerSpeed(TickEvent.PlayerTickEvent event) {
-		if (!TogFireTablet.get()) return;
+		if (toggleFireTablet()) return;
 		if (event.phase == TickEvent.Phase.END) {
 			Player player = event.player;
 			if (player.isCreative() || player.isSpectator()) return;
 			boolean fireTablet = Utils.isItemEquipped(ModItems.FIRE_TABLET.get() , player);
-			if (fireTablet && TogFirTabLavaSpeed.get() && player.isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
+			if (fireTablet && toggleFirTabLavaSpeed() && player.isEyeInFluidType(ForgeMod.LAVA_TYPE.get())) {
 				player.setNoGravity(true);
 				player.setSpeed(0.1f);
 				Minecraft minecraft = Minecraft.getInstance();
@@ -199,10 +203,10 @@ public class FireTabletEvent {
 		double newZ = player.getZ() + (Math.cos((float) radians) * moveDistance);
 		player.setPos(newX , player.getY() , newZ);
 	}
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent
 	public static void lavaMiningSpeedOnGround(PlayerEvent.BreakSpeed event) {
-		if (!TogFireTablet.get()) return;
-		if (!TogFirTabMiningSpeed.get()) return;
+		if (toggleFireTablet()) return;
+		if (toggleFirTabMiningSpeed()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
@@ -212,10 +216,10 @@ public class FireTabletEvent {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent
 	public static void lavaMiningSpeed(PlayerEvent.BreakSpeed event) {
-		if (!TogFireTablet.get()) return;
-		if (!TogFirTabMiningSpeed.get()) return;
+		if (!toggleFireTablet()) return;
+		if (toggleFirTabMiningSpeed()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
@@ -227,13 +231,13 @@ public class FireTabletEvent {
 	private static final UUID FIRE_SPELL_POWER_UUID = UUID.fromString("39f986bc-1538-11ef-a186-325096b39f47");
 	@SubscribeEvent
 	public static void lavaPower(TickEvent.PlayerTickEvent event) {
-		if (!TogFireTablet.get()) return;
+		if (!toggleFireTablet()) return;
 		Player player = event.player;
 		if (player.isCreative() || player.isSpectator()) return;
 		boolean fireTablet = Utils.isItemEquipped(ModItems.FIRE_TABLET.get() , player);
-		if (fireTablet && player.isInLava() && TogFirTabExtraFirePowerSpell.get()) {
+		if (fireTablet && player.isInLava() && toggleFirTabExtraFirePowerSpell()) {
 			player.getAttribute(AttributeRegistry.FIRE_SPELL_POWER.get()).removeModifier(FIRE_SPELL_POWER_UUID);
-			player.getAttribute(AttributeRegistry.FIRE_SPELL_POWER.get()).addPermanentModifier(new AttributeModifier(FIRE_SPELL_POWER_UUID , "" , valFirTabExtraFirePowerSpell.get() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
+			player.getAttribute(AttributeRegistry.FIRE_SPELL_POWER.get()).addPermanentModifier(new AttributeModifier(FIRE_SPELL_POWER_UUID , "" , getFirTabExtraFirePowerSpell() / 100.0 , AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		else {
 

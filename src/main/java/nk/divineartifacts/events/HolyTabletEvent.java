@@ -13,9 +13,9 @@ import net.minecraft.world.entity.monster.Skeleton;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
@@ -23,39 +23,38 @@ import nk.divineartifacts.utils.Utils;
 import java.util.List;
 import java.util.Random;
 
-import static nk.divineartifacts.config.ServerConfig.*;
-import static nk.divineartifacts.config.ToggleAbilities.TogSunShield;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 import static nk.divineartifacts.utils.UtilsHelper.*;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 
 public class HolyTabletEvent {
 	private static int ticksElapsed = 0;
 	private static boolean soundPlaying = false;
 	@SubscribeEvent
 	public void onPlayerJoaaa(TickEvent.ClientTickEvent event) {
-		if (!TogHolyTablet.get()) return;
-		if (!TogSunShield.get()) return;
+		if (!toggleHolyTablet()) return;
+		if (!TogSunShield()) return;
 		if (soundPlaying) {
 			ticksElapsed++;
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.HIGH)
+	@SubscribeEvent
 	public void onPlayerJoin(TickEvent.PlayerTickEvent event) {
-		if (!TogHolyTablet.get()) return;
-		if (!TogSunShield.get()) return;
+		if (!toggleHolyTablet()) return;
+		if (!TogSunShield()) return;
 		if (!(event.player instanceof ServerPlayer player)) return;
 		if (player.level().isClientSide) return;
 		float mana = MagicData.getPlayerMagicData(player).getMana();
 		Random random = new Random();
 		int chance = random.nextInt(99) + 1;
-		int NockBackChance = ValHlyTabSunKnockChance.get();
-		int fireRange = ValHlyTabSunFireRange.get();
-		int KnockBackRange = ValHlyTabSunKnockRange.get();
-		int FireManaCost = ValHlyTabSunFireCost.get();
-		int KnockBackManaCost = ValHlyTabSunKnockCost.get();
-		int FireDuration = ValHlyTabFireDuration.get();
+		int NockBackChance = getHlyTabSunKnockChance();
+		int fireRange = getHlyTabSunFireRange();
+		int KnockBackRange = getHlyTabSunKnockRange();
+		int FireManaCost = getHlyTabSunFireCost();
+		int KnockBackManaCost = getHlyTabSunKnockCost();
+		int FireDuration = getHlyTabFireDuration();
 		long currentTime = System.currentTimeMillis();
 		long lastActionTime = lastActionTimes.getOrDefault(player.getUUID() , 0L);
 

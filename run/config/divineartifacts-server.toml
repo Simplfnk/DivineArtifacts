@@ -1,0 +1,491 @@
+
+["Divine Artifacts"]
+
+	["Divine Artifacts".Miscellaneous]
+
+		["Divine Artifacts".Miscellaneous."Ring Of Divinity"]
+			"Ring Of Divinity" = true
+
+			["Divine Artifacts".Miscellaneous."Ring Of Divinity".Abilities]
+				#Magnet Range
+				#Range: 1 ~ 100
+				"Magnet Range" = 60
+				#AOE Damage
+				#Range: 1 ~ 100
+				"AOE Damage" = 30
+				#Extra Drops
+				#Range: 1 ~ 100
+				"Drops Amounts" = 9
+
+			["Divine Artifacts".Miscellaneous."Ring Of Divinity"."Potion Effects"]
+				#Regeneration Level
+				#Range: 1 ~ 255
+				"Health Regeneration" = 10
+				#Luck Level
+				#Range: 1 ~ 255
+				Luck = 10
+				#Fire Resistance
+				#Range: 1 ~ 255
+				"Fire Resistance" = 10
+				#Water Breathing
+				#Range: 1 ~ 255
+				"Water Breathing" = 1
+				#Night Vision
+				#Range: 1 ~ 255
+				"Night Vision" = 1
+				#Saturation
+				#Range: 1 ~ 255
+				Saturation = 10
+
+			["Divine Artifacts".Miscellaneous."Ring Of Divinity".Attribute]
+
+				["Divine Artifacts".Miscellaneous."Ring Of Divinity".Attribute.Toggle]
+					#Enable Attack Damage Attribute
+					"Attack Damage" = true
+					#Enable Armor Attribute
+					Armor = true
+					#Enable Armor Toughness Attribute
+					"Armor Toughness" = true
+					#Enable Knockback Resistance Attribute
+					"Knockback Resistance" = true
+					#Enable Max Health Attribute
+					"Max Health" = true
+					#Enable Step Height Attribute
+					"Step Height" = true
+					#Enable Block Reach Attribute
+					"Block Reach" = true
+					#Enable Entity Reach Attribute
+					"Entity Reach" = true
+					#Enable Movement Speed Attribute
+					"Movement Speed" = true
+					#Enable Swim Speed Attribute
+					"Swim Speed" = true
+					#Enable Flying Speed Attribute
+					"Flying Speed" = true
+					#Enable Luck Attribute
+					Luck = true
+					#Enable Crit Chance Attribute
+					"Crit Chance" = true
+					#Enable Armor Pierce Attribute
+					"Armor Pierce" = true
+					#Enable Armor Shred Attribute
+					"Armor Shred" = true
+					#Enable Arrow Velocity Attribute
+					"Arrow Velocity" = true
+					#Enable Arrow Damage Attribute
+					"Arrow Damage" = true
+					#Enable Draw Speed Attribute
+					"Draw Speed" = true
+
+				["Divine Artifacts".Miscellaneous."Ring Of Divinity".Attribute.Value]
+					#Attack Damage
+					#Range: 1 ~ 1000
+					"Attack Damage" = 100
+					#Armor
+					#Range: 1 ~ 1000
+					Armor = 100
+					#Armor Toughness
+					#Range: 1 ~ 1000
+					"Armor Toughness" = 10
+					#Knock back Resistance
+					#Range: 10 ~ 100
+					"Knock back Resistance %" = 100
+					#Max Heart
+					#Range: 100 ~ 1000
+					"Max Health %" = 500
+					#Step Height
+					#Range: 1 ~ 4
+					"Step Height" = 1
+					#Block Reach
+					#Range: 1 ~ 100
+					"Block Reach" = 10
+					#Entity Reach
+					#Range: 1 ~ 100
+					"Entity Reach" = 10
+					#Movement Speed
+					#Range: 100 ~ 1000
+					"Movement Speed %" = 200
+					#Swim Speed
+					#Range: 100 ~ 1000
+					"Swim Speed %" = 400
+					#Flying Speed
+					#Range: 100 ~ 1000
+					"Flying Speed %" = 100
+					#Luck
+					#Range: 1 ~ 1000
+					Luck = 10
+					#Crit Chance
+					#Range: 100 ~ 1000
+					"Crit Chance %" = 100
+					#Armor Pierce
+					#Range: 100 ~ 1000
+					"Armor Pierce %" = 100
+					#Armor Shred
+					#Range: 100 ~ 1000
+					"Armor Shred %" = 100
+					#Arrow Velocity
+					#Range: 100 ~ 1000
+					"Arrow Velocity %" = 100
+					#Arrow Damage
+					#Range: 100 ~ 1000
+					"Arrow Damage %" = 200
+					#Draw Speed
+					#Range: 100 ~ 1000
+					"Draw Speed %" = 200
+
+		["Divine Artifacts".Miscellaneous."Divine Orb"]
+			"Divine Orb" = true
+
+			["Divine Artifacts".Miscellaneous."Divine Orb".Attribute]
+
+				["Divine Artifacts".Miscellaneous."Divine Orb".Attribute.Toggle]
+					#Enable Spell Resist Attribute
+					"Spell Resist" = true
+					#Enable Spell Power Attribute
+					"Spell Power" = true
+					#Enable Mana Regen Attribute
+					"Mana Regen" = true
+					#Enable Max Mana Attribute
+					"Max Mana" = true
+					#Enable Cool-Down Reduction Attribute
+					"Cool-Down Reduction" = true
+					#Enable Cast-Time Reduction Attribute
+					"Cast-Time Reduction" = true
+
+				["Divine Artifacts".Miscellaneous."Divine Orb".Attribute.Value]
+					#Spell Resist
+					#Range: 100 ~ 1000
+					"Spell Resist %" = 200
+					#Spell Power
+					#Range: 100 ~ 1000
+					"Spell Power %" = 200
+					#Mana Regen
+					#Range: 100 ~ 1000
+					"Mana Regen %" = 200
+					#Max Mana
+					#Range: 100 ~ 1000
+					"Max Mana %" = 200
+					#Cool-Down Reduction
+					#Range: 100 ~ 1000
+					"Cool-Down Reduction %" = 200
+					#Cast-Time Reduction
+					#Range: 100 ~ 1000
+					"Cast-Time Reduction %" = 200
+
+		["Divine Artifacts".Miscellaneous.Crystal]
+			#Disable/Enable crystal
+			"Crystal " = true
+
+		["Divine Artifacts".Miscellaneous."Great Attractor"]
+			#Disable/Enable Great Attractor
+			"Great Attractor" = true
+
+			["Divine Artifacts".Miscellaneous."Great Attractor".Value]
+				#Regeneration
+				#Range: 1 ~ 100
+				"§a Attractor Rang " = 60
+				#Regeneration
+				#Range: 1 ~ 20
+				"§c Attractor Mana Cost " = 1
+				#The Speed of Mana Consumption
+				#Range: 1 ~ 20
+				"§a Attractor Tick Delay " = 6
+
+		["Divine Artifacts".Miscellaneous."Dead King's Heart"]
+			#Disable/Enable Dead King's Heart
+			"Dead King's Heart " = true
+
+			["Divine Artifacts".Miscellaneous."Dead King's Heart"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§aExtra Hearts" = true
+				#Toggle On/Off Attribute
+				"§aBlood Spell Power" = true
+				#Toggle On/Off Attribute
+				"§cHoly Spell Power Reduction" = true
+				#Toggle On/Off Attribute
+				"§cHoly Magic Resist Reduction" = true
+
+			["Divine Artifacts".Miscellaneous."Dead King's Heart"."Toggle Ability"]
+				#Toggle On/Off Ability
+				"§aRegeneration" = true
+
+			["Divine Artifacts".Miscellaneous."Dead King's Heart".Value]
+				#Regeneration
+				#Range: 1 ~ 20
+				"§a Regeneration Speed In Ticks " = 6
+				#Regeneration
+				#Range: 1 ~ 100
+				"§a Regeneration Cost In Mana " = 5
+				#Regeneration
+				#Range: 1 ~ 100
+				"§a Heal Amount 1 = half heart " = 1
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aExtra Hearts " = 10
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aBlood Spell Power %" = 8
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§cHoly Spell Power Reduction %" = 20
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§cHoly Magic Resist Reduction %" = 20
+
+	["Divine Artifacts".Tablets]
+
+		["Divine Artifacts".Tablets."Ice Tablet"]
+			#Disable/Enable Ice Tablet
+			"Nature Tablet " = true
+
+			["Divine Artifacts".Tablets."Ice Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§a Ice Magic Resistance" = true
+				#Toggle On/Off Attribute
+				"§a Ice Spell Power" = true
+				#Toggle On/Off Attribute
+				"§a Max Mana" = true
+				#Toggle On/Off Attribute
+				"§c Nature Magic Resistance" = true
+
+			["Divine Artifacts".Tablets."Ice Tablet"."Toggle Abilities"]
+				#Toggle On/Off Abilities
+				"§a Extra Ice Spell Power" = true
+				#Toggle On/Off Abilities
+				"§a Freezing Immunity" = true
+				#Toggle On/Off Abilities
+				"§a Water Vision" = true
+				#Toggle On/Off Abilities
+				"§a SPeed Move Movement in water" = true
+				#Toggle On/Off Abilities
+				"§a Mining Speed In Water and Cold Biomes" = true
+
+			["Divine Artifacts".Tablets."Ice Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Ice Magic Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Ice Spell Power %" = 30
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Max Mana Points" = 8
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§c Nature Magic Resistance %" = 70
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Extra Ice Spell Power In Cold Biomes %" = 20
+
+		["Divine Artifacts".Tablets."Fire Tablet"]
+			#Disable/Enable Nature Tablet
+			"Nature Tablet " = true
+
+			["Divine Artifacts".Tablets."Fire Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§a Fire Magic Resistance" = true
+				#Toggle On/Off Attribute
+				"§a Fire Spell Power" = true
+				#Toggle On/Off Attribute
+				"§a CoolDown Reduction" = true
+				#Toggle On/Off Attribute
+				"§c Ice Magic Resistance" = true
+
+			["Divine Artifacts".Tablets."Fire Tablet"."Toggle Abilities"]
+				#Toggle On/Off Abilities
+				"§a Fire immunity" = true
+				#Toggle On/Off Abilities
+				"§a Fast Movement In Lava" = true
+				#Toggle On/Off Abilities
+				"§a Fast Mining In Lava" = true
+				#Toggle On/Off Abilities
+				"§a Lava Vision" = true
+				#Toggle On/Off Abilities
+				"§a Extra Fire Spell Power In Lava" = true
+
+			["Divine Artifacts".Tablets."Fire Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Fire Magic Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Fire Spell Power %" = 30
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a CoolDown Reduction %" = 8
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§c Ice Magic Resistance %" = 70
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Extra Fire Spell Power In Lava %" = 20
+
+		["Divine Artifacts".Tablets."Nature Tablet"]
+			#Disable/Enable Nature Tablet
+			"Nature Tablet " = true
+
+			["Divine Artifacts".Tablets."Nature Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§a Nature Magic Resistance" = true
+				#Toggle On/Off Attribute
+				"§a Nature Spell Power" = true
+				#Toggle On/Off Attribute
+				"§c Fire Magic Resistance" = true
+
+			["Divine Artifacts".Tablets."Nature Tablet"."Toggle Abilities"]
+				#Toggle On/Off Abilities
+				"§a Poison Immunity" = true
+				#Toggle On/Off Abilities
+				"§a Gaia Blessing" = true
+
+			["Divine Artifacts".Tablets."Nature Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Nature Magic Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§a Nature Spell Power %" = 30
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§c Fire Magic Resist Reduction %" = 60
+				#Abilities Value
+				#Range: 1 ~ 100
+				"§a Gaia Blessing Mana Cost" = 1
+				#Abilities Value
+				#Range: 1 ~ 1000
+				"§a Gaia Blessing Delay" = 6
+				#Abilities Value
+				#Range: 1 ~ 100
+				"§a Gaia Blessing Range" = 6
+				#Abilities Value
+				#Range: 1 ~ 1000
+				"§c Poison Immunity Cost" = 5
+
+		["Divine Artifacts".Tablets."Ender Tablet"]
+			#Disable/Enable Ender Tablet
+			"Ender Tablet " = true
+
+			["Divine Artifacts".Tablets."Ender Tablet"."Toggle Abilities"]
+				#Toggle On/Off Attribute
+				"§a Docile EnderMan" = true
+
+			["Divine Artifacts".Tablets."Ender Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§aEnder Magic Resistance" = true
+				#Toggle On/Off Attribute
+				"§aEnder Spell Power " = true
+				#Toggle On/Off Attribute
+				"§cSpells Resistance Reduction" = true
+
+			["Divine Artifacts".Tablets."Ender Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aEnder Magic Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aEnder Spell Power %" = 35
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§cSpell Resistance Reduction %" = 20
+
+		["Divine Artifacts".Tablets."Holy Tablet"]
+			#Disable/Enable Holy Tablet
+			"Holy Tablet " = true
+
+			["Divine Artifacts".Tablets."Holy Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§aHoly Magic Resistance" = true
+				#Toggle On/Off Attribute
+				"§aHoly Spell Power " = true
+				#Toggle On/Off Attribute
+				"§aMana Regeneration" = true
+				#Toggle On/Off Attribute
+				"§cEvocation Magic Resist Reduction" = true
+
+			["Divine Artifacts".Tablets."Holy Tablet"."Toggle Abilities"]
+				#Toggle On/Off Sun Shield Ability 
+				"§c Sun Shield" = true
+
+			["Divine Artifacts".Tablets."Holy Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aHoly Magic Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aHoly Spell Power %" = 30
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aMana Regeneration %" = 25
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§cEvocation Magic Resist Reduction %" = 80
+				#Duration of the mob being on fire in second
+				#Range: 1 ~ 1000
+				"§a The Fire duration" = 10
+				#Range in which the mob will be set on fire
+				#Range: 1 ~ 1000
+				"§a The range of setting mobs on fire %" = 10
+				#Range in which the mob will be knocked back
+				#Range: 1 ~ 1000
+				"§a The range of Knocking back mobs %" = 10
+				#Chance of the knock-back effect
+				#Range: 1 ~ 1000
+				"§a Chance of the knock-back %" = 5
+				#Cost of the knock-back for every mob in Mana
+				#Range: 1 ~ 1000
+				"§c Cost of the knock-back %" = 5
+				#Cost of the fire for every mob in Mana"
+				#Range: 1 ~ 1000
+				"§c Cost of setting mobs on fire %" = 5
+
+		["Divine Artifacts".Tablets."Blood Tablet"]
+			#Disable/Enable Blood Tablet
+			"Blood Tablet " = true
+
+			["Divine Artifacts".Tablets."Blood Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§aBlood Magic Resistance" = true
+				#Toggle On/Off Attribute
+				"§aBlood Spell Power " = true
+				#Toggle On/Off Attribute
+				"§aCast-Time Reduction" = true
+				#Toggle On/Off Attribute
+				"§cCool-Down Increase" = true
+
+			["Divine Artifacts".Tablets."Blood Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aBlood Magic Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aBlood Spell Power %" = 30
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§aCast-Time Reduction %" = 10
+				#Attribute Value
+				#Range: 1 ~ 1000
+				"§cCool-Down Increase %" = 15
+
+		["Divine Artifacts".Tablets."Eldritch Tablet"]
+			#Disable/Enable Eldritch Tablet
+			"Eldritch Tablet  " = true
+
+			["Divine Artifacts".Tablets."Eldritch Tablet"."Toggle Attribute"]
+				#Toggle On/Off Attribute
+				"§aEldritch Spells Power" = true
+				#Toggle On/Off Attribute
+				"§aSpells Resistance" = true
+				#Toggle On/Off Attribute
+				"§cMax-Mana Reduction " = true
+
+			["Divine Artifacts".Tablets."Eldritch Tablet".Value]
+				#Attribute Value
+				#Range: 1 ~ 100
+				"§aEldritch Spells Power %" = 30
+				#Attribute Value
+				#Range: 1 ~ 100
+				"§aSpells Resistance %" = 15
+				#Attribute Value
+				#Range: 1 ~ 100
+				"§cMax-Mana Reduction %" = 15
+

@@ -12,8 +12,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import static nk.divineartifacts.config.ServerConfig.TogFirTabLavaVision;
-import static nk.divineartifacts.config.ServerConfig.TogFireTablet;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFirTabLavaVision;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleFireTablet;
 
 @Mixin(ScreenEffectRenderer.class)
 public class FireTabletCLearLava {
@@ -22,8 +22,8 @@ public class FireTabletCLearLava {
 		LocalPlayer player = Minecraft.getInstance().player;
 		boolean firTablet = Utils.isItemEquipped(ModItems.FIRE_TABLET.get() , player);
 		boolean iceTablet = Utils.isItemEquipped(ModItems.ICE_TABLET.get() , player);
-		if (!TogFireTablet.get()) return;
-		if (!TogFirTabLavaVision.get()) return;
+		if (!toggleFireTablet()) return;
+		if (!toggleFirTabLavaVision()) return;
 
 		if (player.isCreative())
 			ci.cancel();

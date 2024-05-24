@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.AABB;
 import net.minecraftforge.common.ForgeMod;
 import nk.divineartifacts.client.GlintRenderTypes;
-import nk.divineartifacts.config.ServerConfig;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 
@@ -27,8 +26,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Supplier;
 
-import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class RingGod extends DivineRingBase {
 	private static final UUID HEALTH_UUID = UUID.fromString("b29c34f3-1450-48ff-ab28-639647e11861");
@@ -49,7 +47,7 @@ public class RingGod extends DivineRingBase {
 	private static final UUID ARROW_VELOCITY_UUID = UUID.fromString("14378aa6-075b-4657-9137-da589a6dfe59");
 	private static final UUID ARROW_DAMAGE_UUID = UUID.fromString("14378aa9-089b-5698-5486-da637a6dfe59");
 	private static final UUID DRAW_SPEED_UUID = UUID.fromString("14378aa9-089b-5698-5486-da637a6dfe59");
-	private static final int RANGE = ServerConfig.MagnetRange.get();
+	private static final int RANGE = getMagnetRange();
 	private final MobEffect effect1;
 	private final MobEffect effect2;
 	private final MobEffect effect3;
@@ -191,94 +189,94 @@ public class RingGod extends DivineRingBase {
 	@Override
 	public  Multimap<Attribute, AttributeModifier> curioModifiers(SlotContext slotContext, UUID uuid, ItemStack stack)  {
 		Multimap<Attribute, AttributeModifier> modifiers = HashMultimap.create();
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && Tattack.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTattack()&& this.isEnabled.get()) {
 			modifiers.put(Attributes.ATTACK_DAMAGE ,
-					new AttributeModifier(ATTACK_DAMAGE_UUID , "" , ATTACK_DAMAGE.get() ,
+					new AttributeModifier(ATTACK_DAMAGE_UUID , "" , getAttackDamage() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity() ).containsKey(slotContext.identifier()) && TArmor.get() && isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity() ).containsKey(slotContext.identifier()) && toggleTArmor() && isEnabled.get()) {
 			modifiers.put(Attributes.ARMOR ,
-					new AttributeModifier(ARMOR_UUID , "" , ARMOR.get() ,
+					new AttributeModifier(ARMOR_UUID , "" , getArmor() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TArmorToughness.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTArmorToughness() && this.isEnabled.get()) {
 			modifiers.put(Attributes.ARMOR_TOUGHNESS ,
-					new AttributeModifier(ARMOR_TOUGHNESS_UUID , "" , ARMOR_TOUGHNESS.get() ,
+					new AttributeModifier(ARMOR_TOUGHNESS_UUID , "" , getArmorToughness() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TMAXHealth.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTMAXHealth() && this.isEnabled.get()) {
 			modifiers.put(Attributes.MAX_HEALTH ,
-					new AttributeModifier(HEALTH_UUID , "" , 20 * ((double) MaxHeart.get() / 100) ,
+					new AttributeModifier(HEALTH_UUID , "" , 20 * ((double) getMaxHeart() / 100) ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TKnockbackResistance.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTKnockbackResistance() && this.isEnabled.get()) {
 			modifiers.put(Attributes.KNOCKBACK_RESISTANCE ,
-					new AttributeModifier(KNOBACK_RESISTANCE_UUID , "" , (double) KNOCKBACK_RESISTANCE.get() / 100 ,
+					new AttributeModifier(KNOBACK_RESISTANCE_UUID , "" , (double) getKnockbackResistance() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TStepHeight.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTStepHeight() && this.isEnabled.get()) {
 			modifiers.put(ForgeMod.STEP_HEIGHT_ADDITION.get() ,
-					new AttributeModifier(STEP_HEIGHT_UUID , "" , STEP_HEIGHT.get() ,
+					new AttributeModifier(STEP_HEIGHT_UUID , "" , getStepHeight() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TBlockReach.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTBlockReach() && this.isEnabled.get()) {
 			modifiers.put(ForgeMod.BLOCK_REACH.get() ,
-					new AttributeModifier(BLOCK_REACH_UUID , "" , BLOCK_REACH.get() ,
+					new AttributeModifier(BLOCK_REACH_UUID , "" , getBlockReach() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TEntityReach.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTEntityReach() && this.isEnabled.get()) {
 			modifiers.put(ForgeMod.ENTITY_REACH.get() ,
-					new AttributeModifier(ENTITY_REACH_UUID , "" , ENTITY_REACH.get() ,
+					new AttributeModifier(ENTITY_REACH_UUID , "" , getEntityReach() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TMovementSpeed.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTMovementSpeed() && this.isEnabled.get()) {
 			modifiers.put(Attributes.MOVEMENT_SPEED ,
-					new AttributeModifier(MOVEMENT_SPEED_UUID , "" , (double) MOVEMENT_SPEED.get() / 100 ,
+					new AttributeModifier(MOVEMENT_SPEED_UUID , "" , (double) getMovementSpeed() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_BASE));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TDrawSpeed.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTDrawSpeed() && this.isEnabled.get()) {
 			modifiers.put(ForgeMod.SWIM_SPEED.get() ,
-					new AttributeModifier(SWIM_SPEED_UUID , "" , (double) SWIM_SPEED.get() / 100 ,
+					new AttributeModifier(SWIM_SPEED_UUID , "" , (double) getSwimSpeed() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TFlyingSpeed.get() && isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTFlyingSpeed() && isEnabled.get()) {
 			modifiers.put(Attributes.FLYING_SPEED ,
-					new AttributeModifier(FLYING_SPEED_UUID , "" , (double) FLYING_SPEED.get() / 100 ,
+					new AttributeModifier(FLYING_SPEED_UUID , "" , (double) getFlyingSpeed() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TLuck.get() && isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTLuck() && isEnabled.get()) {
 			modifiers.put(Attributes.LUCK ,
-					new AttributeModifier(LUCK_UUID , "" , LUCK.get() ,
+					new AttributeModifier(LUCK_UUID , "" , getLuck() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TCritChance.get() && isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTCritChance() && isEnabled.get()) {
 			modifiers.put(ALObjects.Attributes.CRIT_CHANCE.get() ,
-					new AttributeModifier(CRIT_CHANCE_UUID , "" , (double) CRIT_CHANCE.get() / 100 ,
+					new AttributeModifier(CRIT_CHANCE_UUID , "" , (double) getCritChance() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TArmorPierce.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTArmorPierce() && this.isEnabled.get()) {
 			modifiers.put(ALObjects.Attributes.ARMOR_PIERCE.get() ,
-					new AttributeModifier(ARMOR_PIERCE_UUID , "" , ARMOR_PIERCE.get() ,
+					new AttributeModifier(ARMOR_PIERCE_UUID , "" , getArmorPierce() ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TArmorShred.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTArmorShred() && this.isEnabled.get()) {
 			modifiers.put(ALObjects.Attributes.ARMOR_SHRED.get() ,
-					new AttributeModifier(ARMOR_SHRED_UUID , "" , (double) ARMOR_SHRED.get() / 100 ,
+					new AttributeModifier(ARMOR_SHRED_UUID , "" , (double) getArmorShred() / 100 ,
 							AttributeModifier.Operation.ADDITION));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TArrowVelocity.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTArrowVelocity() && this.isEnabled.get()) {
 			modifiers.put(ALObjects.Attributes.ARROW_VELOCITY.get() ,
-					new AttributeModifier(ARROW_VELOCITY_UUID , "" , (double) ARROW_VELOCITY.get() / 100 ,
+					new AttributeModifier(ARROW_VELOCITY_UUID , "" , (double) getArrowVelocity() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TArrowDamage.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTArrowDamage() && this.isEnabled.get()) {
 			modifiers.put(ALObjects.Attributes.ARROW_DAMAGE.get() ,
-					new AttributeModifier(ARROW_DAMAGE_UUID , "" , (double) ARROW_DAMAGE.get() / 100 ,
+					new AttributeModifier(ARROW_DAMAGE_UUID , "" , (double) getArrowDamage() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
-		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && TDrawSpeed.get() && this.isEnabled.get()) {
+		if (CuriosApi.getItemStackSlots(stack,slotContext.entity()).containsKey(slotContext.identifier()) && toggleTDrawSpeed() && this.isEnabled.get()) {
 			modifiers.put(ALObjects.Attributes.DRAW_SPEED.get() ,
-					new AttributeModifier(DRAW_SPEED_UUID , "" , (double) DRAW_SPEED.get() / 100 ,
+					new AttributeModifier(DRAW_SPEED_UUID , "" , (double) getDrawSpeed() / 100 ,
 							AttributeModifier.Operation.MULTIPLY_TOTAL));
 		}
 		return modifiers;

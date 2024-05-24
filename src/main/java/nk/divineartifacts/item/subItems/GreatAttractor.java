@@ -12,11 +12,12 @@ import nk.divineartifacts.item.baseitems.GreatAttractorBase;
 import java.util.List;
 import java.util.function.Supplier;
 
+import static nk.divineartifacts.client.handler.ToggleHelper.getGreatAttractorRange;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleMagnet;
-import static nk.divineartifacts.config.ServerConfig.ValGreatAttractorRang;
+
 
 public class GreatAttractor extends GreatAttractorBase {
-	private final int RANGE = ValGreatAttractorRang.get();
+	private final int RANGE = getGreatAttractorRange();
 	public GreatAttractor(
 			Properties properties , String tooltip , Supplier<Boolean> enabled , GlintRenderTypes glintType
 	) {

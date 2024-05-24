@@ -10,8 +10,8 @@ import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.utils.Utils;
 
+import static nk.divineartifacts.client.handler.ToggleHelper.togGaiaBlessing;
 import static nk.divineartifacts.client.handler.ToggleHelper.toggleHudElements;
-import static nk.divineartifacts.config.ToggleAbilities.togGaiaBlessing;
 
 public class GaiaBlessingAbilities {
 	private static final ResourceLocation growthOn = new ResourceLocation(DivineArtifacts.MODID ,
@@ -42,7 +42,7 @@ public class GaiaBlessingAbilities {
 
 		if (natureTablet && toggleHudElements()) {
 
-			if (togGaiaBlessing.get()) {
+			if (togGaiaBlessing()) {
 				poseStack.blit(growthOn , xCord , yCord1 , 0 , 0 , size , size , size , size);
 			}
 			else {

@@ -15,20 +15,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingChangeTargetEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import nk.divineartifacts.DivineArtifacts;
 import nk.divineartifacts.client.handler.ToggleHelper;
-import nk.divineartifacts.config.ServerConfig;
 import nk.divineartifacts.init.ModItems;
 import nk.divineartifacts.init.SoundRegistry;
 import nk.divineartifacts.utils.Utils;
 import org.joml.Math;
 
-import static nk.divineartifacts.config.ServerConfig.configDivineRing;
+import static nk.divineartifacts.client.handler.ToggleHelper.toggleDivineRing;
 import static nk.divineartifacts.utils.UtilsHelper.applyKnockBack;
 
-@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
+@Mod.EventBusSubscriber(modid = DivineArtifacts.MODID)
 public class DivinePotionRemover {
 	@SubscribeEvent
 	public static void onPotionAttack(MobEffectEvent.Added event) {
@@ -48,7 +47,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent
 	public static void CreeperAttack(LivingChangeTargetEvent event) {
-		if (!ServerConfig.configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			String vx1 = EntityType.getKey(event.getEntity().getType()).toString();
@@ -60,7 +59,7 @@ public class DivinePotionRemover {
 
 	@SubscribeEvent
 	public static void phantomSpawn(LivingChangeTargetEvent event) {
-		if (!configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (event.getNewTarget() instanceof Player player) {
 			if (player.isCreative() || player.isSpectator()) return;
 			boolean ring = Utils.isItemEquipped(ModItems.DIVINE_RING.get() , player);
@@ -71,9 +70,9 @@ public class DivinePotionRemover {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent
 	public static void handleBreakSpeedEvent(PlayerEvent.BreakSpeed event) {
-		if (!configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;
@@ -83,9 +82,9 @@ public class DivinePotionRemover {
 		}
 	}
 
-	@SubscribeEvent(priority = EventPriority.LOW)
+	@SubscribeEvent
 	public static void handleBreakSpeed(PlayerEvent.BreakSpeed event) {
-		if (!configDivineRing.get()) return;
+		if (!toggleDivineRing()) return;
 		if (event.isCanceled()) return;
 		Player player = event.getEntity();
 		if (player.isCreative() || player.isSpectator()) return;

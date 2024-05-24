@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class EldritchTabletBase extends ItemBaseClass {
 
@@ -285,23 +285,23 @@ public class EldritchTabletBase extends ItemBaseClass {
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
 
-		MutableComponent v1 = Component.literal("  + " + ElSpellPower.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v2 = Component.literal("  + " + ElSPellResist.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v3 = Component.literal("  - " + ElMaxMana.get() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent v1 = Component.literal("  + " + getElSpellPower() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v2 = Component.literal("  + " + getElSpellResist() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v3 = Component.literal("  - " + getElMaxMana() + "% ").withStyle(s -> s.withColor(negValue));
 
 		MutableComponent a1 = Component.translatable("eldritch.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a2 = Component.translatable("eldritch.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a3 = Component.translatable("eldritch.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 
-		if (TogElSpellPower.get()) {
+		if (toggleElSpellPower()) {
 			tooltip.add(v1.append(a1));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogElSPellResist.get()) {
+		if (toggleElSpellResist()) {
 			tooltip.add(v2.append(a2));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogElMaxMana.get()) {
+		if (toggleElMaxMana()) {
 			tooltip.add(v3.append(a3));
 			tooltip.add(Component.literal(""));
 		}

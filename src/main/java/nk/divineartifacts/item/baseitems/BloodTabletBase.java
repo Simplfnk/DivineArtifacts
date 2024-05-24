@@ -36,7 +36,7 @@ import java.util.UUID;
 import java.util.function.Supplier;
 
 import static nk.divineartifacts.client.handler.ClientForgeHandler.isShiftPressed;
-import static nk.divineartifacts.config.ServerConfig.*;
+import static nk.divineartifacts.client.handler.ToggleHelper.*;
 
 public class BloodTabletBase extends ItemBaseClass {
 
@@ -264,29 +264,29 @@ public class BloodTabletBase extends ItemBaseClass {
 
 		tooltip.add(atr);
 		tooltip.add(Component.literal(""));
-		MutableComponent v1 = Component.literal("  + " + ValBldTabBloodMagicResist.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v2 = Component.literal("  + " + ValBldTabBloodSpellPower.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v3 = Component.literal("  + " + ValBldTabCastTime.get() + "% ").withStyle(s -> s.withColor(Value));
-		MutableComponent v4 = Component.literal("  - " + ValBldTabCoolDown.get() + "% ").withStyle(s -> s.withColor(negValue));
+		MutableComponent v1 = Component.literal("  + " + getBldTabBloodMagicResist() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v2 = Component.literal("  + " + getBldTabBloodSpellPower() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v3 = Component.literal("  + " + getBldTabCastTime() + "% ").withStyle(s -> s.withColor(Value));
+		MutableComponent v4 = Component.literal("  - " + getBldTabCoolDown() + "% ").withStyle(s -> s.withColor(negValue));
 
 		MutableComponent a1 = Component.translatable("blood.1." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a2 = Component.translatable("blood.2." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a3 = Component.translatable("blood.3." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(Value));
 		MutableComponent a4 = Component.translatable("blood.4." + DivineArtifacts.MODID + ".tooltip").withStyle(s -> s.withColor(negValue));
 
-		if (TogBldTabBloodMagicResist.get()) {
+		if (toggleBldTabBloodMagicResist()) {
 			tooltip.add(v1.append(a1));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogBldBloodSpellPower.get()) {
+		if (toggleBldBloodSpellPower()) {
 			tooltip.add(v2.append(a2));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogBldTabCastTime.get()) {
+		if (toggleBldTabCastTime()) {
 			tooltip.add(v3.append(a3));
 			tooltip.add(Component.literal(""));
 		}
-		if (TogBldTabCoolDown.get()) {
+		if (toggleBldTabCoolDown()) {
 			tooltip.add(v4.append(a4));
 			tooltip.add(Component.literal(""));
 		}
